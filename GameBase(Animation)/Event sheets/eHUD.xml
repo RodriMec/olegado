@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>eHUD</name>
+    <events>
+        <variable constant="0" name="vida" sid="686819713779110" static="0" type="number">50.671</variable>
+        <variable constant="0" name="energia_ajuste" sid="541832917311593" static="0" type="number">50.671</variable>
+        <event-group description="Ajuste da barra de vida com ganho e perca de vida" sid="970774230632090" title="LifeBar">
+            <sub-events>
+                <event-block sid="379968248325468">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" sid="288934553603804" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-5" name="Set width" sid="697377449179491" type="hud_vida">
+                            <param id="0" name="Width">50.671</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="107877271649033">
+                    <conditions>
+                        <condition id="0" name="On key pressed" sid="426997401368363" type="Keyboard">
+                            <param id="0" name="Key">65</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Add to" sid="643709337475506" type="System">
+                            <param id="0" name="Variable">energia_ajuste</param>
+                            <param id="1" name="Value">13</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="639240527540013">
+                    <conditions>
+                        <condition id="0" name="On key pressed" sid="224895515457062" type="Keyboard">
+                            <param id="0" name="Key">83</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-11" name="Subtract from" sid="863561516692613" type="System">
+                            <param id="0" name="Variable">energia_ajuste</param>
+                            <param id="1" name="Value">13</param>
+                        </action>
+                        <action id="0" name="Call function" sid="549777055596143" type="Function">
+                            <param id="0" name="Name">&quot;flash&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="893591853297268">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="895275807381651" type="System">
+                            <param id="0" name="Variable">vida</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="822456490534127">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="103297651193282" type="System">
+                                    <param id="0" name="Variable">vida</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">50.671</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Add to" sid="823769626856844" type="System">
+                                    <param id="0" name="Variable">energia_ajuste</param>
+                                    <param id="1" name="Value">13</param>
+                                </action>
+                                <action id="-11" name="Subtract from" sid="973609264746846" type="System">
+                                    <param id="0" name="Variable">energia_ajuste</param>
+                                    <param id="1" name="Value">13</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="557397803234313">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="228338146938869" type="System">
+                            <param id="0" name="Variable">energia_ajuste</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-5" name="Set width" sid="121024205663298" type="hud_vida">
+                            <param id="0" name="Width">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="255561505200371" type="System">
+                            <param id="0" name="Variable">energia_ajuste</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="124746175717486">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="940882942340434" type="System">
+                            <param id="0" name="Variable">energia_ajuste</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">50.671</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-5" name="Set width" sid="267401066512421" type="hud_vida">
+                            <param id="0" name="Width">50.671</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="610247479262027" type="System">
+                            <param id="0" name="Variable">energia_ajuste</param>
+                            <param id="1" name="Value">50.671</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="202628502521209">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="488749353057521" type="System">
+                            <param id="0" name="Variable">energia_ajuste</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="544495725431975">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="194605328488608" type="System">
+                                    <param id="0" name="Variable">energia_ajuste</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">14</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-5" name="Set width" sid="123931899262062" type="hud_vida">
+                                    <param id="0" name="Width">50.671/4</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="580846551895271">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="858044142963597" type="System">
+                            <param id="0" name="Variable">energia_ajuste</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">14</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="127358215586966">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="250286849977380" type="System">
+                                    <param id="0" name="Variable">energia_ajuste</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">27</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-5" name="Set width" sid="251188700630142" type="hud_vida">
+                                    <param id="0" name="Width">(50.671/4)*2</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="828913746910238">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="810409764114727" type="System">
+                            <param id="0" name="Variable">energia_ajuste</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">27</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="188866287282883">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="265751068142805" type="System">
+                                    <param id="0" name="Variable">energia_ajuste</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">40</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-5" name="Set width" sid="459884195983582" type="hud_vida">
+                                    <param id="0" name="Width">(50.671/4)*3</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="228348634455579">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="749960752034236" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="248246210471990" type="hud_tanqueVida">
+                            <param id="0" name="X">p_player.X-26</param>
+                            <param id="1" name="Y">p_player.Y-142</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="918433648564471" type="hud_vida">
+                            <param id="0" name="X">p_player.X-25</param>
+                            <param id="1" name="Y">p_player.Y-139</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="783160721379828" type="hud_stamina">
+                            <param id="0" name="X">p_player.X-23</param>
+                            <param id="1" name="Y">p_player.Y-125</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="319615676507954" type="hud_tanqueStamina">
+                            <param id="0" name="X">p_player.X-27</param>
+                            <param id="1" name="Y">p_player.Y-128</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="312626698807953" title="ArrowBar" />
+    </events>
+</c2eventsheet>

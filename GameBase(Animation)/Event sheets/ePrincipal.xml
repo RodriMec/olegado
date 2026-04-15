@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>ePrincipal</name>
+    <events>
+        <include>eHUD</include>
+        <include>eInimigos</include>
+        <include>ePersonagem</include>
+    </events>
+</c2eventsheet>

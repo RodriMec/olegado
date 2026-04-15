@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>eInimigos</name>
+    <events>
+        <event-block sid="107729708873261">
+            <conditions>
+                <condition id="-11" name="For Each" sid="317899144961635" type="System">
+                    <param id="0" name="Object">p_inimigo</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="133615993941896">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="368736089830936" type="p_inimigo">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="X co-ordinate">p_playerBox.X</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Set mirrored" sid="224572883601861" type="p_inimigo">
+                            <param id="0" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="901809600337713">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="527879816044563" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Set mirrored" sid="509029943593802" type="p_inimigo">
+                            <param id="0" name="State">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="604503873734449">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="799631329233100" type="p_inimigo">
+                    <param id="0" name="Instance variable">vida</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="276555850971430" type="p_inimigo" />
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

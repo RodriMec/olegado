@@ -1,0 +1,499 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>ePersonagem</name>
+    <events>
+        <event-block sid="278383511105445">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="118731165171707" type="System" />
+            </conditions>
+            <actions>
+                <action id="-4" name="Set position to another object" sid="725175090804710" type="p_player">
+                    <param id="0" name="Object">p_playerBox</param>
+                    <param id="1" name="Image point (optional)">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-group description="" sid="240867813393567" title="Input">
+            <sub-events>
+                <event-group description="" sid="256265076938671" title="Teclado">
+                    <sub-events>
+                        <event-block sid="112530557623280">
+                            <conditions>
+                                <condition id="2" name="Key is down" sid="410167520649559" type="Keyboard">
+                                    <param id="0" name="Key">39</param>
+                                </condition>
+                                <condition id="2" inverted="1" name="Key is down" sid="985785025995295" type="Keyboard">
+                                    <param id="0" name="Key">37</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="360535930437929" type="Function">
+                                    <param id="0" name="Name">&quot;walk&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;D&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="890495129864206">
+                            <conditions>
+                                <condition id="2" name="Key is down" sid="495210990273226" type="Keyboard">
+                                    <param id="0" name="Key">37</param>
+                                </condition>
+                                <condition id="2" inverted="1" name="Key is down" sid="675361879742960" type="Keyboard">
+                                    <param id="0" name="Key">39</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="459441957503937" type="Function">
+                                    <param id="0" name="Name">&quot;walk&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;E&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="379494047247562">
+                            <conditions>
+                                <condition id="0" name="On key pressed" sid="207440376272264" type="Keyboard">
+                                    <param id="0" name="Key">38</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="343674467412045" type="Function">
+                                    <param id="0" name="Name">&quot;jump&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block any="1" sid="683251092214056">
+                            <conditions>
+                                <condition id="2" name="Key is down" sid="324383149641444" type="Keyboard">
+                                    <param id="0" name="Key">39</param>
+                                </condition>
+                                <condition id="2" name="Key is down" sid="574745951497838" type="Keyboard">
+                                    <param id="0" name="Key">37</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="222209612644182" type="Function">
+                                    <param id="0" name="Name">&quot;mirar&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;normal&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="943682992635019">
+                            <conditions>
+                                <condition id="0" name="On key pressed" sid="749097160127648" type="Keyboard">
+                                    <param id="0" name="Key">32</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="388512820871696" type="Function">
+                                    <param id="0" name="Name">&quot;shoot&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="967678081279707" title="Funções Jogador">
+            <sub-events>
+                <event-block sid="976917330327993">
+                    <conditions>
+                        <condition id="0" name="On function" sid="877060137973057" type="Function">
+                            <param id="0" name="Name">&quot;walk&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="366967458006299">
+                            <conditions>
+                                <condition id="1" name="Compare parameter" sid="292851256940030" type="Function">
+                                    <param id="0" name="Index">0</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;D&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="7" name="Simulate control" sid="904673674083753" type="p_playerBox">
+                                    <param id="0" name="Control">1</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="103418248446136">
+                                    <conditions>
+                                        <condition id="7" name="Is mirrored" sid="158608356596434" type="p_player" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" sid="887931154140282" type="Function">
+                                            <param id="0" name="Name">&quot;espelhar&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="986271575440526">
+                            <conditions>
+                                <condition id="1" name="Compare parameter" sid="567292103399396" type="Function">
+                                    <param id="0" name="Index">0</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;E&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="7" name="Simulate control" sid="761539824496686" type="p_playerBox">
+                                    <param id="0" name="Control">0</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="755346398242343">
+                                    <conditions>
+                                        <condition id="7" inverted="1" name="Is mirrored" sid="116416558537764" type="p_player" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" sid="880510302561880" type="Function">
+                                            <param id="0" name="Name">&quot;espelhar&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="181539123473495">
+                    <conditions>
+                        <condition id="0" name="On function" sid="725259249432111" type="Function">
+                            <param id="0" name="Name">&quot;espelhar&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="390101268011407">
+                            <conditions>
+                                <condition id="7" name="Is mirrored" sid="614916271460541" type="p_player" />
+                            </conditions>
+                            <actions>
+                                <action id="7" name="Set mirrored" sid="374121044074656" type="p_player">
+                                    <param id="0" name="State">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="496469452353763">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="232751285912346" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="7" name="Set mirrored" sid="675648222111059" type="p_player">
+                                    <param id="0" name="State">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="465435320129957">
+                    <conditions>
+                        <condition id="0" name="On function" sid="132851076060733" type="Function">
+                            <param id="0" name="Name">&quot;jump&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="721996294855344">
+                            <conditions>
+                                <condition behavior="Platform" id="3" name="Is jumping" sid="249554095263796" type="p_playerBox" />
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="7" name="Simulate control" sid="607008516916333" type="p_playerBox">
+                                    <param id="0" name="Control">2</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="293761647541437">
+                    <conditions>
+                        <condition id="0" name="On function" sid="984508687202052" type="Function">
+                            <param id="0" name="Name">&quot;mirar&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="917399648467333" type="p_playerBox">
+                            <param id="0" name="Instance variable">mira</param>
+                            <param id="1" name="Value">Function.Param(0)</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="773253980063613">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="841458550654366" type="p_playerBox">
+                            <param id="0" name="Instance variable">mira</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;normal&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="682840572861380">
+                            <conditions>
+                                <condition id="7" name="Is mirrored" sid="524213340650804" type="p_player" />
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="695252091284494" type="p_playerBox">
+                                    <param id="0" name="Instance variable">angulo_tiro</param>
+                                    <param id="1" name="Value">180</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="847431677046352">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="963610559486354" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="705095358258257" type="p_playerBox">
+                                    <param id="0" name="Instance variable">angulo_tiro</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="398783266440181">
+                    <conditions>
+                        <condition id="0" name="On function" sid="384639954820780" type="Function">
+                            <param id="0" name="Name">&quot;shoot&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="100920262308599">
+                            <conditions />
+                            <actions>
+                                <action id="-13" name="Set boolean" sid="241435057905684" type="p_playerBox">
+                                    <param id="0" name="Instance variable">shooting</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="759223531297418">
+                    <conditions>
+                        <condition id="0" name="On function" sid="789582153450373" type="Function">
+                            <param id="0" name="Name">&quot;flash&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Flash" id="0" name="Flash" sid="263350280341990" type="p_player">
+                            <param id="0" name="&apos;On&apos; time">0.05</param>
+                            <param id="1" name="&apos;Off&apos; time">0.05</param>
+                            <param id="2" name="Duration">1</param>
+                        </action>
+                        <action id="-12" name="Set group active" sid="432886254701650" type="System">
+                            <param id="0" name="Group name">&quot;Input&quot;</param>
+                            <param id="1" name="State">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="197666573750297" title="AnimationControl">
+            <sub-events>
+                <event-block sid="748990338176131">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="770201333696713" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="130500481598765" type="p_player">
+                            <param id="0" name="Animation">p_playerBox.estado</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="160898824028567">
+                    <conditions>
+                        <condition behavior="Platform" id="2" name="Is on floor" sid="267640605939555" type="p_playerBox" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="911064473126142">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="765005147676726" type="p_playerBox">
+                                    <param id="0" name="Instance variable">estado</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Value">&quot;turn&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="160694031713499">
+                                    <conditions>
+                                        <condition behavior="Platform" id="0" name="Is moving" sid="923417060530288" type="p_playerBox" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="992808979398782" type="p_playerBox">
+                                            <param id="0" name="Instance variable">estado</param>
+                                            <param id="1" name="Value">&quot;walk&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="878119059220231">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="635759484096016" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="754565889875008" type="p_playerBox">
+                                            <param id="0" name="Instance variable">estado</param>
+                                            <param id="1" name="Value">&quot;idle&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="791004563035349">
+                    <conditions />
+                    <actions />
+                </event-block>
+                <event-block sid="342649648985738">
+                    <conditions>
+                        <condition behavior="Platform" id="3" name="Is jumping" sid="738020578833441" type="p_playerBox" />
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="875472649989858" type="p_playerBox">
+                            <param id="0" name="Instance variable">estado</param>
+                            <param id="1" name="Value">&quot;jump&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-block sid="611633405939820">
+            <conditions>
+                <condition id="-8" name="Is boolean instance variable set" sid="351557453784558" type="p_playerBox">
+                    <param id="0" name="Instance variable">shooting</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" sid="941496265981959" type="p_playerBox">
+                    <param id="0" name="Instance variable">shooting</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="690649064065838">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="171020687355204" type="p_playerBox">
+                            <param id="0" name="Instance variable">tiro_cooldown</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="719207679966967" type="System">
+                            <param id="0" name="Object to create">p_tiro</param>
+                            <param id="1" name="Layer">&quot;Jogador&quot;</param>
+                            <param id="2" name="X">p_player.ImagePointX(&quot;tiro&quot;)</param>
+                            <param id="3" name="Y">p_player.ImagePointY(&quot;tiro&quot;)</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="425725370192169" type="p_playerBox">
+                            <param id="0" name="Instance variable">tiro_cooldown</param>
+                            <param id="1" name="Value">0.5</param>
+                        </action>
+                        <action id="-8" name="Set angle" sid="750469158832108" type="p_tiro">
+                            <param id="0" name="Angle">p_playerBox.angulo_tiro</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="197978145136672">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="819061838605746" type="p_playerBox">
+                    <param id="0" name="Instance variable">tiro_cooldown</param>
+                    <param id="1" name="Comparison">4</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="600247126777134" type="p_playerBox">
+                    <param id="0" name="Instance variable">tiro_cooldown</param>
+                    <param id="1" name="Value">dt</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-group description="Refere-se ao dano recebido" sid="566613286650390" title="Dano">
+            <sub-events>
+                <event-block sid="151895741891042">
+                    <conditions>
+                        <condition id="1" name="Is overlapping another object" sid="714648174573330" type="p_playerBox">
+                            <param id="0" name="Object">p_inimigo</param>
+                        </condition>
+                        <condition behavior="Flash" id="0" inverted="1" name="Is flashing" sid="395165859416055" type="p_player" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="505232420780882" type="Function">
+                            <param id="0" name="Name">&quot;flash&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                        <action id="-11" name="Subtract from" sid="793136400247027" type="System">
+                            <param id="0" name="Variable">energia_ajuste</param>
+                            <param id="1" name="Value">p_inimigo.dano</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="615593742700033" title="DanoCausado">
+            <sub-events>
+                <event-block sid="931744320349141">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="833650510307562" type="p_inimigo">
+                            <param id="0" name="Object">p_tiro</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="258732574434647" type="p_tiro" />
+                        <action id="-12" name="Subtract from" sid="666882674613528" type="p_inimigo">
+                            <param id="0" name="Instance variable">vida</param>
+                            <param id="1" name="Value">p_tiro.dano</param>
+                        </action>
+                        <action id="-28" name="Set effect parameter" sid="154613811306367" type="p_inimigo">
+                            <param id="0" name="Effect">&quot;Brightness&quot;</param>
+                            <param id="1" name="Parameter index">0</param>
+                            <param id="2" name="Value">200</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="987913383756383" type="System">
+                            <param id="0" name="Seconds">0.02</param>
+                        </action>
+                        <action id="-28" name="Set effect parameter" sid="848498859725584" type="p_inimigo">
+                            <param id="0" name="Effect">&quot;Brightness&quot;</param>
+                            <param id="1" name="Parameter index">0</param>
+                            <param id="2" name="Value">100</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="903394711021711" title="VidaRecebida">
+            <sub-events>
+                <event-block sid="214866005767406">
+                    <conditions>
+                        <condition id="1" name="Is overlapping another object" sid="814159884920558" type="p_playerBox">
+                            <param id="0" name="Object">p_advida</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Add to" sid="819666443342756" type="System">
+                            <param id="0" name="Variable">energia_ajuste</param>
+                            <param id="1" name="Value">13</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="265673524006565" type="p_advida" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+    </events>
+</c2eventsheet>
