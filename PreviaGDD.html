@@ -1,0 +1,2366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O Legado — Game Design Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0f0f1a;
+      --bg2:       #1a1a2e;
+      --bg3:       #16213e;
+      --gold:      #c9a84c;
+      --gold-light:#e8c96a;
+      --text:      #ddd8cc;
+      --text-dim:  #9a9080;
+      --green:     #4caf7d;
+      --orange:    #e07a2f;
+      --neon:      #00e5ff;
+      --red:       #c0392b;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* ===== NAV ===== */
+    #topnav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(10,10,22,0.95);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--gold);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 4px;
+      padding: 8px 16px;
+    }
+
+    #topnav a {
+      color: var(--gold);
+      text-decoration: none;
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 1px;
+      padding: 6px 14px;
+      border: 1px solid transparent;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+
+    #topnav a:hover {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.1);
+    }
+
+    /* ===== LAYOUT ===== */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 24px 60px;
+    }
+
+    section {
+      margin-bottom: 80px;
+    }
+
+    /* ===== CAPA ===== */
+    #capa {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 100px 24px 60px;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .capa-bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .capa-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.18;
+      filter: sepia(60%) hue-rotate(20deg);
+    }
+
+    .capa-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .capa-ornament {
+      font-size: 24px;
+      color: var(--gold);
+      letter-spacing: 16px;
+      margin-bottom: 12px;
+      opacity: 0.7;
+    }
+
+    .capa-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(56px, 10vw, 100px);
+      font-weight: 900;
+      color: var(--gold-light);
+      text-shadow: 0 0 60px rgba(201,168,76,0.4), 0 4px 20px rgba(0,0,0,0.8);
+      line-height: 1;
+      letter-spacing: 6px;
+    }
+
+    .capa-subtitle {
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      letter-spacing: 8px;
+      color: var(--text-dim);
+      margin-top: 8px;
+      text-transform: uppercase;
+    }
+
+    .capa-tagline {
+      font-size: 17px;
+      font-style: italic;
+      color: var(--text);
+      margin: 24px auto;
+      max-width: 500px;
+      border-left: 3px solid var(--gold);
+      border-right: 3px solid var(--gold);
+      padding: 12px 20px;
+    }
+
+    .capa-divider {
+      width: 160px;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 20px auto;
+    }
+
+    .capa-meta {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      flex-wrap: wrap;
+      font-size: 13px;
+      letter-spacing: 2px;
+      margin-top: 16px;
+    }
+
+    .capa-meta span {
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+
+    .capa-meta strong {
+      color: var(--gold);
+    }
+
+    .team-grid {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .team-card {
+      background: rgba(201,168,76,0.07);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 4px;
+      padding: 12px 20px;
+      text-align: center;
+    }
+
+    .team-card .name {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .team-card .role {
+      color: var(--text-dim);
+      font-size: 12px;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    /* ===== SECTION HEADERS ===== */
+    .section-header {
+      margin-bottom: 36px;
+    }
+
+    .section-number {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 700;
+      color: var(--gold-light);
+      margin-top: 4px;
+      line-height: 1.1;
+    }
+
+    .section-divider {
+      width: 80px;
+      height: 3px;
+      margin-top: 12px;
+    }
+
+    .divider-green  { background: var(--green); }
+    .divider-orange { background: var(--orange); }
+    .divider-neon   { background: var(--neon); }
+    .divider-gold   { background: var(--gold); }
+
+    /* ===== SUBSECTION ===== */
+    .sub-section {
+      background: var(--bg2);
+      border-radius: 6px;
+      margin-bottom: 28px;
+      overflow: hidden;
+    }
+
+    .sub-section.era-medieval { border-left: 4px solid var(--green); }
+    .sub-section.era-polvora  { border-left: 4px solid var(--orange); }
+    .sub-section.era-moderna  { border-left: 4px solid var(--neon); }
+    .sub-section.era-gold     { border-left: 4px solid var(--gold); }
+
+    .sub-section summary, .sub-header {
+      font-family: 'Cinzel', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gold);
+      padding: 16px 24px;
+      cursor: pointer;
+      background: rgba(201,168,76,0.06);
+      letter-spacing: 1px;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sub-section summary::before {
+      content: '▸';
+      font-size: 12px;
+      transition: transform 0.2s;
+    }
+
+    details[open] summary::before {
+      transform: rotate(90deg);
+    }
+
+    .sub-body {
+      padding: 20px 24px 24px;
+    }
+
+    /* ===== TABLES ===== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      color: var(--gold);
+      text-align: left;
+      padding: 10px 14px;
+      background: rgba(201,168,76,0.08);
+      border-bottom: 1px solid rgba(201,168,76,0.25);
+      letter-spacing: 1px;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      vertical-align: middle;
+      color: var(--text);
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    tr:hover td {
+      background: rgba(201,168,76,0.04);
+    }
+
+    td img {
+      display: block;
+      image-rendering: pixelated;
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* ===== SPRITE DISPLAY ===== */
+    .sprite-row {
+      display: flex;
+      gap: 2px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .sprite-frame {
+      image-rendering: pixelated;
+      background: rgba(0,0,0,0.4);
+      padding: 4px;
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .sprite-big {
+      image-rendering: pixelated;
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border: 1px solid rgba(201,168,76,0.2);
+      background: rgba(0,0,0,0.3);
+    }
+
+    /* ===== ANIMATION SHOWCASE ===== */
+    .anim-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .anim-card {
+      background: var(--bg3);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 4px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .anim-card h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .anim-card .frames {
+      display: flex;
+      justify-content: center;
+      gap: 3px;
+      flex-wrap: wrap;
+    }
+
+    .anim-card .frames img {
+      image-rendering: pixelated;
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .anim-card .full-sheet {
+      image-rendering: pixelated;
+      display: block;
+      width: 100%;
+      height: 140px;
+      object-fit: contain;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 3px;
+      margin-top: 4px;
+    }
+
+    /* ===== FLOWCHART ===== */
+    .flowchart {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      padding: 20px 0;
+    }
+
+    .flow-node {
+      background: var(--bg3);
+      border: 2px solid var(--gold);
+      border-radius: 4px;
+      padding: 10px 28px;
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      color: var(--gold);
+      text-align: center;
+      min-width: 200px;
+    }
+
+    .flow-node.diamond {
+      transform: rotate(0);
+      background: rgba(201,168,76,0.12);
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
+    .flow-node.hq {
+      border-style: dashed;
+      color: var(--text-dim);
+      border-color: var(--text-dim);
+      font-style: italic;
+    }
+
+    .flow-node.end {
+      background: rgba(192,57,43,0.15);
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    .flow-node.final {
+      background: rgba(201,168,76,0.15);
+      border-color: var(--gold-light);
+      color: var(--gold-light);
+    }
+
+    .flow-arrow {
+      width: 2px;
+      height: 24px;
+      background: var(--gold);
+      position: relative;
+    }
+
+    .flow-arrow::after {
+      content: '▼';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--gold);
+      font-size: 12px;
+    }
+
+    .flow-branch {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .flow-branch-line {
+      width: 100%;
+      height: 2px;
+      background: var(--gold);
+      position: absolute;
+      top: 12px;
+    }
+
+    .flow-choice {
+      display: flex;
+      gap: 40px;
+      text-align: center;
+    }
+
+    .flow-choice-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .flow-choice-label {
+      font-size: 11px;
+      color: var(--text-dim);
+      font-style: italic;
+      margin-bottom: 4px;
+    }
+
+    /* ===== COMMANDS TABLE ===== */
+    .cmd-table td.key-cell {
+      text-align: center;
+    }
+
+    .key-badge {
+      display: inline-block;
+      background: var(--bg3);
+      border: 2px solid var(--gold);
+      border-bottom-width: 4px;
+      border-radius: 4px;
+      padding: 4px 10px;
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold);
+      min-width: 36px;
+      text-align: center;
+    }
+
+    /* ===== HUD MOCKUP ===== */
+    .hud-mockup {
+      position: relative;
+      width: 100%;
+      max-width: 760px;
+      aspect-ratio: 16/9;
+      background: linear-gradient(180deg, #a8d8e8 0%, #6eb5c7 30%, #4a6741 65%, #3a5232 100%);
+      border: 2px solid rgba(201,168,76,0.4);
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .hud-layer {
+      position: absolute;
+      bottom: 20%;
+      left: 0;
+      right: 0;
+      height: 40%;
+      object-fit: cover;
+      object-position: bottom;
+      opacity: 0.5;
+      image-rendering: pixelated;
+    }
+
+    .hud-element {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .hud-element label {
+      font-size: 9px;
+      color: rgba(255,255,255,0.7);
+      font-family: 'Cinzel', serif;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 2px #000;
+    }
+
+    .hud-bar {
+      image-rendering: pixelated;
+      height: 10px;
+    }
+
+    .hud-hearts {
+      display: flex;
+      gap: 3px;
+    }
+
+    .heart {
+      width: 16px;
+      height: 16px;
+      background: var(--red);
+      clip-path: polygon(50% 0%, 100% 35%, 100% 70%, 50% 100%, 0% 70%, 0% 35%);
+    }
+
+    .hud-era-name {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      color: var(--gold);
+      text-shadow: 1px 1px 3px #000;
+      letter-spacing: 2px;
+    }
+
+    .hud-cooldown-bar {
+      width: 80px;
+      height: 8px;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .hud-cooldown-fill {
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(to right, #c9a84c, #e8c96a);
+    }
+
+    .hud-progress {
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .hud-progress label {
+      font-size: 8px;
+      color: rgba(255,255,255,0.6);
+      font-family: 'Cinzel', serif;
+      letter-spacing: 2px;
+    }
+
+    .hud-progress-bar {
+      width: 200px;
+      height: 6px;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .hud-progress-fill {
+      width: 45%;
+      height: 100%;
+      background: linear-gradient(to right, #4caf7d, #81e0a6);
+    }
+
+    /* ===== TENSION GRAPH ===== */
+    .tension-graph {
+      position: relative;
+      width: 100%;
+      max-width: 700px;
+      height: 240px;
+      background: var(--bg3);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .tension-graph svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ===== CHARACTER CARDS ===== */
+    .char-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 20px;
+    }
+
+    .char-card {
+      background: var(--bg3);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .char-card:hover {
+      border-color: var(--gold);
+    }
+
+    .char-portrait {
+      background: rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      min-height: 120px;
+    }
+
+    .char-portrait img {
+      image-rendering: pixelated;
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+    }
+
+    .char-portrait .no-sprite {
+      font-size: 48px;
+      opacity: 0.3;
+    }
+
+    .char-info {
+      padding: 14px 16px;
+    }
+
+    .char-info h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 16px;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .char-info .char-era {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .char-info p {
+      font-size: 13px;
+      color: var(--text-dim);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    .char-stat {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .char-stat span {
+      font-size: 11px;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 2px;
+      padding: 2px 8px;
+      color: var(--gold);
+    }
+
+    /* ===== ERA COLORS ON CHARS ===== */
+    .era-1 { color: var(--green); }
+    .era-2 { color: var(--orange); }
+    .era-3 { color: var(--neon); }
+
+    /* ===== PALETTE ===== */
+    .palette {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .swatch {
+      width: 44px;
+      height: 44px;
+      border-radius: 3px;
+      border: 1px solid rgba(255,255,255,0.15);
+      position: relative;
+      cursor: default;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 2px;
+    }
+
+    .swatch span {
+      font-size: 7px;
+      color: rgba(255,255,255,0.85);
+      text-shadow: 0 1px 3px #000, 0 0 6px #000;
+      white-space: nowrap;
+    }
+
+    /* ===== BG SHOWCASE ===== */
+    .bg-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .bg-card {
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .bg-card img {
+      width: 100%;
+      height: 130px;
+      object-fit: contain;
+      background: rgba(0,0,0,0.3);
+      image-rendering: pixelated;
+      display: block;
+    }
+
+    .bg-card figcaption {
+      font-size: 11px;
+      color: var(--text-dim);
+      padding: 6px 10px;
+      background: var(--bg2);
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 1px;
+    }
+
+    /* ===== ERA SECTIONS ===== */
+    .era-block {
+      background: var(--bg2);
+      border-radius: 6px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    .era-block .era-head {
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .era-block .era-num {
+      font-family: 'Cinzel', serif;
+      font-size: 32px;
+      font-weight: 900;
+      opacity: 0.2;
+      line-height: 1;
+    }
+
+    .era-block .era-title {
+      font-family: 'Cinzel', serif;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .era-block .era-period {
+      font-size: 12px;
+      letter-spacing: 2px;
+      opacity: 0.6;
+      margin-top: 2px;
+    }
+
+    .era-block .era-content {
+      padding: 0 20px 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 600px) {
+      .era-block .era-content { grid-template-columns: 1fr; }
+    }
+
+    .era-block .era-img-col img {
+      width: 100%;
+      border-radius: 3px;
+      image-rendering: pixelated;
+    }
+
+    /* era block variants */
+    .era-block.medieval .era-head  { background: rgba(76,175,125,0.1);  border-left: 4px solid var(--green); }
+    .era-block.medieval .era-num   { color: var(--green); }
+    .era-block.medieval .era-title { color: var(--green); }
+    .era-block.polvora  .era-head  { background: rgba(224,122,47,0.1);  border-left: 4px solid var(--orange); }
+    .era-block.polvora  .era-num   { color: var(--orange); }
+    .era-block.polvora  .era-title { color: var(--orange); }
+    .era-block.moderna  .era-head  { background: rgba(0,229,255,0.07); border-left: 4px solid var(--neon); }
+    .era-block.moderna  .era-num   { color: var(--neon); }
+    .era-block.moderna  .era-title { color: var(--neon); }
+
+    /* ===== BLOCKQUOTE ===== */
+    blockquote {
+      border-left: 4px solid var(--gold);
+      padding: 16px 24px;
+      margin: 20px 0;
+      background: rgba(201,168,76,0.06);
+      border-radius: 0 4px 4px 0;
+      font-style: italic;
+      font-size: 17px;
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    blockquote cite {
+      display: block;
+      font-size: 12px;
+      font-style: normal;
+      color: var(--gold);
+      margin-top: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ===== MISC ===== */
+    p { margin-bottom: 12px; }
+    p:last-child { margin-bottom: 0; }
+
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      padding: 2px 10px;
+      border-radius: 2px;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+
+    .tag-planned {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--text-dim);
+    }
+
+    .tag-impl {
+      background: rgba(76,175,125,0.15);
+      border: 1px solid var(--green);
+      color: var(--green);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+
+    .tech-card {
+      background: var(--bg3);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 4px;
+      padding: 16px 20px;
+    }
+
+    .tech-card h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .tech-card ul {
+      list-style: none;
+      font-size: 14px;
+    }
+
+    .tech-card ul li::before {
+      content: '▸ ';
+      color: var(--gold);
+      font-size: 11px;
+    }
+
+    .ref-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .ref-card {
+      background: var(--bg3);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 4px;
+      padding: 16px;
+    }
+
+    .ref-card h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .ref-card ul {
+      list-style: none;
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    .ref-card ul li {
+      padding: 3px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .ref-card ul li::before {
+      content: '• ';
+      color: var(--gold);
+    }
+
+    .img-caption {
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 6px;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 1px;
+    }
+
+    .inline-img-block {
+      margin: 16px 0;
+      overflow: hidden;
+    }
+
+    .relation-diagram {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+      padding: 20px;
+    }
+
+    .rel-node {
+      background: var(--bg3);
+      border: 2px solid;
+      border-radius: 4px;
+      padding: 10px 18px;
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+    }
+
+    .rel-node.protagonist { border-color: var(--green); color: var(--green); }
+    .rel-node.antagonist  { border-color: var(--red); color: var(--red); }
+
+    .rel-arrow {
+      padding: 0 8px;
+      color: var(--text-dim);
+      font-size: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid rgba(201,168,76,0.2);
+      color: var(--text-dim);
+      font-size: 12px;
+      letter-spacing: 2px;
+      font-family: 'Cinzel', serif;
+    }
+
+    @media (max-width: 768px) {
+      .capa-meta { flex-direction: column; gap: 8px; }
+      .team-grid  { gap: 12px; }
+      .anim-grid  { grid-template-columns: 1fr; }
+      .anim-card[style*='grid-column'] { grid-column: span 1 !important; }
+    }
+
+    /* Responsive table wrapper */
+    .table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Sprite thumbnail in table cells */
+    .sprite-thumb {
+      width: 56px;
+      height: 56px;
+      overflow: hidden;
+      background: rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .sprite-thumb img {
+      height: 56px;
+      width: auto;
+      max-width: none;
+      image-rendering: pixelated;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav id="topnav">
+  <a href="#capa">O Legado</a>
+  <a href="#mecanicas">Mecânicas</a>
+  <a href="#narrativa">Narrativa</a>
+  <a href="#estetica">Estética</a>
+  <a href="#leveldesign">Level Design</a>
+  <a href="#tecnologias">Tecnologias</a>
+  <a href="#referencias">Referências</a>
+</nav>
+
+<main>
+
+  <!-- ===== CAPA ===== -->
+  <section id="capa">
+    <div class="capa-bg">
+      <img src="./GameBase%28Animation%29/Textures/b_fundo1.png" alt="" loading="lazy" />
+    </div>
+    <div class="capa-content">
+      <div class="capa-ornament">✦ · · ✦ · · ✦</div>
+      <h1 class="capa-title">O LEGADO</h1>
+      <p class="capa-subtitle">Game Design Document</p>
+      <div class="capa-divider"></div>
+      <p class="capa-tagline">
+        "Ninguém escolhe o legado que herda — mas pode escolher o que faz com ele."
+      </p>
+      <div class="capa-meta">
+        <span><strong>Plataforma:</strong> PC / Browser</span>
+        <span><strong>Gênero:</strong> Action Platformer 2D · Pixel Art</span>
+        <span><strong>Engine:</strong> Construct 2</span>
+        <span><strong>Versão GDD:</strong> 1.0 · Abril 2026</span>
+      </div>
+      <div class="capa-divider" style="margin-top:28px;"></div>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="name">Isabelle Feltrin</div>
+          <div class="role">Roteirista</div>
+        </div>
+        <div class="team-card">
+          <div class="name">Lucas Daufenbach</div>
+          <div class="role">Programador</div>
+        </div>
+        <div class="team-card">
+          <div class="name">Rodrigo Margotti</div>
+          <div class="role">Level Designer</div>
+        </div>
+        <div class="team-card">
+          <div class="name">Gustavo L. Dias</div>
+          <div class="role">Game Designer</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 1. MECÂNICAS ===== -->
+  <section id="mecanicas">
+    <div class="section-header">
+      <div class="section-number">Seção 01</div>
+      <h2 class="section-title">Mecânicas</h2>
+      <div class="section-divider divider-green"></div>
+    </div>
+
+    <!-- 1.1 Sistema de Regras -->
+    <details class="sub-section era-medieval" open>
+      <summary>1.1 — Sistema de Regras</summary>
+      <div class="sub-body">
+        <p>O jogo é <strong>single player</strong>, com progressão linear por 3 fases históricas. O jogador tem <strong>3 vidas (corações)</strong> por fase. Ao morrer, reinicia a fase atual do início. Ao completar a fase, avança para a próxima era via HQ de transição.</p>
+
+        <div class="flowchart" style="margin-top: 20px;">
+          <div class="flow-node">🏹 Início</div>
+          <div class="flow-arrow" style="margin:2px 0;"></div>
+          <div class="flow-node hq">📖 HQ Introdutória — O Pacto Ancestral</div>
+          <div class="flow-arrow" style="margin:2px 0;"></div>
+          <div class="flow-node era-1" style="border-color:var(--green); color:var(--green);">Fase 1 — Era Medieval (Aldric)</div>
+          <div class="flow-arrow" style="margin:2px 0;"></div>
+          <div class="flow-node diamond">Completou a fase?</div>
+          <div style="display:flex; gap:60px; margin-top:2px;">
+            <div style="display:flex; flex-direction:column; align-items:center;">
+              <div class="flow-choice-label">NÃO — morreu</div>
+              <div class="flow-arrow"></div>
+              <div class="flow-node end" style="font-size:12px;">Reinicia Fase 1</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center;">
+              <div class="flow-choice-label">SIM</div>
+              <div class="flow-arrow"></div>
+              <div class="flow-node hq" style="font-size:12px;">HQ Transição 1→2</div>
+            </div>
+          </div>
+          <div class="flow-arrow" style="margin:2px 0;"></div>
+          <div class="flow-node era-2" style="border-color:var(--orange); color:var(--orange);">Fase 2 — Era da Pólvora (Edmond)</div>
+          <div class="flow-arrow" style="margin:2px 0;"></div>
+          <div class="flow-node hq">📖 HQ Transição 2→3</div>
+          <div class="flow-arrow" style="margin:2px 0;"></div>
+          <div class="flow-node era-3" style="border-color:var(--neon); color:var(--neon);">Fase 3 — Era Moderna (Rei)</div>
+          <div class="flow-arrow" style="margin:2px 0;"></div>
+          <div class="flow-node final">🏆 Clímax — Quebra da Maldição</div>
+          <div class="flow-arrow" style="margin:2px 0;"></div>
+          <div class="flow-node hq">📖 HQ Final — A Liberdade da Linhagem</div>
+        </div>
+
+        <div style="margin-top:16px; display:grid; grid-template-columns: repeat(3,1fr); gap:12px; text-align:center; font-size:13px;">
+          <div style="background:var(--bg3); border:1px solid rgba(201,168,76,0.2); border-radius:4px; padding:12px;">
+            <div style="font-size:22px;">❤️ ❤️ ❤️</div>
+            <div style="color:var(--gold); font-family:'Cinzel',serif; font-size:11px; margin-top:4px; letter-spacing:1px;">3 Vidas por fase</div>
+          </div>
+          <div style="background:var(--bg3); border:1px solid rgba(201,168,76,0.2); border-radius:4px; padding:12px;">
+            <div style="font-size:22px;">🔄</div>
+            <div style="color:var(--gold); font-family:'Cinzel',serif; font-size:11px; margin-top:4px; letter-spacing:1px;">Reinicia ao morrer</div>
+          </div>
+          <div style="background:var(--bg3); border:1px solid rgba(201,168,76,0.2); border-radius:4px; padding:12px;">
+            <div style="font-size:22px;">➡️</div>
+            <div style="color:var(--gold); font-family:'Cinzel',serif; font-size:11px; margin-top:4px; letter-spacing:1px;">Progressão linear</div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 1.2 Ações e Comandos -->
+    <details class="sub-section era-medieval">
+      <summary>1.2 — Ações e Comandos</summary>
+      <div class="sub-body">
+        <div class="table-wrap">
+        <table class="cmd-table">
+          <thead>
+            <tr>
+              <th>Ação</th>
+              <th>Tecla(s)</th>
+              <th>Sprite</th>
+              <th>Descrição</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Andar</strong></td>
+              <td class="key-cell">
+                <span class="key-badge">A</span> / <span class="key-badge">D</span><br/>
+                <span style="font-size:11px; color:var(--text-dim);">ou ← →</span>
+              </td>
+              <td>
+                <div class="sprite-row">
+                  <img class="sprite-frame" src="./Sprites/Personagem/Animations/PersonagemPrincipal/Walk/walk1.png" width="40" height="40" alt="walk1" loading="lazy" />
+                  <img class="sprite-frame" src="./Sprites/Personagem/Animations/PersonagemPrincipal/Walk/walk2.png" width="40" height="40" alt="walk2" loading="lazy" />
+                  <img class="sprite-frame" src="./Sprites/Personagem/Animations/PersonagemPrincipal/Walk/walk3.png" width="40" height="40" alt="walk3" loading="lazy" />
+                </div>
+              </td>
+              <td>Move o personagem horizontalmente. Velocidade constante em solo.</td>
+            </tr>
+            <tr>
+              <td><strong>Pular</strong></td>
+              <td class="key-cell"><span class="key-badge">Space</span></td>
+              <td>
+                <div class="sprite-row">
+                  <img class="sprite-frame" src="./Sprites/Personagem/Animations/PersonagemPrincipal/Jump/jump1.png" width="40" height="40" alt="jump1" loading="lazy" />
+                  <img class="sprite-frame" src="./Sprites/Personagem/Animations/PersonagemPrincipal/Jump/jump2.png" width="40" height="40" alt="jump2" loading="lazy" />
+                  <img class="sprite-frame" src="./Sprites/Personagem/Animations/PersonagemPrincipal/Jump/jump3.png" width="40" height="40" alt="jump3" loading="lazy" />
+                </div>
+              </td>
+              <td>Salto simples. Controle aéreo parcial enquanto no ar.</td>
+            </tr>
+            <tr>
+              <td><strong>Atirar</strong></td>
+              <td class="key-cell"><span class="key-badge">J</span> / clique</td>
+              <td>
+                <div class="sprite-row" style="align-items:center;">
+                  <img class="sprite-frame" src="./Sprites/Personagem/Animations/PersonagemPrincipal/Idle/idle1.png" width="40" height="40" alt="ataque" loading="lazy"/>
+                  <img class="sprite-frame" src="./Sprites/Personagem/Animations/arrow.png" width="60" height="20" alt="flecha" loading="lazy"/>
+                </div>
+              </td>
+              <td>Dispara projétil na direção voltada. Cooldown entre tiros.</td>
+            </tr>
+            <tr>
+              <td><strong>Pausar</strong></td>
+              <td class="key-cell"><span class="key-badge">ESC</span></td>
+              <td>—</td>
+              <td>Pausa o jogo e exibe menu de pausa.</td>
+            </tr>
+            <tr>
+              <td><strong>Idle</strong></td>
+              <td class="key-cell"><em>Automático</em></td>
+              <td>
+                <div class="sprite-row">
+                  <img class="sprite-frame" src="./Sprites/Personagem/Animations/PersonagemPrincipal/Idle/idle1.png" width="40" height="40" alt="idle1" loading="lazy"/>
+                  <img class="sprite-frame" src="./Sprites/Personagem/Animations/PersonagemPrincipal/Idle/Idle2.png" width="40" height="40" alt="idle2" loading="lazy"/>
+                </div>
+              </td>
+              <td>Animação de espera quando não há input do jogador.</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </details>
+
+    <!-- 1.3 HUD -->
+    <details class="sub-section era-medieval">
+      <summary>1.3 — HUD (Heads-Up Display)</summary>
+      <div class="sub-body">
+        <p style="margin-bottom:16px;">Mockup de posicionamento dos elementos do HUD durante o gameplay:</p>
+
+        <div class="hud-mockup">
+          <!-- Background forest layer -->
+          <img class="hud-layer" src="./GameBase%28Animation%29/Textures/b_fundo2.png" alt="" loading="lazy" />
+
+          <!-- Top-left: vidas -->
+          <div class="hud-element" style="top:10px; left:12px; flex-direction:row; gap:6px; align-items:center;">
+            <label>VIDAS</label>
+            <div class="hud-hearts">
+              <div class="heart"></div>
+              <div class="heart"></div>
+              <div class="heart"></div>
+            </div>
+          </div>
+
+          <!-- Vida bar (under hearts) -->
+          <div class="hud-element" style="top:32px; left:12px;">
+            <label>HP</label>
+            <img class="hud-bar" src="./GameBase%28Animation%29/Textures/hud_vida.png" width="80" alt="hud vida" loading="lazy" style="image-rendering:pixelated;" />
+          </div>
+
+          <!-- Stamina bar -->
+          <div class="hud-element" style="top:50px; left:12px;">
+            <label>STAMINA</label>
+            <img class="hud-bar" src="./GameBase%28Animation%29/Textures/hud_stamina.png" width="80" alt="hud stamina" loading="lazy" style="image-rendering:pixelated;" />
+          </div>
+
+          <!-- Top-right: era name -->
+          <div class="hud-element" style="top:10px; right:12px; align-items:flex-end;">
+            <span class="hud-era-name">ERA MEDIEVAL</span>
+          </div>
+
+          <!-- Bottom-left: cooldown de tiro -->
+          <div class="hud-element" style="bottom:22px; left:12px;">
+            <label>COOLDOWN</label>
+            <div class="hud-cooldown-bar">
+              <div class="hud-cooldown-fill"></div>
+            </div>
+          </div>
+
+          <!-- Bottom-center: progress -->
+          <div class="hud-progress">
+            <label>PROGRESSO DA FASE</label>
+            <div class="hud-progress-bar">
+              <div class="hud-progress-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <p class="img-caption" style="margin-top:12px;">Mockup visual do HUD — posições dos elementos na tela (16:9)</p>
+
+        <div style="margin-top:20px; display:grid; grid-template-columns:repeat(auto-fill, minmax(180px,1fr)); gap:12px;">
+          <div class="tech-card">
+            <h4>Barra de Vida</h4>
+            <img src="./GameBase%28Animation%29/Textures/hud_tanqueVida.png" style="image-rendering:pixelated; width:100%; margin-bottom:8px;" loading="lazy" alt="hud tanque vida"/>
+            <p style="font-size:13px; color:var(--text-dim);">Canto sup. esquerdo. Diminui ao receber dano.</p>
+          </div>
+          <div class="tech-card">
+            <h4>Barra de Stamina</h4>
+            <img src="./GameBase%28Animation%29/Textures/hud_tanqueStamina.png" style="image-rendering:pixelated; width:100%; margin-bottom:8px;" loading="lazy" alt="hud tanque stamina"/>
+            <p style="font-size:13px; color:var(--text-dim);">Abaixo da vida. Controla cooldown de disparo.</p>
+          </div>
+          <div class="tech-card">
+            <h4>Barras de UI</h4>
+            <img src="./Sprites/Personagem/Animations/HUD/04.png" style="image-rendering:pixelated; width:100%; margin-bottom:8px;" loading="lazy" alt="HUD spritesheet"/>
+            <p style="font-size:13px; color:var(--text-dim);">Spritesheet completo dos estados das barras (cheias/vazias/danificadas).</p>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 1.4 Itens e Power Ups -->
+    <details class="sub-section era-medieval">
+      <summary>1.4 — Itens e Power Ups</summary>
+      <div class="sub-body">
+        <table>
+          <thead>
+            <tr><th>Item</th><th>Era</th><th>Imagem</th><th>Efeito</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Arco e Flecha</strong></td>
+              <td><span class="era-1">Fase 1</span></td>
+              <td><img src="./Sprites/Personagem/Animations/arrow.png" style="image-rendering:pixelated; height:16px;" loading="lazy" alt="flecha"/></td>
+              <td>Arma padrão da Era 1. Tiro em linha reta, 1 dano.</td>
+              <td><span class="tag tag-impl">Implementado</span></td>
+            </tr>
+            <tr>
+              <td><strong>Mosquete</strong></td>
+              <td><span class="era-2">Fase 2</span></td>
+              <td>—</td>
+              <td>Arma padrão da Era 2. Tiro mais potente (2 danos), maior recuo, cooldown maior.</td>
+              <td><span class="tag tag-planned">Previsto</span></td>
+            </tr>
+            <tr>
+              <td><strong>Rifle Moderno</strong></td>
+              <td><span class="era-3">Fase 3</span></td>
+              <td>—</td>
+              <td>Arma padrão da Era 3. Tiro rápido (3 rajadas), longo alcance.</td>
+              <td><span class="tag tag-planned">Previsto</span></td>
+            </tr>
+            <tr>
+              <td><strong>Cura (Ervas/Kit)</strong></td>
+              <td>Todas</td>
+              <td>—</td>
+              <td>Restaura 1 coração ao coletar. Aparece em posições fixas do nível.</td>
+              <td><span class="tag tag-planned">Previsto para v. futura</span></td>
+            </tr>
+            <tr>
+              <td><strong>Escudo Temporário</strong></td>
+              <td>Todas</td>
+              <td>—</td>
+              <td>Absorve 1 golpe. Dura 5 segundos.</td>
+              <td><span class="tag tag-planned">Previsto para v. futura</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <!-- 1.5 IA de NPCs -->
+    <details class="sub-section era-medieval">
+      <summary>1.5 — Inteligência Artificial de NPCs</summary>
+      <div class="sub-body">
+        <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Sprite</th><th>Nome</th><th>Era</th><th>Comportamento</th><th>Dano</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="sprite-thumb">
+                  <img src="./GameBase%28Animation%29/Animations/p_inimigo/Default/000.png" loading="lazy" alt="inimigo"/>
+                </div>
+              </td>
+              <td><strong>Guerreiro Medieval</strong></td>
+              <td><span class="era-1">Fase 1</span></td>
+              <td>Patrulha horizontal. Ao detectar jogador (raio curto), avança e ataca corpo-a-corpo.</td>
+              <td>1 coração</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="sprite-thumb">
+                  <img src="./Sprites/Personagem/Animations/GandalfHardcore%20Archer%20brown%20sheet.png" loading="lazy" alt="arqueiro inimigo"/>
+                </div>
+              </td>
+              <td><strong>Arqueiro Medieval</strong></td>
+              <td><span class="era-1">Fase 1</span></td>
+              <td>Posição fixa ou patrulha lenta. Atira flechas a distância quando o jogador está no alcance de visão.</td>
+              <td>1 coração</td>
+            </tr>
+            <tr>
+              <td>—</td>
+              <td><strong>Soldado Colonial</strong></td>
+              <td><span class="era-2">Fase 2</span></td>
+              <td>Patrulha e avança com mosquete. Tiro único em cooldown (recarga lenta).</td>
+              <td>1 coração</td>
+            </tr>
+            <tr>
+              <td>—</td>
+              <td><strong>Arqueiro Colonial</strong></td>
+              <td><span class="era-2">Fase 2</span></td>
+              <td>Atirador de elite posicionado em elevações. Tiro com pausa de mira.</td>
+              <td>2 corações</td>
+            </tr>
+            <tr>
+              <td>—</td>
+              <td><strong>Soldado Moderno</strong></td>
+              <td><span class="era-3">Fase 3</span></td>
+              <td>Patrulha veloz. Usa cobertura. Tira múltiplos tiros rápidos.</td>
+              <td>1 coração</td>
+            </tr>
+            <tr>
+              <td>—</td>
+              <td><strong>Drone</strong></td>
+              <td><span class="era-3">Fase 3</span></td>
+              <td>Voa livremente em eixo Y. Persegue jogador a distância. Dispara projéteis energéticos.</td>
+              <td>2 corações</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <p style="margin-top:14px; font-size:13px; color:var(--text-dim);">
+          * Sprites dos inimigos das Fases 2 e 3 a serem finalizados. Sprite do arqueiro medieval baseado no asset <em>GandalfHardcore Archer brown sheet.png</em>.
+        </p>
+        <div class="inline-img-block" style="margin-top:16px;">
+          <img src="./Sprites/Personagem/Animations/GandalfHardcore%20Archer%20brown%20sheet.png" class="sprite-big" loading="lazy" alt="Spritesheet completo arqueiro — mostra todas as animações em grade"/>
+          <p class="img-caption">Spritesheet completo do Arqueiro Medieval (idle · andar · atirar · morte)</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- 1.6 Obstáculos -->
+    <details class="sub-section era-medieval">
+      <summary>1.6 — Obstáculos e Elementos Interativos</summary>
+      <div class="sub-body">
+        <div style="margin-bottom: 16px;">
+          <img src="./GameBase%28Animation%29/Textures/bbase.png" class="sprite-big" loading="lazy" alt="tileset base" style="max-height:180px; object-fit:contain;"/>
+          <p class="img-caption">Tileset base — plataformas de terra/grama, paredes de pedra, bordas</p>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Elemento</th><th>Fase(s)</th><th>Interação</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Plataformas Fixas</strong></td>
+              <td>Todas</td>
+              <td>Superfície de apoio. Jogador pode andar e pular sobre elas.</td>
+            </tr>
+            <tr>
+              <td><strong>Buracos / Abismos</strong></td>
+              <td>Todas</td>
+              <td>Cair causa morte instantânea (perde 1 vida, reinicia posição).</td>
+            </tr>
+            <tr>
+              <td><strong>Barris de Pólvora</strong></td>
+              <td>Fase 2</td>
+              <td>Explodem ao ser atingidos por projétil. Causam dano de área a inimigos e ao jogador.</td>
+            </tr>
+            <tr>
+              <td><strong>Arame Farpado</strong></td>
+              <td>Fase 3</td>
+              <td>Obstáculo de terreno. Causa 1 dano ao tocar.</td>
+            </tr>
+            <tr>
+              <td><strong>Portal / Checkpoint</strong></td>
+              <td>Todas</td>
+              <td>Marca ponto de carregamento ao fim da fase. Animação de entrada.</td>
+            </tr>
+            <tr>
+              <td><strong>Porta / Passagem</strong></td>
+              <td>Todas</td>
+              <td>Abertura de áreas — ativada ao eliminar todos inimigos da sala ou ao encontrar a chave.</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="margin-top:16px;">
+          <img src="./Sprites/Personagem/Animations/Portal/GandalfHardcore%20Portal%20sheet.png" class="sprite-big" loading="lazy" alt="portal sheet" style="max-height:120px;"/>
+          <p class="img-caption">Spritesheet do Portal de progressão entre fases</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- 1.7 Saves -->
+    <details class="sub-section era-medieval">
+      <summary>1.7 — Sistema de Saves</summary>
+      <div class="sub-body">
+        <table>
+          <thead><tr><th>Tipo</th><th>Quando</th><th>O que salva</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Autosave</strong></td>
+              <td>Ao completar cada fase (passar pelo portal final)</td>
+              <td>Era desbloqueada, última fase concluída, estatísticas</td>
+            </tr>
+            <tr>
+              <td><strong>Save Manual</strong></td>
+              <td>Não disponível durante a fase</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td><strong>Continue</strong></td>
+              <td>Menu principal</td>
+              <td>Inicia na fase salva mais recente, com 3 vidas cheias</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+  </section>
+
+  <!-- ===== 2. NARRATIVA ===== -->
+  <section id="narrativa">
+    <div class="section-header">
+      <div class="section-number">Seção 02</div>
+      <h2 class="section-title">Narrativa</h2>
+      <div class="section-divider divider-orange"></div>
+    </div>
+
+    <!-- 2.1 Plot -->
+    <details class="sub-section era-polvora" open>
+      <summary>2.1 — Plot</summary>
+      <div class="sub-body">
+        <blockquote>
+          "Um descendente comum de uma família amaldiçoada deseja encontrar um artefato místico capaz de libertar sua linhagem das guerras eternas — mas para isso precisa sobreviver a três eras de carnificina presas pela maldição de seus antepassados."
+          <cite>— Sinopse de O Legado</cite>
+        </blockquote>
+        <p>A trama acompanha três gerações da mesma família, cada uma nascida em uma era diferente, todas condenadas a lutar e morrer em conflitos que não escolheram. A maldição foi selada por um ancestral nas Cruzadas que firmou um pacto com uma entidade em troca de sobrevivência — o preço: toda a linhagem futura seria arrastada para guerras eternas.</p>
+        <p>Apenas o descendente da Era Moderna, <strong>Rei</strong>, tem conhecimento suficiente para rastrear o artefato que pode quebrar o ciclo — mas para chegar até ele, ele e seus antepassados (através das memórias recuperadas) precisam sobreviver.</p>
+      </div>
+    </details>
+
+    <!-- 2.2 Ideia Controle -->
+    <details class="sub-section era-polvora">
+      <summary>2.2 — Ideia Controle (Moral da História)</summary>
+      <div class="sub-body">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:16px;">
+          <div class="tech-card">
+            <h4>Moral Central</h4>
+            <p style="font-size:15px; font-style:italic; color:var(--gold);">"Ninguém escolhe o legado que herda — mas pode escolher o que faz com ele."</p>
+          </div>
+          <div class="tech-card">
+            <h4>Arco emocional</h4>
+            <p style="font-size:13px; color:var(--text-dim);">
+              <strong style="color:var(--text);">Início:</strong> Os protagonistas são resignados e presos ao ciclo de violência.<br/>
+              <strong style="color:var(--text);">Final:</strong> Rei é o primeiro da família capaz de morrer em paz, livre da maldição.
+            </p>
+          </div>
+        </div>
+        <table>
+          <thead><tr><th>Fase</th><th>Personagem</th><th>Estado emocional</th></tr></thead>
+          <tbody>
+            <tr><td>Início</td><td>Aldric</td><td>Resignado, aceita o conflito como destino</td></tr>
+            <tr><td>Meio</td><td>Edmond</td><td>Questionador, começa a duvidar da maldição</td></tr>
+            <tr><td>Clímax</td><td>Rei</td><td>Determinado, busca ativamente a ruptura do ciclo</td></tr>
+            <tr><td>Final</td><td>Rei</td><td>Paz — primeiro da linhagem a ter escolha</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <!-- 2.3 Ambiente -->
+    <details class="sub-section era-polvora" open>
+      <summary>2.3 — Ambiente do Jogo</summary>
+      <div class="sub-body">
+        <div class="era-block medieval">
+          <div class="era-head">
+            <span class="era-num">I</span>
+            <div>
+              <div class="era-title">Era Medieval — As Cruzadas</div>
+              <div class="era-period">Séc. XII — Baixa Idade Média</div>
+            </div>
+          </div>
+          <div class="era-content">
+            <div class="era-img-col">
+              <img src="./GameBase%28Animation%29/Textures/b_fundo1.png" loading="lazy" alt="background medieval" style="image-rendering:pixelated;"/>
+              <img src="./GameBase%28Animation%29/Textures/b_fundo2.png" loading="lazy" alt="background medieval" style="image-rendering:pixelated; margin-top:6px;"/>
+            </div>
+            <div>
+              <p><strong>Cenário:</strong> Florestas densas e campos de batalha das Cruzadas no Oriente Médio e Europa Central.</p>
+              <p><strong>Conflito:</strong> As Guerras das Cruzadas — exércitos cristãos e sarracenos em batalha constante.</p>
+              <p><strong>Tom visual:</strong> Verde musgo, marrom terra, cinza rocha. Iluminação quente de tocha.</p>
+              <div class="palette">
+                <div class="swatch" style="background:#3d5a27;"><span>#3d5a27</span></div>
+                <div class="swatch" style="background:#6b4c27;"><span>#6b4c27</span></div>
+                <div class="swatch" style="background:#7a7a6a;"><span>#7a7a6a</span></div>
+                <div class="swatch" style="background:#c9861a;"><span>#c9861a</span></div>
+                <div class="swatch" style="background:#1e2d14;"><span>#1e2d14</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="era-block polvora">
+          <div class="era-head">
+            <span class="era-num">II</span>
+            <div>
+              <div class="era-title">Era da Pólvora</div>
+              <div class="era-period">Séc. XVIII — Guerras Coloniais</div>
+            </div>
+          </div>
+          <div class="era-content">
+            <div class="era-img-col">
+              <img src="./GameBase%28Animation%29/Textures/b_fundo3.png" loading="lazy" alt="background polvora" style="image-rendering:pixelated;"/>
+              <img src="./GameBase%28Animation%29/Textures/b_fundo4.png" loading="lazy" alt="montanhas" style="image-rendering:pixelated; margin-top:6px;"/>
+            </div>
+            <div>
+              <p><strong>Cenário:</strong> Vilas coloniais e campos de batalha com fumaça de pólvora.</p>
+              <p><strong>Conflito:</strong> Guerras coloniais europeias — batalhas com mosquetes, canhões e estratégia de formação.</p>
+              <p><strong>Tom visual:</strong> Bege gasto, vermelho sangue, cinza fumaça.</p>
+              <div class="palette">
+                <div class="swatch" style="background:#c4a97a;"><span>#c4a97a</span></div>
+                <div class="swatch" style="background:#8b2020;"><span>#8b2020</span></div>
+                <div class="swatch" style="background:#7a7a78;"><span>#7a7a78</span></div>
+                <div class="swatch" style="background:#d4b06a;"><span>#d4b06a</span></div>
+                <div class="swatch" style="background:#2a2a28;"><span>#2a2a28</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="era-block moderna">
+          <div class="era-head">
+            <span class="era-num">III</span>
+            <div>
+              <div class="era-title">Era Moderna</div>
+              <div class="era-period">Contemporâneo — Conflito Urbano e Pesquisa</div>
+            </div>
+          </div>
+          <div class="era-content">
+            <div class="era-img-col">
+              <img src="./GameBase%28Animation%29/Textures/b_fundo5.png" loading="lazy" alt="background moderno" style="image-rendering:pixelated;"/>
+            </div>
+            <div>
+              <p><strong>Cenário:</strong> Cidade em conflito urbano e laboratório secreto onde o artefato está guardado.</p>
+              <p><strong>Conflito:</strong> Operação militar contemporânea — forças especiais, drones e tecnologia de ponta.</p>
+              <p><strong>Tom visual:</strong> Cinza concreto, verde neon, laranja fogo.</p>
+              <div class="palette">
+                <div class="swatch" style="background:#4a4a4a;"><span>#4a4a4a</span></div>
+                <div class="swatch" style="background:#00e5ff;"><span>#00e5ff</span></div>
+                <div class="swatch" style="background:#e07a2f;"><span>#e07a2f</span></div>
+                <div class="swatch" style="background:#2a3a2a;"><span>#2a3a2a</span></div>
+                <div class="swatch" style="background:#333344;"><span>#333344</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 2.4 Incidente Incitante -->
+    <details class="sub-section era-polvora">
+      <summary>2.4 — Incidente Incitante</summary>
+      <div class="sub-body">
+        <p>O pacto selado nas Cruzadas é o evento que origina toda a trama:</p>
+        <blockquote>
+          "Em 1147, durante o cerco de Lisboa, um soldado chamado <strong>Aldric</strong> se viu cercado por inimigos, sem saída e sem esperança. Desesperado, ele invocou uma entidade das sombras — jurando entregar sua linhagem em troca de sobreviver à batalha. A entidade aceitou. Aldric sobreviveu. E desde então, cada filho de sua família nasceu destinado a lutar. Cada geração, uma guerra diferente. A mesma maldição."
+          <cite>— Trecho da HQ Introdutória</cite>
+        </blockquote>
+      </div>
+    </details>
+
+    <!-- 2.5 Fluxo Narrativo -->
+    <details class="sub-section era-polvora" open>
+      <summary>2.5 — Fluxo Narrativo (Curva de Tensão)</summary>
+      <div class="sub-body">
+        <div class="tension-graph">
+          <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg">
+            <!-- Grid lines -->
+            <line x1="60" y1="20" x2="60" y2="210" stroke="rgba(201,168,76,0.15)" stroke-width="1"/>
+            <line x1="60" y1="210" x2="680" y2="210" stroke="rgba(201,168,76,0.15)" stroke-width="1"/>
+            <!-- Y axis label -->
+            <text x="12" y="115" fill="rgba(201,168,76,0.5)" font-size="10" font-family="'Cinzel',serif" transform="rotate(-90,12,115)">TENSÃO</text>
+            <!-- X axis labels -->
+            <text x="70"  y="225" fill="rgba(201,168,76,0.6)" font-size="8" font-family="'Cinzel',serif">INTRO</text>
+            <text x="160" y="225" fill="rgba(76,175,125,0.8)" font-size="8" font-family="'Cinzel',serif">FASE 1</text>
+            <text x="258" y="225" fill="rgba(201,168,76,0.5)" font-size="8" font-family="'Cinzel',serif">HQ 1</text>
+            <text x="340" y="225" fill="rgba(224,122,47,0.8)" font-size="8" font-family="'Cinzel',serif">FASE 2</text>
+            <text x="440" y="225" fill="rgba(201,168,76,0.5)" font-size="8" font-family="'Cinzel',serif">HQ 2</text>
+            <text x="515" y="225" fill="rgba(0,229,255,0.8)" font-size="8" font-family="'Cinzel',serif">FASE 3</text>
+            <text x="614" y="225" fill="rgba(232,201,106,0.9)" font-size="8" font-family="'Cinzel',serif">FINAL</text>
+            <!-- Tension curve -->
+            <polyline
+              fill="none"
+              stroke="url(#tensionGrad)"
+              stroke-width="2.5"
+              points="
+                80,160
+                180,120
+                280,140
+                380,90
+                460,115
+                560,40
+                650,100
+              "
+            />
+            <!-- Area fill -->
+            <polygon
+              fill="url(#areaGrad)"
+              points="
+                80,160
+                180,120
+                280,140
+                380,90
+                460,115
+                560,40
+                650,100
+                650,210
+                80,210
+              "
+            />
+            <!-- Point dots -->
+            <circle cx="80"  cy="160" r="5" fill="#c9a84c" />
+            <circle cx="180" cy="120" r="5" fill="#4caf7d" />
+            <circle cx="280" cy="140" r="5" fill="#c9a84c" />
+            <circle cx="380" cy="90"  r="5" fill="#e07a2f" />
+            <circle cx="460" cy="115" r="5" fill="#c9a84c" />
+            <circle cx="560" cy="40"  r="5" fill="#00e5ff" />
+            <circle cx="650" cy="100" r="5" fill="#e8c96a" />
+            <!-- Gradients -->
+            <defs>
+              <linearGradient id="tensionGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stop-color="#c9a84c"/>
+                <stop offset="33%"  stop-color="#4caf7d"/>
+                <stop offset="66%"  stop-color="#e07a2f"/>
+                <stop offset="100%" stop-color="#00e5ff"/>
+              </linearGradient>
+              <linearGradient id="areaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="rgba(201,168,76,0.15)"/>
+                <stop offset="100%" stop-color="rgba(201,168,76,0)"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Labels on points -->
+            <text x="55"  y="152" fill="rgba(201,168,76,0.7)" font-size="7.5" font-family="'Cinzel',serif">Pacto</text>
+            <text x="155" y="112" fill="rgba(76,175,125,0.8)"  font-size="7.5" font-family="'Cinzel',serif">Batalha</text>
+            <text x="248" y="132" fill="rgba(201,168,76,0.7)"  font-size="7.5" font-family="'Cinzel',serif">Dúvida</text>
+            <text x="354" y="82"  fill="rgba(224,122,47,0.9)"  font-size="7.5" font-family="'Cinzel',serif">Escalada</text>
+            <text x="430" y="107" fill="rgba(201,168,76,0.7)"  font-size="7.5" font-family="'Cinzel',serif">Revelação</text>
+            <text x="534" y="32"  fill="rgba(0,229,255,0.9)"   font-size="7.5" font-family="'Cinzel',serif">Clímax</text>
+            <text x="628" y="92"  fill="rgba(232,201,106,0.9)" font-size="7.5" font-family="'Cinzel',serif">Resolução</text>
+          </svg>
+        </div>
+        <p class="img-caption" style="margin-top:8px;">Curva de tensão narrativa — eixo X = progressão, eixo Y = intensidade emocional</p>
+      </div>
+    </details>
+
+    <!-- 2.6 Personagens -->
+    <details class="sub-section era-polvora" open>
+      <summary>2.6 — Personagens</summary>
+      <div class="sub-body">
+        <div class="char-grid">
+          <!-- Aldric -->
+          <div class="char-card">
+            <div class="char-portrait" style="background: rgba(76,175,125,0.1);">
+              <img src="./GameBase%28Animation%29/Animations/p_player/idle/000.png" loading="lazy" alt="Aldric sprite"/>
+            </div>
+            <div class="char-info">
+              <h3>Aldric</h3>
+              <div class="char-era era-1">Era I — Cruzadas, Séc. XII</div>
+              <p>Jovem soldado resignado que firmou (sem saber as consequências) o pacto que amaldiçoou a família. Hábil com arco e flecha, tem força bruta mas pouca compreensão do que está por vir.</p>
+              <div class="char-stat">
+                <span>Arco e Flecha</span>
+                <span>Agilidade: Alta</span>
+                <span>Dano: 1</span>
+              </div>
+            </div>
+          </div>
+          <!-- Edmond -->
+          <div class="char-card">
+            <div class="char-portrait" style="background: rgba(224,122,47,0.1);">
+              <div class="no-sprite">🪖</div>
+            </div>
+            <div class="char-info">
+              <h3>Edmond</h3>
+              <div class="char-era era-2">Era II — Guerras Coloniais, Séc. XVIII</div>
+              <p>Soldado veterano e pesado, herdeiro não-voluntário da maldição. Começou a questionar por que sua família sempre está no front. Usa mosquete, mais lento mas mais poderoso.</p>
+              <div class="char-stat">
+                <span>Mosquete</span>
+                <span>Agilidade: Média</span>
+                <span>Dano: 2</span>
+              </div>
+            </div>
+          </div>
+          <!-- Rei -->
+          <div class="char-card">
+            <div class="char-portrait" style="background: rgba(0,229,255,0.07);">
+              <div class="no-sprite">🔬</div>
+            </div>
+            <div class="char-info">
+              <h3>Rei</h3>
+              <div class="char-era era-3">Era III — Contemporâneo</div>
+              <p>Pesquisador e soldado. O único da linhagem que descobriu a origem da maldição. Percorre ruínas, zonas de guerra e laboratórios para encontrar o artefato que liberta a família.</p>
+              <div class="char-stat">
+                <span>Rifle Moderno</span>
+                <span>Agilidade: Alta</span>
+                <span>Dano: 1×3</span>
+              </div>
+            </div>
+          </div>
+          <!-- Entidade -->
+          <div class="char-card">
+            <div class="char-portrait" style="background: rgba(192,57,43,0.1);">
+              <div class="no-sprite">👁️</div>
+            </div>
+            <div class="char-info">
+              <h3>A Entidade</h3>
+              <div class="char-era" style="color:var(--red);">Antagonista — Todas as Eras</div>
+              <p>Nunca aparece diretamente. Manifestada como forças do conflito, situações impossíveis de escapar, vozes nos momentos de desespero. Só revelada em fragmentos narrativos nas HQs.</p>
+              <div class="char-stat">
+                <span>Abstrata</span>
+                <span>Onipresente</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h4 style="font-family:'Cinzel',serif; color:var(--gold); margin:24px 0 12px; font-size:14px; letter-spacing:2px; text-transform:uppercase;">Diagrama de Relações</h4>
+        <div style="background:var(--bg3); border:1px solid rgba(201,168,76,0.15); border-radius:4px; padding:20px; text-align:center; overflow-x:auto;">
+          <div style="display:inline-flex; align-items:center; gap:0; flex-wrap:wrap; justify-content:center; gap:8px;">
+            <div class="rel-node protagonist">Aldric<br/><small style="font-size:10px;">Fase 1</small></div>
+            <div class="rel-arrow">→</div>
+            <div style="font-size:11px; color:var(--text-dim); text-align:center;">herança<br/>maldita</div>
+            <div class="rel-arrow">→</div>
+            <div class="rel-node protagonist">Edmond<br/><small style="font-size:10px;">Fase 2</small></div>
+            <div class="rel-arrow">→</div>
+            <div style="font-size:11px; color:var(--text-dim); text-align:center;">herança<br/>maldita</div>
+            <div class="rel-arrow">→</div>
+            <div class="rel-node protagonist">Rei<br/><small style="font-size:10px;">Fase 3</small></div>
+          </div>
+          <div style="margin-top:16px; display:flex; justify-content:center;">
+            <div style="border:1px dashed rgba(192,57,43,0.4); border-radius:100px; padding:6px 40px; font-size:11px; color:var(--red); font-family:'Cinzel',serif; letter-spacing:2px;">
+              👁 A ENTIDADE — influencia todas as eras
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ===== 3. ESTÉTICA ===== -->
+  <section id="estetica">
+    <div class="section-header">
+      <div class="section-number">Seção 03</div>
+      <h2 class="section-title">Estética</h2>
+      <div class="section-divider divider-neon"></div>
+    </div>
+
+    <!-- 3.1 Arte Visual -->
+    <details class="sub-section era-moderna" open>
+      <summary>3.1 — Arte Visual</summary>
+      <div class="sub-body">
+        <p style="margin-bottom:16px;">O jogo adota <strong>pixel art</strong> de alta legibilidade com camadas de parallax no background. Cada era possui uma paleta distinta que reforça o tom narrativo.</p>
+
+        <h4 style="font-family:'Cinzel',serif; color:var(--gold); margin-bottom:12px; font-size:13px; letter-spacing:2px;">CAMADAS DE BACKGROUND — ERA MEDIEVAL</h4>
+        <div class="bg-showcase">
+          <figure class="bg-card">
+            <img src="./GameBase%28Animation%29/Textures/b_fundo5.png" loading="lazy" alt="Layer 5 - céu" />
+            <figcaption>Layer 5 — Céu</figcaption>
+          </figure>
+          <figure class="bg-card">
+            <img src="./GameBase%28Animation%29/Textures/b_fundo4.png" loading="lazy" alt="Layer 4 - montanhas" />
+            <figcaption>Layer 4 — Montanhas Distantes</figcaption>
+          </figure>
+          <figure class="bg-card">
+            <img src="./GameBase%28Animation%29/Textures/b_fundo3.png" loading="lazy" alt="Layer 3 - floresta distante" />
+            <figcaption>Layer 3 — Floresta Distante</figcaption>
+          </figure>
+          <figure class="bg-card">
+            <img src="./GameBase%28Animation%29/Textures/b_fundo2.png" loading="lazy" alt="Layer 2 - floresta média" />
+            <figcaption>Layer 2 — Floresta Média</figcaption>
+          </figure>
+          <figure class="bg-card">
+            <img src="./GameBase%28Animation%29/Textures/b_fundo1.png" loading="lazy" alt="Layer 1 - floresta próxima" />
+            <figcaption>Layer 1 — Floresta Próxima</figcaption>
+          </figure>
+          <figure class="bg-card">
+            <img src="./GameBase%28Animation%29/Textures/bbase.png" loading="lazy" alt="tileset chão" />
+            <figcaption>Tileset — Chão e Plataformas</figcaption>
+          </figure>
+        </div>
+
+        <h4 style="font-family:'Cinzel',serif; color:var(--gold); margin: 24px 0 12px; font-size:13px; letter-spacing:2px;">PALETA POR ERA</h4>
+        <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap:16px;">
+          <div class="tech-card" style="border-left:3px solid var(--green);">
+            <h4 style="color:var(--green);">Era I — Medieval</h4>
+            <div class="palette">
+              <div class="swatch" style="background:#3d5a27;" title="Verde Musgo"><span>#3d5a</span></div>
+              <div class="swatch" style="background:#6b4c27;" title="Marrom Terra"><span>#6b4c</span></div>
+              <div class="swatch" style="background:#7a7a6a;" title="Cinza Rocha"><span>#7a7a</span></div>
+              <div class="swatch" style="background:#c98327;" title="Laranja Tocha"><span>#c983</span></div>
+              <div class="swatch" style="background:#1e2d14;" title="Verde Sombra"><span>#1e2d</span></div>
+            </div>
+          </div>
+          <div class="tech-card" style="border-left:3px solid var(--orange);">
+            <h4 style="color:var(--orange);">Era II — Pólvora</h4>
+            <div class="palette">
+              <div class="swatch" style="background:#c4a97a;" title="Bege Gasto"><span>#c4a9</span></div>
+              <div class="swatch" style="background:#8b2020;" title="Vermelho Sangue"><span>#8b20</span></div>
+              <div class="swatch" style="background:#7a7a78;" title="Cinza Fumaça"><span>#7a7a</span></div>
+              <div class="swatch" style="background:#d4b06a;" title="Amarelo Pólvora"><span>#d4b0</span></div>
+              <div class="swatch" style="background:#2a2a28;" title="Preto Fuligem"><span>#2a2a</span></div>
+            </div>
+          </div>
+          <div class="tech-card" style="border-left:3px solid var(--neon);">
+            <h4 style="color:var(--neon);">Era III — Moderna</h4>
+            <div class="palette">
+              <div class="swatch" style="background:#4a4a4a;" title="Concreto"><span>#4a4a</span></div>
+              <div class="swatch" style="background:#00e5ff;" title="Neon Ciano"><span>#00e5</span></div>
+              <div class="swatch" style="background:#e07a2f;" title="Laranja Fogo"><span>#e07a</span></div>
+              <div class="swatch" style="background:#1a2a1a;" title="Verde Escuro"><span>#1a2a</span></div>
+              <div class="swatch" style="background:#333344;" title="Azul Noite"><span>#3333</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 3.2 Animações -->
+    <details class="sub-section era-moderna" open>
+      <summary>3.2 — Animações do Personagem</summary>
+      <div class="sub-body">
+        <div class="anim-grid">
+          <!-- Idle -->
+          <div class="anim-card">
+            <h4>Idle (parado)</h4>
+            <div class="frames">
+              <img src="./GameBase%28Animation%29/Animations/p_player/idle/000.png" alt="idle 0" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_player/idle/001.png" alt="idle 1" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_player/idle/002.png" alt="idle 2" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_player/idle/003.png" alt="idle 3" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_player/idle/004.png" alt="idle 4" loading="lazy"/>
+            </div>
+            <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">5 frames · loop · respiração suave</p>
+          </div>
+          <!-- Walk -->
+          <div class="anim-card">
+            <h4>Walk (andando)</h4>
+            <div class="frames">
+              <img src="./GameBase%28Animation%29/Animations/p_player/walk/000.png" alt="walk 0" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_player/walk/001.png" alt="walk 1" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_player/walk/002.png" alt="walk 2" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_player/walk/003.png" alt="walk 3" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_player/walk/004.png" alt="walk 4" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_player/walk/005.png" alt="walk 5" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_player/walk/006.png" alt="walk 6" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_player/walk/007.png" alt="walk 7" loading="lazy"/>
+            </div>
+            <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">8 frames · loop · ciclo de caminhada</p>
+          </div>
+          <!-- Jump -->
+          <div class="anim-card">
+            <h4>Jump (pulando)</h4>
+            <div class="frames">
+              <img src="./GameBase%28Animation%29/Animations/p_player/jump/000.png" alt="jump 0" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_player/jump/001.png" alt="jump 1" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_player/jump/002.png" alt="jump 2" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_player/jump/003.png" alt="jump 3" loading="lazy"/>
+            </div>
+            <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">4 frames · one-shot · subida e queda</p>
+          </div>
+          <!-- Shoot/idle -->
+          <div class="anim-card">
+            <h4>Atirar — Arco</h4>
+            <div class="frames" style="flex-direction:column; align-items:center; gap:6px;">
+              <img src="./Sprites/Personagem/Animations/PersonagemPrincipal/Idle/idle1.png" alt="shoot" loading="lazy" style="width:50px; height:50px;"/>
+              <img src="./Sprites/Personagem/Animations/arrow.png" alt="arrow" loading="lazy" style="width:70px; height:auto;"/>
+            </div>
+            <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">Pose de ataque + projétil flecha</p>
+          </div>
+          <!-- Arqueiro sheet completo -->
+          <div class="anim-card" style="grid-column: span 2;">
+            <h4>Spritesheet completo — Arqueiro Medieval</h4>
+            <img class="full-sheet" src="./Sprites/Personagem/Animations/GandalfHardcore%20Archer%20brown%20sheet.png" alt="archer full sheet" loading="lazy"/>
+            <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">Todas as animações do arqueiro: idle · andar · atacar · morte</p>
+          </div>
+          <!-- Walk do Sprites folder -->
+          <div class="anim-card">
+            <h4>Walk (Sprites/)</h4>
+            <div class="frames">
+              <img src="./Sprites/Personagem/Animations/PersonagemPrincipal/Walk/walk1.png" alt="w1" loading="lazy"/>
+              <img src="./Sprites/Personagem/Animations/PersonagemPrincipal/Walk/walk2.png" alt="w2" loading="lazy"/>
+              <img src="./Sprites/Personagem/Animations/PersonagemPrincipal/Walk/walk3.png" alt="w3" loading="lazy"/>
+              <img src="./Sprites/Personagem/Animations/PersonagemPrincipal/Walk/walk4.png" alt="w4" loading="lazy"/>
+            </div>
+            <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">Asset source — Sprites/Personagem</p>
+          </div>
+          <!-- Portal sheet -->
+          <div class="anim-card">
+            <h4>Portal — Transição de Era</h4>
+            <img class="full-sheet" src="./Sprites/Personagem/Animations/Portal/GandalfHardcore%20Portal%20sheet.png" alt="portal" loading="lazy" style="max-height:100px;"/>
+            <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">Animação de entrada no portal de fase</p>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 3.3 Músicas e Sons -->
+    <details class="sub-section era-moderna">
+      <summary>3.3 — Músicas e Efeitos Sonoros</summary>
+      <div class="sub-body">
+        <table>
+          <thead>
+            <tr><th>Era</th><th>Estilo Musical</th><th>Instrumentação</th><th>Tom</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="era-1">Era I — Medieval</span></td>
+              <td>Medieval / Orquestral</td>
+              <td>Alaúde, percussão de guerra (tambores pesados), flautas de madeira, coro épico</td>
+              <td>Solene, épico, com peso do destino</td>
+            </tr>
+            <tr>
+              <td><span class="era-2">Era II — Pólvora</span></td>
+              <td>Marcha colonial</td>
+              <td>Tambores de regimento, trompetes de batalha, harpa, flauta de marfim</td>
+              <td>Marcial, urgente, cadência militar</td>
+            </tr>
+            <tr>
+              <td><span class="era-3">Era III — Moderna</span></td>
+              <td>Eletrônico / Industrial</td>
+              <td>Sintetizadores, bateria eletrônica, linha de baixo pesada, ambient distorcido</td>
+              <td>Tenso, claustrofóbico, urgente</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4 style="font-family:'Cinzel',serif; color:var(--gold); margin:20px 0 10px; font-size:13px; letter-spacing:2px;">EFEITOS SONOROS</h4>
+        <table>
+          <thead><tr><th>Evento</th><th>Efeito</th></tr></thead>
+          <tbody>
+            <tr><td>Disparo — Arco</td><td>Swoosh de corda + impacto de flecha</td></tr>
+            <tr><td>Disparo — Mosquete</td><td>Estampido seco + eco</td></tr>
+            <tr><td>Disparo — Rifle</td><td>Rajada metálica rápida</td></tr>
+            <tr><td>Dano recebido</td><td>Grunt + flash visual</td></tr>
+            <tr><td>Morte do jogador</td><td>Stab musical + silêncio dramático</td></tr>
+            <tr><td>Coletável / Checkpoint</td><td>Chime medieval suave</td></tr>
+            <tr><td>Inimigo eliminado</td><td>Impacto + grunt + som de queda</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top:12px; font-size:13px; color:var(--text-dim);">* Arquivos de áudio não encontrados no repositório — assets de som a serem adicionados em sprint futura.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ===== 4. LEVEL DESIGN ===== -->
+  <section id="leveldesign">
+    <div class="section-header">
+      <div class="section-number">Seção 04</div>
+      <h2 class="section-title">Level Design</h2>
+      <div class="section-divider divider-gold"></div>
+    </div>
+
+    <!-- Fase 1 -->
+    <div class="era-block medieval" style="margin-bottom:24px;">
+      <div class="era-head">
+        <span class="era-num">I</span>
+        <div>
+          <div class="era-title">Fase 1 — Floresta das Cruzadas</div>
+          <div class="era-period">Personagem: Aldric · Arma: Arco e Flecha</div>
+        </div>
+      </div>
+      <div style="padding:0 20px 20px;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+          <div>
+            <img src="./GameBase%28Animation%29/Textures/b_fundo1.png" loading="lazy" alt="fase 1 bg" style="image-rendering:pixelated; width:100%; border-radius:3px;"/>
+            <img src="./GameBase%28Animation%29/Textures/bbase.png" loading="lazy" alt="tileset fase 1" style="image-rendering:pixelated; width:100%; border-radius:3px; margin-top:8px;"/>
+          </div>
+          <div>
+            <table style="font-size:13px;">
+              <thead><tr><th>Elemento</th><th>Descrição</th></tr></thead>
+              <tbody>
+                <tr><td>🟢 Spawn</td><td>Posição inicial — clareira à esquerda</td></tr>
+                <tr><td>👾 Inimigos</td><td>3 guerreiros medievais + 2 arqueiros (posição fixa)</td></tr>
+                <tr><td>🚪 Checkpoint</td><td>Meio do nível — pedra mágica luminosa</td></tr>
+                <tr><td>🏹 Coletável</td><td>2 pacotes de flechas extras</td></tr>
+                <tr><td>🌀 Portal</td><td>Final do mapa à direita — desbloqueado ao eliminar chefe</td></tr>
+                <tr><td>⚠️ Obstáculos</td><td>Fossas, plataformas de madeira, troncos</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p style="font-size:13px; color:var(--text-dim);">
+          <strong style="color:var(--text);">Objetivo:</strong> Aldric deve atravessar a floresta, eliminar os guerreiros inimigos e encontrar o caminho para o portal que o levará à próxima era. O nível ensina mecânicas básicas de pulo, movimento e ataque.
+        </p>
+      </div>
+    </div>
+
+    <!-- Fase 2 -->
+    <div class="era-block polvora" style="margin-bottom:24px;">
+      <div class="era-head">
+        <span class="era-num">II</span>
+        <div>
+          <div class="era-title">Fase 2 — Vila e Campo de Batalha Colonial</div>
+          <div class="era-period">Personagem: Edmond · Arma: Mosquete</div>
+        </div>
+      </div>
+      <div style="padding:0 20px 20px;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+          <div>
+            <img src="./GameBase%28Animation%29/Textures/b_fundo3.png" loading="lazy" alt="fase 2 bg" style="image-rendering:pixelated; width:100%; border-radius:3px;"/>
+            <img src="./GameBase%28Animation%29/Textures/b_fundo4.png" loading="lazy" alt="fase 2 montanhas" style="image-rendering:pixelated; width:100%; border-radius:3px; margin-top:8px;"/>
+          </div>
+          <div>
+            <table style="font-size:13px;">
+              <thead><tr><th>Elemento</th><th>Descrição</th></tr></thead>
+              <tbody>
+                <tr><td>🟢 Spawn</td><td>Entrada da vila destroçada</td></tr>
+                <tr><td>👾 Inimigos</td><td>4 soldados coloniais + 2 arqueiros de elite em posições elevadas</td></tr>
+                <tr><td>💥 Barris</td><td>3 barris de pólvora explosivos — uso estratégico</td></tr>
+                <tr><td>🚪 Checkpoint</td><td>Centro da vila — após os barris</td></tr>
+                <tr><td>🌀 Portal</td><td>Dentro do forte colonial ao final</td></tr>
+                <tr><td>⚠️ Obstáculos</td><td>Fossos, plataformas instáveis, barricadas</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p style="font-size:13px; color:var(--text-dim);">
+          <strong style="color:var(--text);">Objetivo:</strong> Edmond deve cruzar a vila em chamas, usando o ambiente (barris explosivos) a seu favor. O nível introduz plataformas instáveis e inimigos posicionados verticalmente.
+        </p>
+      </div>
+    </div>
+
+    <!-- Fase 3 -->
+    <div class="era-block moderna" style="margin-bottom:24px;">
+      <div class="era-head">
+        <span class="era-num">III</span>
+        <div>
+          <div class="era-title">Fase 3 — Cidade em Conflito e Laboratório</div>
+          <div class="era-period">Personagem: Rei · Arma: Rifle Moderno</div>
+        </div>
+      </div>
+      <div style="padding:0 20px 20px;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+          <div>
+            <img src="./GameBase%28Animation%29/Textures/b_fundo5.png" loading="lazy" alt="fase 3 bg" style="image-rendering:pixelated; width:100%; border-radius:3px;"/>
+          </div>
+          <div>
+            <table style="font-size:13px;">
+              <thead><tr><th>Elemento</th><th>Descrição</th></tr></thead>
+              <tbody>
+                <tr><td>🟢 Spawn</td><td>Rua de cidade destruída — exterior</td></tr>
+                <tr><td>👾 Inimigos</td><td>4 soldados modernos + 2 drones voadores</td></tr>
+                <tr><td>⚡ Arame Farpado</td><td>Obstáculos de terreno — causa dano ao tocar</td></tr>
+                <tr><td>🚪 Checkpoint</td><td>Entrada do laboratório</td></tr>
+                <tr><td>🌀 Portal Final</td><td>Centro do laboratório — câmara do artefato</td></tr>
+                <tr><td>⚠️ Obstáculos</td><td>Escombros, elevações, grade elétrica</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p style="font-size:13px; color:var(--text-dim);">
+          <strong style="color:var(--text);">Objetivo:</strong> Rei deve atravessar a cidade e entrar no laboratório para encontrar o artefato. O nível é o mais complexo — múltiplos andares, drones aéreos e o confronto final com a manifestação da Entidade.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5. TECNOLOGIAS ===== -->
+  <section id="tecnologias">
+    <div class="section-header">
+      <div class="section-number">Seção 05</div>
+      <h2 class="section-title">Tecnologias</h2>
+      <div class="section-divider divider-gold"></div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:16px; margin-bottom:24px;">
+      <div class="tech-card" style="border-left:3px solid var(--green);">
+        <h4>Engine</h4>
+        <ul>
+          <li>Construct 2<br/><small style="color:var(--text-dim);">(.capx / .caproj)</small></li>
+          <li>Event-based scripting</li>
+          <li>Exportação para HTML5/Browser</li>
+        </ul>
+      </div>
+      <div class="tech-card" style="border-left:3px solid var(--orange);">
+        <h4>Assets &amp; Arte</h4>
+        <ul>
+          <li>Pixel art — PNG</li>
+          <li>Sprites com image-rendering: pixelated</li>
+          <li>Background parallax (5 camadas)</li>
+          <li>Spritesheet de animação</li>
+        </ul>
+      </div>
+      <div class="tech-card" style="border-left:3px solid var(--neon);">
+        <h4>Versionamento</h4>
+        <ul>
+          <li>Git (repositório local)</li>
+          <li>.gitignore configurado</li>
+          <li>Branches por sprint/feature</li>
+        </ul>
+      </div>
+      <div class="tech-card" style="border-left:3px solid var(--gold);">
+        <h4>Padrões de Nomenclatura</h4>
+        <ul>
+          <li><code>p_player</code> — player sprite</li>
+          <li><code>p_inimigo</code> — NPC/inimigo</li>
+          <li><code>p_tiro</code> — projétil</li>
+          <li><code>b_fundo</code> — background</li>
+          <li><code>hud_*</code> — elementos de HUD</li>
+          <li><code>eHUD / ePrincipal</code> — event sheets</li>
+        </ul>
+      </div>
+    </div>
+
+    <details class="sub-section era-gold">
+      <summary>Estrutura do Projeto (Construct 2)</summary>
+      <div class="sub-body">
+        <table style="font-size:13px;">
+          <thead><tr><th>Pasta</th><th>Conteúdo</th></tr></thead>
+          <tbody>
+            <tr><td><code>Animations/</code></td><td>Frames de animação por sprite (p_player, p_inimigo, p_tiro, etc.)</td></tr>
+            <tr><td><code>Event sheets/</code></td><td>Lógica do jogo — ePrincipal, eHUD, eInimigos, ePersonagem</td></tr>
+            <tr><td><code>Layouts/</code></td><td>Cenas do jogo — HUD.xml, Sala de Teste.xml</td></tr>
+            <tr><td><code>Textures/</code></td><td>Backgrounds (b_fundo1-5), tileset (bbase), HUD (hud_*)</td></tr>
+            <tr><td><code>Files/</code></td><td>Ícones de plataforma (16, 32, 114, 128, 256px) + loading logo</td></tr>
+            <tr><td><code>Sprites/Personagem/</code></td><td>Assets fonte organizados por animação (Idle/Walk/Jump/etc.)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+  </section>
+
+  <!-- ===== 6. REFERÊNCIAS ===== -->
+  <section id="referencias">
+    <div class="section-header">
+      <div class="section-number">Seção 06</div>
+      <h2 class="section-title">Referências</h2>
+      <div class="section-divider divider-gold"></div>
+    </div>
+
+    <div class="ref-grid">
+      <div class="ref-card">
+        <h4>🎮 Jogos</h4>
+        <ul>
+          <li><strong>Castlevania</strong> — platformer de ação, progressão linear</li>
+          <li><strong>Metal Slug</strong> — run &amp; gun 2D pixel art, inimigos variados</li>
+          <li><strong>Contra</strong> — mecânica de tiro horizontal, dificuldade progressiva</li>
+          <li><strong>Cuphead</strong> — arte pixel art temática, boss fights dramáticos</li>
+        </ul>
+      </div>
+      <div class="ref-card">
+        <h4>📖 Referências Narrativas</h4>
+        <ul>
+          <li><strong>Assassin's Creed</strong> — viagem entre eras históricas, memória ancestral</li>
+          <li><strong>Bloodborne</strong> — maldição familiar, tom sombrio, ciclo inescapável</li>
+          <li><strong>Disco Elysium</strong> — peso das escolhas passadas sobre o presente</li>
+          <li><strong>The Banner Saga</strong> — herança de guerras, sacrifício geracional</li>
+        </ul>
+      </div>
+      <div class="ref-card">
+        <h4>🏛️ Referências Históricas</h4>
+        <ul>
+          <li><strong>Cruzadas (Séc. XII)</strong> — Cerco de Lisboa 1147, cavaleiros e sarracenos</li>
+          <li><strong>Guerras Coloniais (Séc. XVIII)</strong> — formações, mosquetes, guerrilha</li>
+          <li><strong>Conflitos Contemporâneos</strong> — guerra urbana, tecnologia militar avançada</li>
+        </ul>
+      </div>
+      <div class="ref-card">
+        <h4>📄 Documentos do Projeto</h4>
+        <ul>
+          <li>High Concept — O Legado (PDF)</li>
+          <li>Base Narrativa — O Legado (DOCX)</li>
+          <li>Modelo GDD Entrega 26/04 (DOCX)</li>
+          <li>README.md — repositório</li>
+        </ul>
+      </div>
+    </div>
+
+    <blockquote style="margin-top:32px;">
+      "Das flechas medievais às balas modernas — O Legado é a história de uma família que nunca teve escolha, até agora."
+      <cite>— High Concept, O Legado</cite>
+    </blockquote>
+  </section>
+
+</main>
+
+<footer>
+  <p>O LEGADO — Game Design Document v1.0</p>
+  <p style="margin-top:4px; font-size:10px; opacity:0.5;">Isabelle Feltrin · Lucas Daufenbach · Rodrigo Margotti · Gustavo L. Dias · Abril 2026</p>
+</footer>
+
+<!--
+===========================================
+  IMAGENS UTILIZADAS NESTE GDD
+===========================================
+
+BACKGROUNDS:
+  ./GameBase(Animation)/Textures/b_fundo1.png  — floresta densa (layer próxima)
+  ./GameBase(Animation)/Textures/b_fundo2.png  — floresta média
+  ./GameBase(Animation)/Textures/b_fundo3.png  — floresta distante
+  ./GameBase(Animation)/Textures/b_fundo4.png  — montanhas silhueta
+  ./GameBase(Animation)/Textures/b_fundo5.png  — céu gradiente
+
+TILESET:
+  ./GameBase(Animation)/Textures/bbase.png     — chão, plataformas, paredes
+
+HUD ELEMENTS:
+  ./GameBase(Animation)/Textures/hud_vida.png         — barra de vida (vermelha)
+  ./GameBase(Animation)/Textures/hud_stamina.png      — barra de stamina (amarela)
+  ./GameBase(Animation)/Textures/hud_tanqueVida.png   — container da barra de vida
+  ./GameBase(Animation)/Textures/hud_tanqueStamina.png— container da barra de stamina
+  ./Sprites/Personagem/Animations/HUD/04.png           — spritesheet completo HUD
+  ./Sprites/Personagem/Animations/HUD/VFull.png        — vida cheia
+  ./Sprites/Personagem/Animations/HUD/SFull.png        — stamina cheia
+  ./Sprites/Personagem/Animations/HUD/MF3.png          — barra tipo 3
+
+PLAYER ANIMATIONS — GameBase(Animation):
+  ./GameBase(Animation)/Animations/p_player/idle/000-004.png  — 5 frames idle
+  ./GameBase(Animation)/Animations/p_player/walk/000-007.png  — 8 frames walk
+  ./GameBase(Animation)/Animations/p_player/jump/000-003.png  — 4 frames jump
+
+PLAYER ANIMATIONS — Sprites/:
+  ./Sprites/Personagem/Animations/PersonagemPrincipal/Idle/idle1.png
+  ./Sprites/Personagem/Animations/PersonagemPrincipal/Idle/Idle2.png
+  ./Sprites/Personagem/Animations/PersonagemPrincipal/Walk/walk1-4.png
+  ./Sprites/Personagem/Animations/PersonagemPrincipal/Jump/jump1-3.png
+
+ENEMY SPRITES:
+  ./GameBase(Animation)/Animations/p_inimigo/Default/000.png           — inimigo base
+  ./Sprites/Personagem/Animations/GandalfHardcore Archer brown sheet.png — arqueiro medieval completo
+
+PROJECTILE:
+  ./GameBase(Animation)/Animations/p_tiro/Default/000.png  — projétil base
+  ./Sprites/Personagem/Animations/arrow.png                — flecha
+
+PORTAL:
+  ./Sprites/Personagem/Animations/Portal/GandalfHardcore Portal sheet.png — portal animado
+===========================================
+-->
+
+</body>
+</html>
