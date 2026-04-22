@@ -83,9 +83,6 @@
         <object-type global="1" name="p_player" sid="233787809043117">
             <plugin id="Sprite" />
             <behaviors>
-                <behavior-type name="Platform" sid="394349454764029">
-                    <behavior id="Platform" />
-                </behavior-type>
                 <behavior-type name="Flash" sid="166684706676549">
                     <behavior id="Flash" />
                 </behavior-type>
@@ -322,17 +319,63 @@
             <plugin id="TiledBg" />
             <texture original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Personagem\Animations\BackGround\GandalfHardcore Background layers_layer 5.png" />
         </object-type>
+        <object-type name="menu_fundo" sid="811534453488081">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="403182285326871" speed="5">
+                    <frame duration="1" hotspotX="0" hotspotY="0" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\GameBase(Animation)\Animations\m_pausefundo\fundo_menu_pausa.png" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="menu_cursor" sid="471704573845331">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="cursor" pingpong="0" repeatcount="1" repeatto="0" sid="171083517779357" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Personagem\Animations\HUD\MenuCursor.png">
+                        <collision-poly>
+                            <point x="0" y="0" />
+                            <point x="0.203125" y="0.00390625" />
+                            <point x="0.34375" y="0.0820313" />
+                            <point x="0.445313" y="0.1875" />
+                            <point x="0.195313" y="0.34375" />
+                            <point x="0.03125" y="0.335937" />
+                            <point x="0.0117188" y="0.195313" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type global="1" name="menu_action" sid="267882907005481">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="m_iniciar" pingpong="0" repeatcount="1" repeatto="0" sid="915889602064113" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+                <animation framecount="1" loop="0" name="m_sair" pingpong="0" repeatcount="1" repeatto="0" sid="197379703137012" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="p_aenergia" sid="454861081519367">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="122970064406217" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families />
     <layout-folder>
         <layout>Sala de Teste.xml</layout>
-        <layout>HUD.xml</layout>
+        <layout>MenuPause.xml</layout>
     </layout-folder>
     <event-folder>
         <event-sheet>ePrincipal.xml</event-sheet>
         <event-sheet>ePersonagem.xml</event-sheet>
         <event-sheet>eInimigos.xml</event-sheet>
         <event-sheet>eHUD.xml</event-sheet>
+        <event-sheet>eMenuPause.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Keyboard" uid="3" />

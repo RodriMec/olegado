@@ -3,6 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>ePrincipal</name>
     <events>
+        <include>eMenuPause</include>
         <include>eHUD</include>
         <include>eInimigos</include>
         <include>ePersonagem</include>

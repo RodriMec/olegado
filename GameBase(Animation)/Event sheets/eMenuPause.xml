@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>eMenuPause</name>
+    <events>
+        <variable constant="0" name="pausado" sid="259095693340913" static="0" type="number">0</variable>
+        <event-block sid="816945134323501">
+            <conditions>
+                <condition id="-11" name="For Each" sid="947735371827123" type="System">
+                    <param id="0" name="Object">menu_action</param>
+                </condition>
+            </conditions>
+            <actions />
+        </event-block>
+        <event-block sid="154353595772788">
+            <conditions>
+                <condition id="2" name="Key is down" sid="727386576298829" type="Keyboard">
+                    <param id="0" name="Key">38</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-2" name="Set Y" sid="914740884410560" type="menu_cursor">
+                    <param id="0" name="Y">Self.Y - 3</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="317697603002671">
+            <conditions>
+                <condition id="2" name="Key is down" sid="315967629838000" type="Keyboard">
+                    <param id="0" name="Key">40</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-2" name="Set Y" sid="665639192142435" type="menu_cursor">
+                    <param id="0" name="Y">Self.Y + 3</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="614995079094704">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="564914695188578" type="Keyboard">
+                    <param id="0" name="Key">16</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="814130364238882">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="569273302741919" type="System">
+                            <param id="0" name="Variable">pausado</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-12" name="Set group active" sid="843948404011596" type="System">
+                            <param id="0" name="Group name">&quot;Input&quot;</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="395457726372267" type="System">
+                            <param id="0" name="Variable">pausado</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="210487775093240" type="menu_cursor">
+                            <param id="0" name="X">620</param>
+                            <param id="1" name="Y">350</param>
+                        </action>
+                        <action id="-4" name="Set layer visible" sid="448291489881475" type="System">
+                            <param id="0" name="Layer">&quot;MenuPause&quot;</param>
+                            <param id="1" name="Visibility">1</param>
+                        </action>
+                        <action id="-13" name="Set time scale" sid="306537534352695" type="System">
+                            <param id="0" name="Time scale">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="155636829011290">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="273619520334358" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="969190755874727" type="System">
+                            <param id="0" name="Variable">pausado</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-4" name="Set layer visible" sid="869543440945569" type="System">
+                            <param id="0" name="Layer">&quot;MenuPause&quot;</param>
+                            <param id="1" name="Visibility">0</param>
+                        </action>
+                        <action id="-13" name="Set time scale" sid="454227916650864" type="System">
+                            <param id="0" name="Time scale">1</param>
+                        </action>
+                        <action id="-12" name="Set group active" sid="701131335316112" type="System">
+                            <param id="0" name="Group name">&quot;Input&quot;</param>
+                            <param id="1" name="State">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="308208516309551">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="133710990730675" type="System">
+                            <param id="0" name="Variable">pausado</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="846517397743360">
+                            <conditions>
+                                <condition id="1" name="Is overlapping another object" sid="675568534342308" type="menu_cursor">
+                                    <param id="0" name="Object">menu_action</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="384542027093331">
+                                    <conditions>
+                                        <condition id="2" name="Key is down" sid="757190822998754" type="Keyboard">
+                                            <param id="0" name="Key">13</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="933066876722599" type="System">
+                                            <param id="0" name="Variable">pausado</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                        <action id="-4" name="Set layer visible" sid="936246597944087" type="System">
+                                            <param id="0" name="Layer">&quot;MenuPause&quot;</param>
+                                            <param id="1" name="Visibility">0</param>
+                                        </action>
+                                        <action id="-13" name="Set time scale" sid="403887529784491" type="System">
+                                            <param id="0" name="Time scale">1</param>
+                                        </action>
+                                        <action id="-12" name="Set group active" sid="575911926286031" type="System">
+                                            <param id="0" name="Group name">&quot;Input&quot;</param>
+                                            <param id="1" name="State">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>
