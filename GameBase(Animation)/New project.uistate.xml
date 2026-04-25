@@ -10,10 +10,9 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <display name="HTML5" />
     </configurations>
     <open-tabs>
-        <layout order="0">Sala de Teste</layout>
-        <event-sheet active="1" order="1">eHUD</event-sheet>
+        <layout active="1" order="0">Sala de Teste</layout>
+        <layout order="1">MenuPause</layout>
         <event-sheet order="2">eMenuPause</event-sheet>
-        <event-sheet order="3">ePersonagem</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -21,23 +20,32 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <property expanded="0" name="Window Size" />
         <property expanded="1" name="Configuration Settings" />
     </properties>
-    <families-expanded root="1" />
+    <families-expanded root="1">
+        <family expanded="1" name="DanoJogador" />
+        <family expanded="1" name="CausadorDano" />
+    </families-expanded>
     <folders-expanded>
         <folder expanded="1" path="object-folder/" />
+        <folder expanded="0" path="object-folder/Fundo/" />
+        <folder expanded="0" path="object-folder/Function/" />
+        <folder expanded="0" path="object-folder/HUD/" />
+        <folder expanded="0" path="object-folder/Menu/" />
+        <folder expanded="0" path="object-folder/Player/" />
+        <folder expanded="0" path="object-folder/Enemys/" />
         <folder expanded="1" path="layout-folder/" />
         <folder expanded="1" path="event-folder/" />
         <folder expanded="0" path="file-folder/" />
         <folder expanded="1" path="sound-folder/" />
         <folder expanded="1" path="music-folder/" />
         <folder expanded="0" path="file-folder/Icons/" />
-        <folder expanded="1" path="animation-folder/p_playerBox/" />
-        <folder expanded="1" path="animation-folder/p_player/" />
-        <folder expanded="1" path="animation-folder/p_tiro/" />
-        <folder expanded="1" path="animation-folder/p_inimigo/" />
-        <folder expanded="1" path="animation-folder/p_advida/" />
+        <folder expanded="1" path="animation-folder/menu_action/" />
         <folder expanded="1" path="animation-folder/menu_fundo/" />
         <folder expanded="1" path="animation-folder/menu_cursor/" />
-        <folder expanded="1" path="animation-folder/menu_action/" />
+        <folder expanded="1" path="animation-folder/p_player/" />
+        <folder expanded="1" path="animation-folder/p_playerBox/" />
+        <folder expanded="1" path="animation-folder/p_tiro/" />
+        <folder expanded="1" path="animation-folder/p_advida/" />
         <folder expanded="1" path="animation-folder/p_aenergia/" />
+        <folder expanded="1" path="animation-folder/p_inimigo/" />
     </folders-expanded>
 </c2uistate>

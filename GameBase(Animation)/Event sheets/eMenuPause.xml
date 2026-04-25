@@ -44,6 +44,52 @@
             </conditions>
             <actions />
             <sub-events>
+                <event-block sid="308208516309551">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="133710990730675" type="System">
+                            <param id="0" name="Variable">pausado</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="846517397743360">
+                            <conditions>
+                                <condition id="1" name="Is overlapping another object" sid="675568534342308" type="menu_cursor">
+                                    <param id="0" name="Object">menu_action</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="384542027093331">
+                                    <conditions>
+                                        <condition id="2" name="Key is down" sid="757190822998754" type="Keyboard">
+                                            <param id="0" name="Key">13</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="933066876722599" type="System">
+                                            <param id="0" name="Variable">pausado</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                        <action id="-4" name="Set layer visible" sid="936246597944087" type="System">
+                                            <param id="0" name="Layer">&quot;MenuPause&quot;</param>
+                                            <param id="1" name="Visibility">0</param>
+                                        </action>
+                                        <action id="-13" name="Set time scale" sid="403887529784491" type="System">
+                                            <param id="0" name="Time scale">1</param>
+                                        </action>
+                                        <action id="-12" name="Set group active" sid="575911926286031" type="System">
+                                            <param id="0" name="Group name">&quot;Input&quot;</param>
+                                            <param id="1" name="State">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
                 <event-block sid="814130364238882">
                     <conditions>
                         <condition id="-14" name="Compare variable" sid="569273302741919" type="System">
@@ -95,52 +141,6 @@
                             <param id="1" name="State">1</param>
                         </action>
                     </actions>
-                </event-block>
-                <event-block sid="308208516309551">
-                    <conditions>
-                        <condition id="-14" name="Compare variable" sid="133710990730675" type="System">
-                            <param id="0" name="Variable">pausado</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">1</param>
-                        </condition>
-                    </conditions>
-                    <actions />
-                    <sub-events>
-                        <event-block sid="846517397743360">
-                            <conditions>
-                                <condition id="1" name="Is overlapping another object" sid="675568534342308" type="menu_cursor">
-                                    <param id="0" name="Object">menu_action</param>
-                                </condition>
-                            </conditions>
-                            <actions />
-                            <sub-events>
-                                <event-block sid="384542027093331">
-                                    <conditions>
-                                        <condition id="2" name="Key is down" sid="757190822998754" type="Keyboard">
-                                            <param id="0" name="Key">13</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-9" name="Set value" sid="933066876722599" type="System">
-                                            <param id="0" name="Variable">pausado</param>
-                                            <param id="1" name="Value">0</param>
-                                        </action>
-                                        <action id="-4" name="Set layer visible" sid="936246597944087" type="System">
-                                            <param id="0" name="Layer">&quot;MenuPause&quot;</param>
-                                            <param id="1" name="Visibility">0</param>
-                                        </action>
-                                        <action id="-13" name="Set time scale" sid="403887529784491" type="System">
-                                            <param id="0" name="Time scale">1</param>
-                                        </action>
-                                        <action id="-12" name="Set group active" sid="575911926286031" type="System">
-                                            <param id="0" name="Group name">&quot;Input&quot;</param>
-                                            <param id="1" name="State">1</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                            </sub-events>
-                        </event-block>
-                    </sub-events>
                 </event-block>
             </sub-events>
         </event-block>

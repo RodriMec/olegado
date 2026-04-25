@@ -10,6 +10,7 @@
     <unique-id>2qpiupr2gjili</unique-id>
     <saved-with-version>28000</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="Arr" version="1">Array</plugin>
         <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Browser" version="1">Browser</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
@@ -32,8 +33,8 @@
         <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
     </configurations>
     <window-size>
-        <width>1280</width>
-        <height>720</height>
+        <width>320</width>
+        <height>180</height>
     </window-size>
     <pixel-rounding>1</pixel-rounding>
     <preview-effects>1</preview-effects>
@@ -51,321 +52,565 @@
         <prop name="Use iOS retina display">All devices</prop>
     </configuration-settings>
     <object-folder>
+        <object-folder name="Fundo">
+            <object-type global="1" name="b_fundo1" sid="388109808227231">
+                <plugin id="TiledBg" />
+                <texture original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Personagem\Animations\BackGround\GandalfHardcore Background layers_layer 1.png" />
+            </object-type>
+            <object-type name="b_fundo2" sid="272907315095279">
+                <plugin id="TiledBg" />
+                <texture original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Personagem\Animations\BackGround\GandalfHardcore Background layers_layer 2.png" />
+            </object-type>
+            <object-type name="b_fundo3" sid="539631358868438">
+                <plugin id="TiledBg" />
+                <texture original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Personagem\Animations\BackGround\GandalfHardcore Background layers_layer 3.png" />
+            </object-type>
+            <object-type name="b_fundo4" sid="161251589347707">
+                <plugin id="TiledBg" />
+                <texture original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Personagem\Animations\BackGround\GandalfHardcore Background layers_layer 4.png" />
+            </object-type>
+            <object-type name="b_fundo5" sid="964615703226440">
+                <plugin id="TiledBg" />
+                <texture original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Personagem\Animations\BackGround\GandalfHardcore Background layers_layer 5.png" />
+            </object-type>
+            <object-type global="1" name="bbase" sid="333593365786272">
+                <plugin id="Tilemap" />
+                <behaviors>
+                    <behavior-type name="Solid" sid="247881489145509">
+                        <behavior id="solid" />
+                    </behavior-type>
+                </behaviors>
+                <texture original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\GandalfHardcore FREE Platformer Assets\Other Tiles2.png" />
+                <tiles>
+                    <tile id="4">
+                        <collision-poly>
+                            <point x="0" y="0.398438" />
+                            <point x="0.164063" y="0.59375" />
+                            <point x="0.523438" y="1" />
+                            <point x="0" y="1" />
+                        </collision-poly>
+                    </tile>
+                    <tile id="7">
+                        <collision-poly>
+                            <point x="0" y="0" />
+                            <point x="0.84375" y="0" />
+                            <point x="1" y="0.734375" />
+                            <point x="0" y="1" />
+                        </collision-poly>
+                    </tile>
+                    <tile id="8">
+                        <collision-poly>
+                            <point x="0" y="0.625" />
+                            <point x="0.1875" y="0.859375" />
+                            <point x="0.375" y="1" />
+                            <point x="0" y="1" />
+                        </collision-poly>
+                    </tile>
+                    <tile id="13">
+                        <collision-poly>
+                            <point x="0" y="0" />
+                            <point x="0.457031" y="0" />
+                            <point x="1" y="0.566406" />
+                            <point x="0.015625" y="1" />
+                        </collision-poly>
+                    </tile>
+                    <tile id="14">
+                        <collision-poly>
+                            <point x="0" y="0.421875" />
+                            <point x="0.296875" y="0.710938" />
+                            <point x="0.707031" y="0.984375" />
+                            <point x="0" y="1" />
+                        </collision-poly>
+                    </tile>
+                    <tile id="20">
+                        <collision-poly>
+                            <point x="0.21875" y="0" />
+                            <point x="0.640625" y="0.5625" />
+                            <point x="1" y="1" />
+                            <point x="0" y="1" />
+                        </collision-poly>
+                    </tile>
+                    <tile id="26">
+                        <collision-poly>
+                            <point x="0.40625" y="0" />
+                            <point x="0.671875" y="0.421875" />
+                            <point x="1" y="0.8125" />
+                            <point x="0" y="1" />
+                        </collision-poly>
+                    </tile>
+                    <tile id="39">
+                        <collision-poly>
+                            <point x="0" y="0" />
+                            <point x="0.5" y="0.515625" />
+                            <point x="1" y="1" />
+                            <point x="0" y="1" />
+                        </collision-poly>
+                    </tile>
+                    <tile id="45">
+                        <collision-poly>
+                            <point x="0.15625" y="0" />
+                            <point x="0.453125" y="0.34375" />
+                            <point x="1" y="0.84375" />
+                            <point x="0" y="1" />
+                        </collision-poly>
+                    </tile>
+                    <tile id="58">
+                        <collision-poly>
+                            <point x="0" y="0" />
+                            <point x="0.515625" y="0.53125" />
+                            <point x="1" y="1" />
+                            <point x="0" y="1" />
+                        </collision-poly>
+                    </tile>
+                    <tile id="64">
+                        <collision-poly>
+                            <point x="0" y="0" />
+                            <point x="0.4375" y="0.359375" />
+                            <point x="1" y="1" />
+                            <point x="0" y="1" />
+                        </collision-poly>
+                    </tile>
+                </tiles>
+            </object-type>
+        </object-folder>
+        <object-folder name="Function">
+            <object-type name="Function" sid="335596997427481">
+                <plugin id="Function" />
+            </object-type>
+            <object-type name="Browser" sid="3498868852026895">
+                <plugin id="Browser" />
+            </object-type>
+            <object-type name="Audio" sid="2722091819329769">
+                <plugin id="Audio" />
+            </object-type>
+        </object-folder>
+        <object-folder name="HUD">
+            <object-type name="hud_stamina" sid="603982913050322">
+                <plugin id="TiledBg" />
+                <texture original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Personagem\Animations\HUD\SFull.png" />
+            </object-type>
+            <object-type name="hud_tanqueStamina" sid="171336200904360">
+                <plugin id="TiledBg" />
+                <texture original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Personagem\Animations\HUD\MF3.png" />
+            </object-type>
+            <object-type name="hud_tanqueVida" sid="356245251624060">
+                <plugin id="TiledBg" />
+                <texture original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Personagem\Animations\HUD\MF3.png" />
+            </object-type>
+            <object-type name="hud_vida" sid="208721857697198">
+                <plugin id="TiledBg" />
+                <texture original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Personagem\Animations\HUD\VFull.png" />
+            </object-type>
+        </object-folder>
+        <object-folder name="Menu">
+            <object-type global="1" name="menu_action" sid="267882907005481">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="m_iniciar" pingpong="0" repeatcount="1" repeatto="0" sid="915889602064113" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                    <animation framecount="1" loop="0" name="m_sair" pingpong="0" repeatcount="1" repeatto="0" sid="197379703137012" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="menu_fundo" sid="811534453488081">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="403182285326871" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\GameBase(Animation)\Animations\m_pausefundo\fundo_menu_pausa.png" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="menu_cursor" sid="471704573845331">
+                <plugin id="Sprite" />
+                <behaviors>
+                    <behavior-type name="Platform" sid="101222640541362">
+                        <behavior id="Platform" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="cursor" pingpong="0" repeatcount="1" repeatto="0" sid="171083517779357" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Personagem\Animations\HUD\MenuCursor.png">
+                            <collision-poly>
+                                <point x="0" y="0" />
+                                <point x="0.203125" y="0.00390625" />
+                                <point x="0.34375" y="0.0820313" />
+                                <point x="0.445313" y="0.1875" />
+                                <point x="0.195313" y="0.34375" />
+                                <point x="0.03125" y="0.335937" />
+                                <point x="0.0117188" y="0.195313" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
+        <object-folder name="Player">
+            <object-type global="1" name="p_player" sid="233787809043117">
+                <plugin id="Sprite" />
+                <behaviors>
+                    <behavior-type name="Flash" sid="166684706676549">
+                        <behavior id="Flash" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder>
+                    <animation framecount="5" loop="1" name="idle" pingpong="0" repeatcount="1" repeatto="0" sid="424914639179379" speed="8">
+                        <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\idle1.png">
+                            <image-point name="Tiro" x="1" y="0.488372" />
+                            <image-point name="Vida" x="0.46875" y="-0.255814" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Idle2.png">
+                            <image-point name="Tiro" x="1" y="0.488372" />
+                            <image-point name="Vida" x="0.46875" y="-0.255814" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\idle3.png">
+                            <image-point name="Tiro" x="1" y="0.5" />
+                            <image-point name="Vida" x="0.46875" y="-0.261905" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\idle4.png">
+                            <image-point name="Tiro" x="1" y="0.488372" />
+                            <image-point name="Vida" x="0.46875" y="-0.255814" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\idle5.png">
+                            <image-point name="Tiro" x="1" y="0.488372" />
+                            <image-point name="Vida" x="0.46875" y="-0.255814" />
+                        </frame>
+                    </animation>
+                    <animation framecount="8" loop="1" name="walk" pingpong="0" repeatcount="1" repeatto="0" sid="692102363776796" speed="10">
+                        <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\Walk\walk1.png">
+                            <image-point name="Tiro" x="1" y="0.488372" />
+                            <image-point name="Vida" x="0.46875" y="-0.255814" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\Walk\walk2.png">
+                            <image-point name="Tiro" x="1" y="0.488372" />
+                            <image-point name="Vida" x="0.46875" y="-0.255814" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\Walk\walk3.png">
+                            <image-point name="Tiro" x="1" y="0.5" />
+                            <image-point name="Vida" x="0.46875" y="-0.261905" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\Walk\walk4.png">
+                            <image-point name="Tiro" x="1" y="0.488372" />
+                            <image-point name="Vida" x="0.46875" y="-0.255814" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\Walk\walk5.png">
+                            <image-point name="Tiro" x="1" y="0.488372" />
+                            <image-point name="Vida" x="0.46875" y="-0.255814" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\Walk\walk6.png">
+                            <image-point name="Tiro" x="1" y="0.488372" />
+                            <image-point name="Vida" x="0.46875" y="-0.255814" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\Walk\walk7.png">
+                            <image-point name="Tiro" x="1" y="0.5" />
+                            <image-point name="Vida" x="0.46875" y="-0.261905" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\Walk\walk8.png">
+                            <image-point name="Tiro" x="1" y="0.5" />
+                            <image-point name="Vida" x="0.46875" y="-0.261905" />
+                        </frame>
+                    </animation>
+                    <animation framecount="4" loop="0" name="jump" pingpong="0" repeatcount="0" repeatto="0" sid="663092922820608" speed="4">
+                        <frame duration="0.2" hotspotX="0.515152" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\Jump\jump1.png">
+                            <image-point name="Tiro" x="1" y="0.538462" />
+                            <image-point name="Vida" x="0.454545" y="-0.25641" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\Jump\jump2.png">
+                            <image-point name="Tiro" x="1" y="0.511628" />
+                            <image-point name="Vida" x="0.46875" y="-0.255814" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\Jump\jump3.png">
+                            <image-point name="Tiro" x="1" y="0.488372" />
+                            <image-point name="Vida" x="0.46875" y="-0.255814" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\Jump\jump4.png">
+                            <image-point name="Tiro" x="1" y="0.52381" />
+                            <image-point name="Vida" x="0.46875" y="-0.261905" />
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type global="1" name="p_playerBox" sid="870405563541855">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable name="estado" sid="571569157701103" type="string" />
+                    <instance-variable name="mira" sid="470690859337542" type="string" />
+                    <instance-variable name="angulo_tiro" sid="321036235712333" type="number" />
+                    <instance-variable name="shooting" sid="666763262045245" type="boolean" />
+                    <instance-variable name="tiro_cooldown" sid="721643033549741" type="number" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="Platform" sid="507811450158063">
+                        <behavior id="Platform" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="974048781460688" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="1" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="p_tiro" sid="136104744250680">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable name="dano" sid="462023189811268" type="number" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="Bullet" sid="139636296635464">
+                        <behavior id="Bullet" />
+                    </behavior-type>
+                    <behavior-type name="DestroyOutsideLayout" sid="756056883575924">
+                        <behavior id="destroy" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="148310654129273" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.6" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\arrow.png">
+                            <collision-poly>
+                                <point x="0" y="0" />
+                                <point x="0.5" y="0.2" />
+                                <point x="0.966667" y="0.2" />
+                                <point x="1" y="0.4" />
+                                <point x="0.966667" y="0.8" />
+                                <point x="0.5" y="0.8" />
+                                <point x="0" y="1" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="p_advida" sid="641062154022744">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable name="vida" sid="812863374287968" type="number" />
+                </instance-variables>
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="436244160632295" speed="5">
+                        <frame duration="1" hotspotX="0.52381" hotspotY="0.52381" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="p_aenergia" sid="454861081519367">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="122970064406217" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
+        <object-folder name="Enemys">
+            <object-type name="p_inimigo" sid="418861518462718">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable name="dano" sid="856035089314583" type="number" />
+                    <instance-variable name="vida" sid="719867748436028" type="number" />
+                    <instance-variable name="estado" sid="941375969794946" type="string" />
+                    <instance-variable name="direcao" sid="926615265330589" type="string" />
+                    <instance-variable name="colisao" sid="218287374431010" type="string" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="Platform" sid="404047264472247">
+                        <behavior id="Platform" />
+                    </behavior-type>
+                </behaviors>
+                <effects>
+                    <effect-type name="Brightness">
+                        <effect id="brightness" />
+                    </effect-type>
+                </effects>
+                <animation-folder>
+                    <animation framecount="5" loop="1" name="idle" pingpong="0" repeatcount="1" repeatto="0" sid="216137782833542" speed="8">
+                        <frame duration="1" hotspotX="0.608696" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Inimigo Guerreiro\Idle\Idle1.png">
+                            <collision-poly>
+                                <point x="0.298913" y="0.696023" />
+                                <point x="0.315217" y="0.0511364" />
+                                <point x="0.820652" y="0.0511364" />
+                                <point x="0.967391" y="0.497159" />
+                                <point x="0.902174" y="0.99716" />
+                                <point x="0.244565" y="1" />
+                                <point x="0.277174" y="0.818182" />
+                                <point x="0.0163044" y="0.829546" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.608696" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Inimigo Guerreiro\Idle\Idle2.png">
+                            <collision-poly>
+                                <point x="0.26087" y="0.696023" />
+                                <point x="0.326087" y="0.0511364" />
+                                <point x="0.777174" y="0.0397727" />
+                                <point x="1" y="0.5" />
+                                <point x="0.86413" y="0.997159" />
+                                <point x="0.23913" y="1" />
+                                <point x="0.320652" y="0.803977" />
+                                <point x="0" y="0.806818" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.608696" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Inimigo Guerreiro\Idle\Idle3.png">
+                            <collision-poly>
+                                <point x="0.25" y="0.683333" />
+                                <point x="0.336957" y="0.05" />
+                                <point x="0.782609" y="0.0305556" />
+                                <point x="1" y="0.488889" />
+                                <point x="0.918478" y="0.991667" />
+                                <point x="0.222826" y="0.997222" />
+                                <point x="0.293478" y="0.777778" />
+                                <point x="0" y="0.788889" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.608696" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Inimigo Guerreiro\Idle\Idle4.png">
+                            <collision-poly>
+                                <point x="0.271739" y="0.675" />
+                                <point x="0.320652" y="0.0472222" />
+                                <point x="0.826087" y="0.0611111" />
+                                <point x="1" y="0.488889" />
+                                <point x="0.907609" y="1" />
+                                <point x="0.211957" y="1" />
+                                <point x="0.288043" y="0.777778" />
+                                <point x="0" y="0.8" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.608696" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Inimigo Guerreiro\Idle\Idle5.png">
+                            <collision-poly>
+                                <point x="0.271739" y="0.702778" />
+                                <point x="0.326087" y="0.0444444" />
+                                <point x="0.804348" y="0.0527778" />
+                                <point x="1" y="0.488889" />
+                                <point x="0.891304" y="1" />
+                                <point x="0.266304" y="1" />
+                                <point x="0.26087" y="0.802778" />
+                                <point x="0" y="0.813889" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="8" loop="0" name="walk" pingpong="0" repeatcount="1" repeatto="0" sid="251132192882845" speed="10">
+                        <frame duration="1" hotspotX="0.518519" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Inimigo Guerreiro\Walk\walk0.png">
+                            <collision-poly>
+                                <point x="0.365741" y="0.4375" />
+                                <point x="0.388889" y="0.0454546" />
+                                <point x="0.819444" y="0.0426136" />
+                                <point x="0.828704" y="0.5" />
+                                <point x="0.976852" y="1" />
+                                <point x="0.291667" y="1" />
+                                <point x="0.416667" y="0.590909" />
+                                <point x="0" y="0.417614" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.52" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Inimigo Guerreiro\Walk\walk1.png">
+                            <collision-poly>
+                                <point x="0.395741" y="0.5" />
+                                <point x="0.388889" y="0.0454546" />
+                                <point x="0.819444" y="0.0426136" />
+                                <point x="0.903704" y="0.485795" />
+                                <point x="0.921852" y="0.994318" />
+                                <point x="0.324444" y="1" />
+                                <point x="0.411667" y="0.605113" />
+                                <point x="0" y="0.488636" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Inimigo Guerreiro\Walk\walk2.png">
+                            <collision-poly>
+                                <point x="0.40625" y="0.519445" />
+                                <point x="0.411458" y="0.0611111" />
+                                <point x="0.854167" y="0.0611111" />
+                                <point x="0.963542" y="0.486111" />
+                                <point x="0.875" y="0.933333" />
+                                <point x="0.432292" y="1" />
+                                <point x="0.432292" y="0.652778" />
+                                <point x="0" y="0.488889" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Inimigo Guerreiro\Walk\walk3.png">
+                            <collision-poly>
+                                <point x="0.318182" y="0.480556" />
+                                <point x="0.289773" y="0.0555556" />
+                                <point x="0.818182" y="0.075" />
+                                <point x="0.943182" y="0.480556" />
+                                <point x="0.892045" y="0.866667" />
+                                <point x="0.556818" y="1" />
+                                <point x="0.284091" y="0.616667" />
+                                <point x="0" y="0.488889" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Inimigo Guerreiro\Walk\walk4.png">
+                            <collision-poly>
+                                <point x="0.227273" y="0.446023" />
+                                <point x="0.232955" y="0.0710227" />
+                                <point x="0.784091" y="0.0681818" />
+                                <point x="0.931818" y="0.517045" />
+                                <point x="0.738636" y="0.951705" />
+                                <point x="0.409091" y="0.994318" />
+                                <point x="0.426136" y="0.809659" />
+                                <point x="0" y="0.454545" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Inimigo Guerreiro\Walk\walk5.png">
+                            <collision-poly>
+                                <point x="0.244318" y="0.426136" />
+                                <point x="0.284091" y="0.0681818" />
+                                <point x="0.795455" y="0.0710227" />
+                                <point x="1" y="0.5" />
+                                <point x="0.772727" y="0.980114" />
+                                <point x="0.602273" y="1" />
+                                <point x="0.369318" y="0.730114" />
+                                <point x="0" y="0.426136" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Inimigo Guerreiro\Walk\walk6.png">
+                            <collision-poly>
+                                <point x="0.323864" y="0.427778" />
+                                <point x="0.369318" y="0.0472222" />
+                                <point x="0.823864" y="0.0527778" />
+                                <point x="0.943182" y="0.447222" />
+                                <point x="0.863636" y="0.980555" />
+                                <point x="0.335227" y="0.966667" />
+                                <point x="0.340909" y="0.527778" />
+                                <point x="0" y="0.377778" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.52" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Inimigo Guerreiro\Walk\walk7.png">
+                            <collision-poly>
+                                <point x="0.385" y="0.447222" />
+                                <point x="0.355" y="0.0611111" />
+                                <point x="0.835" y="0.0527778" />
+                                <point x="0.88" y="0.488889" />
+                                <point x="0.895" y="0.997222" />
+                                <point x="0.325" y="1" />
+                                <point x="0.42" y="0.563889" />
+                                <point x="0" y="0.391667" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="6" loop="0" name="att" pingpong="0" repeatcount="1" repeatto="0" sid="467780102122604" speed="6">
+                        <frame duration="1" hotspotX="0.608696" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Inimigo Guerreiro\Attack\att0.png" />
+                        <frame duration="1" hotspotX="0.30303" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Inimigo Guerreiro\Attack\att1.png" />
+                        <frame duration="1" hotspotX="0.25" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Inimigo Guerreiro\Attack\att2.png" />
+                        <frame duration="1" hotspotX="0.229167" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Inimigo Guerreiro\Attack\att3.png" />
+                        <frame duration="1" hotspotX="0.72549" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Inimigo Guerreiro\Attack\att4.png" />
+                        <frame duration="1" hotspotX="0.837209" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Inimigo Guerreiro\Attack\att5.png" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
+        <object-type global="1" name="Array" sid="718734636773362">
+            <plugin id="Arr" />
+        </object-type>
         <object-type name="Keyboard" sid="4436305314906168">
             <plugin id="Keyboard" />
         </object-type>
-        <object-type name="Audio" sid="2722091819329769">
-            <plugin id="Audio" />
-        </object-type>
-        <object-type name="Browser" sid="3498868852026895">
-            <plugin id="Browser" />
-        </object-type>
-        <object-type name="p_playerBox" sid="870405563541855">
-            <plugin id="Sprite" />
-            <instance-variables>
-                <instance-variable name="estado" sid="571569157701103" type="string" />
-                <instance-variable name="mira" sid="470690859337542" type="string" />
-                <instance-variable name="angulo_tiro" sid="321036235712333" type="number" />
-                <instance-variable name="shooting" sid="666763262045245" type="boolean" />
-                <instance-variable name="tiro_cooldown" sid="721643033549741" type="number" />
-            </instance-variables>
-            <behaviors>
-                <behavior-type name="Platform" sid="507811450158063">
-                    <behavior id="Platform" />
-                </behavior-type>
-            </behaviors>
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="974048781460688" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="1" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type global="1" name="p_player" sid="233787809043117">
-            <plugin id="Sprite" />
-            <behaviors>
-                <behavior-type name="Flash" sid="166684706676549">
-                    <behavior id="Flash" />
-                </behavior-type>
-            </behaviors>
-            <animation-folder>
-                <animation framecount="5" loop="1" name="idle" pingpong="0" repeatcount="1" repeatto="0" sid="424914639179379" speed="8">
-                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\idle1.png">
-                        <image-point name="Tiro" x="1" y="0.488372" />
-                        <image-point name="Vida" x="0.46875" y="-0.255814" />
-                    </frame>
-                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Idle2.png">
-                        <image-point name="Tiro" x="1" y="0.488372" />
-                        <image-point name="Vida" x="0.46875" y="-0.255814" />
-                    </frame>
-                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\idle3.png">
-                        <image-point name="Tiro" x="1" y="0.5" />
-                        <image-point name="Vida" x="0.46875" y="-0.261905" />
-                    </frame>
-                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\idle4.png">
-                        <image-point name="Tiro" x="1" y="0.488372" />
-                        <image-point name="Vida" x="0.46875" y="-0.255814" />
-                    </frame>
-                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\idle5.png">
-                        <image-point name="Tiro" x="1" y="0.488372" />
-                        <image-point name="Vida" x="0.46875" y="-0.255814" />
-                    </frame>
-                </animation>
-                <animation framecount="8" loop="1" name="walk" pingpong="0" repeatcount="1" repeatto="0" sid="692102363776796" speed="10">
-                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\Walk\walk1.png">
-                        <image-point name="Tiro" x="1" y="0.488372" />
-                        <image-point name="Vida" x="0.46875" y="-0.255814" />
-                    </frame>
-                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\Walk\walk2.png">
-                        <image-point name="Tiro" x="1" y="0.488372" />
-                        <image-point name="Vida" x="0.46875" y="-0.255814" />
-                    </frame>
-                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\Walk\walk3.png">
-                        <image-point name="Tiro" x="1" y="0.5" />
-                        <image-point name="Vida" x="0.46875" y="-0.261905" />
-                    </frame>
-                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\Walk\walk4.png">
-                        <image-point name="Tiro" x="1" y="0.488372" />
-                        <image-point name="Vida" x="0.46875" y="-0.255814" />
-                    </frame>
-                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\Walk\walk5.png">
-                        <image-point name="Tiro" x="1" y="0.488372" />
-                        <image-point name="Vida" x="0.46875" y="-0.255814" />
-                    </frame>
-                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\Walk\walk6.png">
-                        <image-point name="Tiro" x="1" y="0.488372" />
-                        <image-point name="Vida" x="0.46875" y="-0.255814" />
-                    </frame>
-                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\Walk\walk7.png">
-                        <image-point name="Tiro" x="1" y="0.5" />
-                        <image-point name="Vida" x="0.46875" y="-0.261905" />
-                    </frame>
-                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\Walk\walk8.png">
-                        <image-point name="Tiro" x="1" y="0.5" />
-                        <image-point name="Vida" x="0.46875" y="-0.261905" />
-                    </frame>
-                </animation>
-                <animation framecount="4" loop="0" name="jump" pingpong="0" repeatcount="0" repeatto="0" sid="663092922820608" speed="4">
-                    <frame duration="0.2" hotspotX="0.515152" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\Jump\jump1.png">
-                        <image-point name="Tiro" x="1" y="0.538462" />
-                        <image-point name="Vida" x="0.454545" y="-0.25641" />
-                    </frame>
-                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\Jump\jump2.png">
-                        <image-point name="Tiro" x="1" y="0.511628" />
-                        <image-point name="Vida" x="0.46875" y="-0.255814" />
-                    </frame>
-                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\Jump\jump3.png">
-                        <image-point name="Tiro" x="1" y="0.488372" />
-                        <image-point name="Vida" x="0.46875" y="-0.255814" />
-                    </frame>
-                    <frame duration="1" hotspotX="0.5" hotspotY="1" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\Jump\jump4.png">
-                        <image-point name="Tiro" x="1" y="0.52381" />
-                        <image-point name="Vida" x="0.46875" y="-0.261905" />
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="Function" sid="335596997427481">
-            <plugin id="Function" />
-        </object-type>
-        <object-type global="1" name="bbase" sid="333593365786272">
-            <plugin id="Tilemap" />
-            <behaviors>
-                <behavior-type name="Solid" sid="247881489145509">
-                    <behavior id="solid" />
-                </behavior-type>
-            </behaviors>
-            <texture original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\GandalfHardcore FREE Platformer Assets\Other Tiles2.png" />
-            <tiles>
-                <tile id="4">
-                    <collision-poly>
-                        <point x="0" y="0.398438" />
-                        <point x="0.164063" y="0.59375" />
-                        <point x="0.523438" y="1" />
-                        <point x="0" y="1" />
-                    </collision-poly>
-                </tile>
-                <tile id="13">
-                    <collision-poly>
-                        <point x="0" y="0" />
-                        <point x="0.457031" y="0" />
-                        <point x="1" y="0.566406" />
-                        <point x="0.015625" y="1" />
-                    </collision-poly>
-                </tile>
-                <tile id="14">
-                    <collision-poly>
-                        <point x="0" y="0.421875" />
-                        <point x="0.296875" y="0.710938" />
-                        <point x="0.707031" y="0.984375" />
-                        <point x="0" y="1" />
-                    </collision-poly>
-                </tile>
-                <tile id="20">
-                    <collision-poly>
-                        <point x="0.21875" y="0" />
-                        <point x="0.640625" y="0.5625" />
-                        <point x="1" y="1" />
-                        <point x="0" y="1" />
-                    </collision-poly>
-                </tile>
-                <tile id="39">
-                    <collision-poly>
-                        <point x="0" y="0" />
-                        <point x="0.5" y="0.515625" />
-                        <point x="1" y="1" />
-                        <point x="0" y="1" />
-                    </collision-poly>
-                </tile>
-                <tile id="58">
-                    <collision-poly>
-                        <point x="0" y="0" />
-                        <point x="0.515625" y="0.53125" />
-                        <point x="1" y="1" />
-                        <point x="0" y="1" />
-                    </collision-poly>
-                </tile>
-            </tiles>
-        </object-type>
-        <object-type name="p_tiro" sid="136104744250680">
-            <plugin id="Sprite" />
-            <instance-variables>
-                <instance-variable name="dano" sid="462023189811268" type="number" />
-            </instance-variables>
-            <behaviors>
-                <behavior-type name="Bullet" sid="139636296635464">
-                    <behavior id="Bullet" />
-                </behavior-type>
-                <behavior-type name="DestroyOutsideLayout" sid="756056883575924">
-                    <behavior id="destroy" />
-                </behavior-type>
-            </behaviors>
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="148310654129273" speed="5">
-                    <frame duration="1" hotspotX="0" hotspotY="0.6" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\The Evolution\Sprites\Personagem\Animations\arrow.png">
-                        <collision-poly>
-                            <point x="0" y="0" />
-                            <point x="0.5" y="0.2" />
-                            <point x="0.966667" y="0.2" />
-                            <point x="1" y="0.4" />
-                            <point x="0.966667" y="0.8" />
-                            <point x="0.5" y="0.8" />
-                            <point x="0" y="1" />
-                        </collision-poly>
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="hud_tanqueVida" sid="356245251624060">
-            <plugin id="TiledBg" />
-            <texture original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Personagem\Animations\HUD\MF3.png" />
-        </object-type>
-        <object-type name="hud_vida" sid="208721857697198">
-            <plugin id="TiledBg" />
-            <texture original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Personagem\Animations\HUD\VFull.png" />
-        </object-type>
-        <object-type name="p_inimigo" sid="418861518462718">
-            <plugin id="Sprite" />
-            <instance-variables>
-                <instance-variable name="dano" sid="856035089314583" type="number" />
-                <instance-variable name="vida" sid="719867748436028" type="number" />
-            </instance-variables>
-            <effects>
-                <effect-type name="Brightness">
-                    <effect id="brightness" />
-                </effect-type>
-            </effects>
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="216137782833542" speed="5">
-                    <frame duration="1" hotspotX="0.512195" hotspotY="0.505376" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="p_advida" sid="641062154022744">
-            <plugin id="Sprite" />
-            <instance-variables>
-                <instance-variable name="vida" sid="812863374287968" type="number" />
-            </instance-variables>
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="436244160632295" speed="5">
-                    <frame duration="1" hotspotX="0.52381" hotspotY="0.52381" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="hud_stamina" sid="603982913050322">
-            <plugin id="TiledBg" />
-            <texture original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Personagem\Animations\HUD\SFull.png" />
-        </object-type>
-        <object-type name="hud_tanqueStamina" sid="171336200904360">
-            <plugin id="TiledBg" />
-            <texture original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Personagem\Animations\HUD\MF3.png" />
-        </object-type>
-        <object-type global="1" name="b_fundo1" sid="388109808227231">
-            <plugin id="TiledBg" />
-            <texture original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Personagem\Animations\BackGround\GandalfHardcore Background layers_layer 1.png" />
-        </object-type>
-        <object-type name="b_fundo2" sid="272907315095279">
-            <plugin id="TiledBg" />
-            <texture original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Personagem\Animations\BackGround\GandalfHardcore Background layers_layer 2.png" />
-        </object-type>
-        <object-type name="b_fundo3" sid="539631358868438">
-            <plugin id="TiledBg" />
-            <texture original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Personagem\Animations\BackGround\GandalfHardcore Background layers_layer 3.png" />
-        </object-type>
-        <object-type name="b_fundo4" sid="161251589347707">
-            <plugin id="TiledBg" />
-            <texture original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Personagem\Animations\BackGround\GandalfHardcore Background layers_layer 4.png" />
-        </object-type>
-        <object-type name="b_fundo5" sid="964615703226440">
-            <plugin id="TiledBg" />
-            <texture original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Personagem\Animations\BackGround\GandalfHardcore Background layers_layer 5.png" />
-        </object-type>
-        <object-type name="menu_fundo" sid="811534453488081">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="403182285326871" speed="5">
-                    <frame duration="1" hotspotX="0" hotspotY="0" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\GameBase(Animation)\Animations\m_pausefundo\fundo_menu_pausa.png" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="menu_cursor" sid="471704573845331">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="cursor" pingpong="0" repeatcount="1" repeatto="0" sid="171083517779357" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\rodri\OneDrive\Documentos\Faculdade\Solução em Jogos\Projeto\O Legado\Sprites\Personagem\Animations\HUD\MenuCursor.png">
-                        <collision-poly>
-                            <point x="0" y="0" />
-                            <point x="0.203125" y="0.00390625" />
-                            <point x="0.34375" y="0.0820313" />
-                            <point x="0.445313" y="0.1875" />
-                            <point x="0.195313" y="0.34375" />
-                            <point x="0.03125" y="0.335937" />
-                            <point x="0.0117188" y="0.195313" />
-                        </collision-poly>
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type global="1" name="menu_action" sid="267882907005481">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="m_iniciar" pingpong="0" repeatcount="1" repeatto="0" sid="915889602064113" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-                <animation framecount="1" loop="0" name="m_sair" pingpong="0" repeatcount="1" repeatto="0" sid="197379703137012" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="p_aenergia" sid="454861081519367">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="122970064406217" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
     </object-folder>
-    <families />
+    <families>
+        <family name="DanoJogador" plugin-id="Sprite" sid="767174317842924">
+            <members>
+                <member>p_tiro</member>
+            </members>
+        </family>
+        <family name="CausadorDano" plugin-id="Sprite" sid="249378234867484">
+            <members>
+                <member>p_inimigo</member>
+            </members>
+        </family>
+    </families>
     <layout-folder>
         <layout>Sala de Teste.xml</layout>
         <layout>MenuPause.xml</layout>

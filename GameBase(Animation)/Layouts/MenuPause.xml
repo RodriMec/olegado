@@ -8,8 +8,8 @@
         <height>980</height>
     </size>
     <margins>
-        <horizontal>500</horizontal>
-        <vertical>500</vertical>
+        <horizontal>320</horizontal>
+        <vertical>180</vertical>
     </margins>
     <unbounded-scrolling>0</unbounded-scrolling>
     <layers>
@@ -42,33 +42,11 @@
                         <x>0</x>
                         <y>0</y>
                         <z>0</z>
-                        <width>1280</width>
-                        <height>720</height>
+                        <width>320</width>
+                        <height>180</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="menu_cursor" uid="22">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-animation>Default</initial-animation>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>620</x>
-                        <y>350</y>
-                        <z>0</z>
-                        <width>32</width>
-                        <height>32</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -78,16 +56,16 @@
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>m_inicar</initial-animation>
                         <initial-frame>0</initial-frame>
-                        <collisions>Disabled</collisions>
+                        <collisions>Enabled</collisions>
                     </properties>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>621</x>
-                        <y>293</y>
+                        <x>154.058059692</x>
+                        <y>73.779701233</y>
                         <z>0</z>
-                        <width>428</width>
-                        <height>71</height>
+                        <width>81.305473328</width>
+                        <height>16.07579422</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
@@ -100,16 +78,54 @@
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>m_sair</initial-animation>
                         <initial-frame>0</initial-frame>
-                        <collisions>Disabled</collisions>
+                        <collisions>Enabled</collisions>
                     </properties>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>617</x>
-                        <y>406</y>
+                        <x>153.982192993</x>
+                        <y>101.755508423</y>
                         <z>0</z>
-                        <width>428</width>
-                        <height>71</height>
+                        <width>46.641822815</width>
+                        <height>16.07579422</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="menu_cursor" uid="22">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Platform">
+                            <properties>
+                                <max-speed>330</max-speed>
+                                <acceleration>1500</acceleration>
+                                <deceleration>1500</deceleration>
+                                <jump-strength>650</jump-strength>
+                                <gravity>1500</gravity>
+                                <max-fall-speed>1000</max-fall-speed>
+                                <double-jump>Disabled</double-jump>
+                                <jump-sustain>0</jump-sustain>
+                                <default-controls>Yes</default-controls>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>154.181503296</x>
+                        <y>88.267738342</y>
+                        <z>0</z>
+                        <width>5.364929199</width>
+                        <height>6.165748596</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>

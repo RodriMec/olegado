@@ -434,7 +434,7 @@
                     <actions>
                         <action id="-10" name="Add to" sid="865973511309318" type="System">
                             <param id="0" name="Variable">energia_ajuste</param>
-                            <param id="1" name="Value">50.671</param>
+                            <param id="1" name="Value">25</param>
                         </action>
                         <action id="-9" name="Destroy" sid="531452544104787" type="p_aenergia" />
                     </actions>
@@ -448,7 +448,7 @@
                     <actions>
                         <action id="-10" name="Add to" sid="819666443342756" type="System">
                             <param id="0" name="Variable">vida_ajuste</param>
-                            <param id="1" name="Value">13</param>
+                            <param id="1" name="Value">5</param>
                         </action>
                         <action id="-9" name="Destroy" sid="265673524006565" type="p_advida" />
                     </actions>
@@ -494,7 +494,7 @@
                                 </action>
                                 <action id="-11" name="Subtract from" sid="576169943919164" type="System">
                                     <param id="0" name="Variable">energia_ajuste</param>
-                                    <param id="1" name="Value">5.06</param>
+                                    <param id="1" name="Value">2</param>
                                 </action>
                             </actions>
                         </event-block>
