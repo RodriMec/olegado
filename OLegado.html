@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>O Legado — Jogo</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-dark: #8a6a1f;
+    --ink: #0c0b09;
+    --parchment: #f5f0e8;
+    --parchment-dark: #e8dfc8;
+    --brown: #2a1f0e;
+    --brown-mid: #4a3520;
+    --text: #1a1209;
+    --text-muted: #6b5535;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--parchment);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 3rem 2rem;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, #2a1f0e 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 50% 100%, #1a0f00 0%, transparent 60%),
+      linear-gradient(180deg, #0c0b09 0%, #1a1209 40%, #0c0b09 100%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(201,168,76,0.03) 60px, rgba(201,168,76,0.03) 61px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(201,168,76,0.03) 60px, rgba(201,168,76,0.03) 61px);
+    pointer-events: none;
+  }
+
+  .hero-ornament {
+    font-size: 1.2rem;
+    color: var(--gold);
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 1.5rem;
+    animation: fadeDown 1s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    letter-spacing: 0.05em;
+    text-shadow:
+      0 0 60px rgba(201,168,76,0.4),
+      0 2px 4px rgba(0,0,0,0.8);
+    animation: fadeDown 1s 0.15s ease both;
+  }
+
+  .hero-subtitle {
+    font-family: 'Crimson Pro', serif;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-style: italic;
+    color: var(--parchment-dark);
+    letter-spacing: 0.15em;
+    margin-top: 1rem;
+    opacity: 0.8;
+    animation: fadeDown 1s 0.3s ease both;
+  }
+
+  .hero-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.5rem 0;
+    animation: fadeDown 1s 0.45s ease both;
+  }
+
+  .hero-divider::before,
+  .hero-divider::after {
+    content: '';
+    flex: 1;
+    max-width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold));
+  }
+  .hero-divider::after { background: linear-gradient(90deg, var(--gold), transparent); }
+
+  .hero-divider span {
+    color: var(--gold);
+    font-size: 1.2rem;
+  }
+
+  .hero-quote {
+    font-style: italic;
+    color: var(--parchment-dark);
+    font-size: 1.1rem;
+    opacity: 0.7;
+    max-width: 500px;
+    animation: fadeDown 1s 0.55s ease both;
+  }
+
+  /* ─── GDD BUTTON ─── */
+  .gdd-cta {
+    margin-top: 3rem;
+    animation: fadeDown 1s 0.7s ease both;
+  }
+
+  .gdd-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--gold);
+    color: var(--ink);
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 1.1rem 2.8rem;
+    letter-spacing: 0.1em;
+    border: 2px solid var(--gold-light);
+    position: relative;
+    transition: all 0.3s ease;
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+  }
+
+  .gdd-btn::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    background: var(--gold-light);
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .gdd-btn:hover {
+    background: var(--gold-light);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(201,168,76,0.4);
+  }
+
+  .gdd-btn:hover::before { opacity: 0.3; }
+
+  .gdd-btn svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+
+  .gdd-hint {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--gold);
+    opacity: 0.6;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── BADGES ─── */
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-top: 2.5rem;
+    animation: fadeDown 1s 0.85s ease both;
+  }
+
+  .badge {
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    padding: 0.3rem 0.9rem;
+    border: 1px solid;
+    text-transform: uppercase;
+  }
+
+  .badge-gold { border-color: var(--gold); color: var(--gold); }
+  .badge-green { border-color: #4caf7d; color: #4caf7d; }
+  .badge-blue { border-color: #6ab0e8; color: #6ab0e8; }
+
+  /* ─── SCROLL INDICATOR ─── */
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--gold);
+    opacity: 0.4;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    animation: fadeDown 1s 1.2s ease both;
+  }
+
+  .scroll-arrow {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(180deg, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* ─── SECTIONS ─── */
+  section {
+    padding: 5rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-rule {
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin-bottom: 2rem;
+    max-width: 300px;
+  }
+
+  p { margin-bottom: 1.2rem; color: var(--parchment-dark); }
+
+  /* ─── ERAS ─── */
+  .eras {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .era-card {
+    background: linear-gradient(145deg, #1a1209, #251c10);
+    border: 1px solid rgba(201,168,76,0.25);
+    padding: 1.8rem 1.5rem;
+    position: relative;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .era-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--gold);
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+  }
+
+  .era-card:hover {
+    border-color: rgba(201,168,76,0.6);
+    transform: translateY(-4px);
+  }
+
+  .era-card:hover::before { opacity: 1; }
+
+  .era-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+
+  .era-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.95rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .era-desc { font-size: 0.95rem; color: var(--parchment-dark); opacity: 0.8; margin: 0; }
+
+  /* ─── DOWNLOAD ─── */
+  .download-box {
+    background: linear-gradient(145deg, #1a1209, #251c10);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 2.5rem;
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .download-note {
+    font-size: 0.9rem;
+    color: var(--gold);
+    opacity: 0.7;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .download-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+
+  .download-table th {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    text-align: left;
+  }
+
+  .download-table td {
+    padding: 0.8rem 1rem;
+    color: var(--parchment-dark);
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+  }
+
+  .download-table a {
+    color: var(--gold-light);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: color 0.2s;
+  }
+
+  .download-table a:hover { color: #fff; }
+
+  .tag-beta {
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    padding: 0.1rem 0.5rem;
+    text-transform: uppercase;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+  }
+
+  /* ─── STEPS ─── */
+  .steps { margin-top: 2rem; }
+
+  .step {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    margin-bottom: 1.8rem;
+  }
+
+  .step-num {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    opacity: 0.4;
+    line-height: 1;
+    min-width: 2rem;
+    text-align: right;
+  }
+
+  .step-content { flex: 1; }
+  .step-title { font-weight: 600; color: var(--parchment); margin-bottom: 0.2rem; }
+  .step-desc { font-size: 0.95rem; color: var(--parchment-dark); opacity: 0.75; margin: 0; }
+
+  code {
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 0.1rem 0.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--gold-light);
+  }
+
+  /* ─── TEAM ─── */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .team-card {
+    background: linear-gradient(145deg, #1a1209, #251c10);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    transition: border-color 0.3s ease;
+  }
+
+  .team-card:hover { border-color: rgba(201,168,76,0.5); }
+
+  .team-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1rem;
+    color: var(--gold);
+    margin: 0 auto 0.75rem;
+  }
+
+  .team-name { font-size: 0.95rem; color: var(--parchment); font-weight: 600; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid rgba(201,168,76,0.15);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  footer a { color: var(--gold); text-decoration: none; opacity: 0.7; }
+  footer a:hover { opacity: 1; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-ornament">✦ &nbsp; Projeto de Jogo &nbsp; ✦</p>
+
+  <h1 class="hero-title">O Legado</h1>
+  <p class="hero-subtitle">Game Design Document &nbsp;·&nbsp; Beta 1.0</p>
+
+  <div class="hero-divider"><span>⚔</span></div>
+
+  <p class="hero-quote">"Cada era carrega o peso do passado — e o fardo do futuro."</p>
+
+  <div class="gdd-cta">
+    <a href="PreviaGDD.html" class="gdd-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+        <polyline points="10 9 9 9 8 9"/>
+      </svg>
+      Acessar o GDD
+    </a>
+    <p class="gdd-hint">Game Design Document completo</p>
+  </div>
+
+  <div class="badges">
+    <span class="badge badge-gold">Beta 1.0</span>
+    <span class="badge badge-blue">Construct 2</span>
+    <span class="badge badge-blue">Windows</span>
+    <span class="badge badge-green">Em Desenvolvimento</span>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Saiba mais</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</div>
+
+<!-- SOBRE -->
+<section>
+  <h2 class="section-title">Sobre o Jogo</h2>
+  <div class="section-rule"></div>
+  <p>
+    <strong style="color:var(--parchment)">O Legado</strong> é um jogo desenvolvido na engine
+    <strong style="color:var(--parchment)">Construct 2</strong>, atualmente em fase Beta.
+    A narrativa atravessa três eras históricas distintas, conectadas por uma linha de continuidade
+    — o legado que cada geração deixa para a próxima.
+  </p>
+  <p>
+    Este repositório reúne os arquivos do projeto, documentação e versões de teste disponibilizadas
+    para feedback e colaboração.
+  </p>
+
+  <div class="eras">
+    <div class="era-card">
+      <div class="era-icon">🏰</div>
+      <p class="era-name">Era Medieval</p>
+      <p class="era-desc">Castelos, cavaleiros e batalhas por honra e território.</p>
+    </div>
+    <div class="era-card">
+      <div class="era-icon">💣</div>
+      <p class="era-name">Era da Pólvora</p>
+      <p class="era-desc">Guerras, revoltas e o despertar de novas forças.</p>
+    </div>
+    <div class="era-card">
+      <div class="era-icon">🏙️</div>
+      <p class="era-name">Era Moderna</p>
+      <p class="era-desc">O passado encontra o presente num confronto final.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section>
+  <h2 class="section-title">Baixar e Jogar</h2>
+  <div class="section-rule"></div>
+
+  <div class="download-box">
+    <p class="download-note">⚠ Requer o Construct 2 instalado para abrir os arquivos .capx</p>
+
+    <table class="download-table">
+      <thead>
+        <tr>
+          <th>Versão</th>
+          <th>Arquivo</th>
+          <th>Download</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Alfa 3.0</td>
+          <td><code>Alfa_3.0.capx</code></td>
+          <td>
+            <a href="https://github.com/RodrigoMargotti/O_Legado/raw/refs/heads/GameBase/Alfa_3.0.capx">
+              ↓ Baixar
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>Beta 1.0 <span class="tag-beta">Atual</span></td>
+          <td><code>Beta 1.0.capx</code></td>
+          <td>
+            <a href="https://github.com/RodrigoMargotti/O_Legado/raw/refs/heads/GameBase/Beta%201.0.capx">
+              ↓ Baixar
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:0.85rem; opacity:0.6; font-style:italic; margin:0;">
+      Não tem o Construct 2?
+      <a href="https://downloads.construct.net/construct2/261/construct2-r280-setup.exe" style="color:var(--gold-light);">Baixar aqui</a>
+    </p>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <span class="step-num">1</span>
+      <div class="step-content">
+        <p class="step-title">Instale o Construct 2</p>
+        <p class="step-desc">Necessário para abrir os arquivos do projeto.</p>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-num">2</span>
+      <div class="step-content">
+        <p class="step-title">Faça o download do Beta 1.0</p>
+        <p class="step-desc">Clique no botão acima para baixar o arquivo <code>Beta 1.0.capx</code>.</p>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-num">3</span>
+      <div class="step-content">
+        <p class="step-title">Abra no Construct 2</p>
+        <p class="step-desc">Vá em <code>File → Open</code> e selecione o arquivo baixado.</p>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-num">4</span>
+      <div class="step-content">
+        <p class="step-title">Pressione F5 para jogar</p>
+        <p class="step-desc">O jogo abrirá direto no seu navegador padrão.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPE -->
+<section>
+  <h2 class="section-title">Equipe</h2>
+  <div class="section-rule"></div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar">RM</div>
+      <p class="team-name">Rodrigo Margotti</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">IF</div>
+      <p class="team-name">Isabelle Feltrin</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">LD</div>
+      <p class="team-name">Lucas Daufenbach</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">GS</div>
+      <p class="team-name">Gustavo L. Silva</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom:0.5rem;">
+    <a href="PreviaGDD.html">📜 Game Design Document</a>
+    &nbsp;·&nbsp;
+    <a href="https://github.com/RodrigoMargotti/O_Legado">GitHub</a>
+  </p>
+  <p>O Legado · Beta 1.0 · Construct 2</p>
+</footer>
+
+</body>
+</html>

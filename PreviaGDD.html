@@ -564,18 +564,6 @@
       height: 10px;
     }
 
-    .hud-hearts {
-      display: flex;
-      gap: 3px;
-    }
-
-    .heart {
-      width: 16px;
-      height: 16px;
-      background: var(--red);
-      clip-path: polygon(50% 0%, 100% 35%, 100% 70%, 50% 100%, 0% 70%, 0% 35%);
-    }
-
     .hud-era-name {
       font-family: 'Cinzel', serif;
       font-size: 10px;
@@ -1101,7 +1089,8 @@
         <span><strong>Plataforma:</strong> PC / Browser</span>
         <span><strong>Gênero:</strong> Action Platformer 2D · Pixel Art</span>
         <span><strong>Engine:</strong> Construct 2</span>
-        <span><strong>Versão GDD:</strong> 1.0 · Abril 2026</span>
+        <span><strong>Versão GDD:</strong> 2.0 · Junho 2026</span>
+        <span><strong>Build atual:</strong> Beta 1.0</span>
       </div>
       <div class="capa-divider" style="margin-top:28px;"></div>
       <div class="team-grid">
@@ -1118,7 +1107,7 @@
           <div class="role">Level Designer</div>
         </div>
         <div class="team-card">
-          <div class="name">Gustavo L. Dias</div>
+          <div class="name">Gustavo L. Silva</div>
           <div class="role">Game Designer</div>
         </div>
       </div>
@@ -1137,7 +1126,7 @@
     <details class="sub-section era-medieval" open>
       <summary>1.1 — Sistema de Regras</summary>
       <div class="sub-body">
-        <p>O jogo é <strong>single player</strong>, com progressão linear por 3 fases históricas. O jogador tem <strong>3 vidas (corações)</strong> por fase. Ao morrer, reinicia a fase atual do início. Ao completar a fase, avança para a próxima era via HQ de transição.</p>
+        <p>O jogo é <strong>single player</strong>, com progressão linear por 3 fases históricas. O jogador possui uma <strong>barra de vida gradual</strong> — ao zerar, o jogador morre e reinicia a fase atual do início. Ao completar a fase, avança para a próxima era via HQ de transição.</p>
 
         <div class="flowchart" style="margin-top: 20px;">
           <div class="flow-node">🏹 Início</div>
@@ -1172,9 +1161,11 @@
         </div>
 
         <div style="margin-top:16px; display:grid; grid-template-columns: repeat(3,1fr); gap:12px; text-align:center; font-size:13px;">
-          <div style="background:var(--bg3); border:1px solid rgba(201,168,76,0.2); border-radius:4px; padding:12px;">
-            <div style="font-size:22px;">❤️ ❤️ ❤️</div>
-            <div style="color:var(--gold); font-family:'Cinzel',serif; font-size:11px; margin-top:4px; letter-spacing:1px;">3 Vidas por fase</div>
+          <div style="background:var(--bg3); border:1px solid rgba(201,168,76,0.2); border-radius:4px; padding:12px; display:flex; flex-direction:column; justify-content:flex-end;">
+            <div style="width:100%; height:10px; background:rgba(0,0,0,0.4); border:1px solid rgba(192,57,43,0.6); border-radius:2px; overflow:hidden; margin-bottom:4px; margin-top:8px;">
+              <div style="width:70%; height:100%; background:linear-gradient(to right,#c0392b,#e74c3c);"></div>
+            </div>
+            <div style="color:var(--gold); font-family:'Cinzel',serif; font-size:11px; margin-top:4px; letter-spacing:1px;">Barra de Vida Gradual</div>
           </div>
           <div style="background:var(--bg3); border:1px solid rgba(201,168,76,0.2); border-radius:4px; padding:12px;">
             <div style="font-size:22px;">🔄</div>
@@ -1206,8 +1197,7 @@
             <tr>
               <td><strong>Andar</strong></td>
               <td class="key-cell">
-                <span class="key-badge">A</span> / <span class="key-badge">D</span><br/>
-                <span style="font-size:11px; color:var(--text-dim);">ou ← →</span>
+                <span class="key-badge">←</span> / <span class="key-badge">→</span>
               </td>
               <td>
                 <div class="sprite-row">
@@ -1220,7 +1210,7 @@
             </tr>
             <tr>
               <td><strong>Pular</strong></td>
-              <td class="key-cell"><span class="key-badge">Space</span></td>
+              <td class="key-cell"><span class="key-badge">↑</span></td>
               <td>
                 <div class="sprite-row">
                   <img class="sprite-frame" src="./Sprites/Personagem/Animations/PersonagemPrincipal/Jump/jump1.png" width="40" height="40" alt="jump1" loading="lazy" />
@@ -1232,7 +1222,7 @@
             </tr>
             <tr>
               <td><strong>Atirar</strong></td>
-              <td class="key-cell"><span class="key-badge">J</span> / clique</td>
+              <td class="key-cell"><span class="key-badge">Space</span></td>
               <td>
                 <div class="sprite-row" style="align-items:center;">
                   <img class="sprite-frame" src="./Sprites/Personagem/Animations/PersonagemPrincipal/Idle/idle1.png" width="40" height="40" alt="ataque" loading="lazy"/>
@@ -1243,7 +1233,7 @@
             </tr>
             <tr>
               <td><strong>Pausar</strong></td>
-              <td class="key-cell"><span class="key-badge">ESC</span></td>
+              <td class="key-cell"><span class="key-badge">Shift</span></td>
               <td>—</td>
               <td>Pausa o jogo e exibe menu de pausa.</td>
             </tr>
@@ -1254,9 +1244,27 @@
                 <div class="sprite-row">
                   <img class="sprite-frame" src="./Sprites/Personagem/Animations/PersonagemPrincipal/Idle/idle1.png" width="40" height="40" alt="idle1" loading="lazy"/>
                   <img class="sprite-frame" src="./Sprites/Personagem/Animations/PersonagemPrincipal/Idle/Idle2.png" width="40" height="40" alt="idle2" loading="lazy"/>
+                  <img class="sprite-frame" src="./Sprites/Personagem/Animations/PersonagemPrincipal/Idle/idle3.png" width="40" height="40" alt="idle3" loading="lazy"/>
+                  <img class="sprite-frame" src="./Sprites/Personagem/Animations/PersonagemPrincipal/Idle/idle4.png" width="40" height="40" alt="idle4" loading="lazy"/>
+                  <img class="sprite-frame" src="./Sprites/Personagem/Animations/PersonagemPrincipal/Idle/idle5.png" width="40" height="40" alt="idle5" loading="lazy"/>
                 </div>
               </td>
-              <td>Animação de espera quando não há input do jogador.</td>
+              <td>Animação de espera quando não há input do jogador. 5 frames.</td>
+            </tr>
+            <tr>
+              <td><strong>Morte</strong></td>
+              <td class="key-cell"><em>Automático</em></td>
+              <td>
+                <div class="sprite-row">
+                  <img class="sprite-frame" src="./Sprites/Personagem/Animations/PersonagemPrincipal/Death/d0.png" width="40" height="40" alt="death0" loading="lazy"/>
+                  <img class="sprite-frame" src="./Sprites/Personagem/Animations/PersonagemPrincipal/Death/d1.png" width="40" height="40" alt="death1" loading="lazy"/>
+                  <img class="sprite-frame" src="./Sprites/Personagem/Animations/PersonagemPrincipal/Death/d2.png" width="40" height="40" alt="death2" loading="lazy"/>
+                  <img class="sprite-frame" src="./Sprites/Personagem/Animations/PersonagemPrincipal/Death/d3.png" width="40" height="40" alt="death3" loading="lazy"/>
+                  <img class="sprite-frame" src="./Sprites/Personagem/Animations/PersonagemPrincipal/Death/d4.png" width="40" height="40" alt="death4" loading="lazy"/>
+                  <img class="sprite-frame" src="./Sprites/Personagem/Animations/PersonagemPrincipal/Death/d5.png" width="40" height="40" alt="death5" loading="lazy"/>
+                </div>
+              </td>
+              <td>Ativada ao zerar a vida. 6 frames · one-shot. Exibe tela de morte após conclusão.</td>
             </tr>
           </tbody>
         </table>
@@ -1274,18 +1282,8 @@
           <!-- Background forest layer -->
           <img class="hud-layer" src="./GameBase%28Animation%29/Textures/b_fundo2.png" alt="" loading="lazy" />
 
-          <!-- Top-left: vidas -->
-          <div class="hud-element" style="top:10px; left:12px; flex-direction:row; gap:6px; align-items:center;">
-            <label>VIDAS</label>
-            <div class="hud-hearts">
-              <div class="heart"></div>
-              <div class="heart"></div>
-              <div class="heart"></div>
-            </div>
-          </div>
-
-          <!-- Vida bar (under hearts) -->
-          <div class="hud-element" style="top:32px; left:12px;">
+          <!-- Top-left: barra de vida -->
+          <div class="hud-element" style="top:10px; left:12px;">
             <label>HP</label>
             <img class="hud-bar" src="./GameBase%28Animation%29/Textures/hud_vida.png" width="80" alt="hud vida" loading="lazy" style="image-rendering:pixelated;" />
           </div>
@@ -1309,13 +1307,7 @@
             </div>
           </div>
 
-          <!-- Bottom-center: progress -->
-          <div class="hud-progress">
-            <label>PROGRESSO DA FASE</label>
-            <div class="hud-progress-bar">
-              <div class="hud-progress-fill"></div>
-            </div>
-          </div>
+
         </div>
 
         <p class="img-caption" style="margin-top:12px;">Mockup visual do HUD — posições dos elementos na tela (16:9)</p>
@@ -1324,17 +1316,46 @@
           <div class="tech-card">
             <h4>Barra de Vida</h4>
             <img src="./GameBase%28Animation%29/Textures/hud_tanqueVida.png" style="image-rendering:pixelated; width:100%; margin-bottom:8px;" loading="lazy" alt="hud tanque vida"/>
-            <p style="font-size:13px; color:var(--text-dim);">Canto sup. esquerdo. Diminui ao receber dano.</p>
+            <p style="font-size:13px; color:var(--text-dim);">Canto sup. esquerdo. Diminui ao receber dano. 7 estados visuais (v0–v7).</p>
           </div>
           <div class="tech-card">
-            <h4>Barra de Stamina</h4>
+            <h4>Barra de Energia (Stamina)</h4>
             <img src="./GameBase%28Animation%29/Textures/hud_tanqueStamina.png" style="image-rendering:pixelated; width:100%; margin-bottom:8px;" loading="lazy" alt="hud tanque stamina"/>
-            <p style="font-size:13px; color:var(--text-dim);">Abaixo da vida. Controla cooldown de disparo.</p>
+            <p style="font-size:13px; color:var(--text-dim);">Abaixo da vida. Controla cooldown de disparo. 8 estados visuais (e1–e8). Consome 2 unidades por tiro.</p>
           </div>
           <div class="tech-card">
-            <h4>Barras de UI</h4>
-            <img src="./Sprites/Personagem/Animations/HUD/04.png" style="image-rendering:pixelated; width:100%; margin-bottom:8px;" loading="lazy" alt="HUD spritesheet"/>
-            <p style="font-size:13px; color:var(--text-dim);">Spritesheet completo dos estados das barras (cheias/vazias/danificadas).</p>
+            <h4>Itens de Vida (p_advida)</h4>
+            <div style="display:flex; gap:4px; flex-wrap:wrap; margin-bottom:8px;">
+              <img src="./GameBase%28Animation%29/HudItens/Vida/v2.png" style="image-rendering:pixelated; width:28px;" loading="lazy" alt="v2"/>
+              <img src="./GameBase%28Animation%29/HudItens/Vida/v3.png" style="image-rendering:pixelated; width:28px;" loading="lazy" alt="v3"/>
+              <img src="./GameBase%28Animation%29/HudItens/Vida/v4.png" style="image-rendering:pixelated; width:28px;" loading="lazy" alt="v4"/>
+              <img src="./GameBase%28Animation%29/HudItens/Vida/v5.png" style="image-rendering:pixelated; width:28px;" loading="lazy" alt="v5"/>
+              <img src="./GameBase%28Animation%29/HudItens/Vida/v6.png" style="image-rendering:pixelated; width:28px;" loading="lazy" alt="v6"/>
+              <img src="./GameBase%28Animation%29/HudItens/Vida/v7.png" style="image-rendering:pixelated; width:28px;" loading="lazy" alt="v7"/>
+            </div>
+            <p style="font-size:13px; color:var(--text-dim);">Coletável de vida implementado (p_advida). Ao coletar: +5 de vida. Destrói o objeto ao toque.</p>
+          </div>
+          <div class="tech-card">
+            <h4>Itens de Energia (p_aenergia)</h4>
+            <div style="display:flex; gap:4px; flex-wrap:wrap; margin-bottom:8px;">
+              <img src="./GameBase%28Animation%29/HudItens/Energia/e1.png" style="image-rendering:pixelated; width:28px;" loading="lazy" alt="e1"/>
+              <img src="./GameBase%28Animation%29/HudItens/Energia/e2.png" style="image-rendering:pixelated; width:28px;" loading="lazy" alt="e2"/>
+              <img src="./GameBase%28Animation%29/HudItens/Energia/e3.png" style="image-rendering:pixelated; width:28px;" loading="lazy" alt="e3"/>
+              <img src="./GameBase%28Animation%29/HudItens/Energia/e4.png" style="image-rendering:pixelated; width:28px;" loading="lazy" alt="e4"/>
+              <img src="./GameBase%28Animation%29/HudItens/Energia/e5.png" style="image-rendering:pixelated; width:28px;" loading="lazy" alt="e5"/>
+              <img src="./GameBase%28Animation%29/HudItens/Energia/e6.png" style="image-rendering:pixelated; width:28px;" loading="lazy" alt="e6"/>
+            </div>
+            <p style="font-size:13px; color:var(--text-dim);">Coletável de energia implementado (p_aenergia). Ao coletar: +25 de energia. Destrói o objeto ao toque.</p>
+          </div>
+          <div class="tech-card">
+            <h4>Menu de Pausa</h4>
+            <img src="./Sprites/Fundo/menu_pausa.png" style="image-rendering:pixelated; width:100%; margin-bottom:8px;" loading="lazy" alt="menu pausa"/>
+            <p style="font-size:13px; color:var(--text-dim);">Totalmente implementado. Shift pausa o jogo (timescale=0). Cursor navega com ↑↓. Enter confirma ação (Iniciar / Sair).</p>
+          </div>
+          <div class="tech-card">
+            <h4>Tela de Morte</h4>
+            <img src="./Sprites/Fundo/menu_morte.jpeg" style="image-rendering:pixelated; width:100%; margin-bottom:8px;" loading="lazy" alt="menu morte"/>
+            <p style="font-size:13px; color:var(--text-dim);">Exibida após animação de morte do personagem. Permite reiniciar a fase.</p>
           </div>
         </div>
       </div>
@@ -1371,11 +1392,18 @@
               <td><span class="tag tag-planned">Previsto</span></td>
             </tr>
             <tr>
-              <td><strong>Cura (Ervas/Kit)</strong></td>
+              <td><strong>Cura (p_advida)</strong></td>
               <td>Todas</td>
-              <td>—</td>
-              <td>Restaura 1 coração ao coletar. Aparece em posições fixas do nível.</td>
-              <td><span class="tag tag-planned">Previsto para v. futura</span></td>
+              <td><img src="./GameBase%28Animation%29/HudItens/Vida/v4.png" style="image-rendering:pixelated; height:28px;" loading="lazy" alt="coletável vida"/></td>
+              <td>Restaura +5 de vida ao coletar. Destrói o objeto ao toque.</td>
+              <td><span class="tag tag-impl">Implementado</span></td>
+            </tr>
+            <tr>
+              <td><strong>Energia (p_aenergia)</strong></td>
+              <td>Todas</td>
+              <td><img src="./GameBase%28Animation%29/HudItens/Energia/e3.png" style="image-rendering:pixelated; height:28px;" loading="lazy" alt="coletável energia"/></td>
+              <td>Restaura +25 de energia ao coletar. Necessário para continuar atirando.</td>
+              <td><span class="tag tag-impl">Implementado</span></td>
             </tr>
             <tr>
               <td><strong>Escudo Temporário</strong></td>
@@ -1402,52 +1430,56 @@
             <tr>
               <td>
                 <div class="sprite-thumb">
-                  <img src="./GameBase%28Animation%29/Animations/p_inimigo/Default/000.png" loading="lazy" alt="inimigo"/>
+                  <img src="./GameBase%28Animation%29/Animations/p_inimigo/idle/000.png" loading="lazy" alt="inimigo"/>
                 </div>
               </td>
               <td><strong>Guerreiro Medieval</strong></td>
               <td><span class="era-1">Fase 1</span></td>
               <td>Patrulha horizontal. Ao detectar jogador (raio curto), avança e ataca corpo-a-corpo.</td>
-              <td>1 coração</td>
+              <td>1 ponto de dano</td>
             </tr>
             <tr>
               <td>
                 <div class="sprite-thumb">
-                  <img src="./Sprites/Personagem/Animations/GandalfHardcore%20Archer%20brown%20sheet.png" loading="lazy" alt="arqueiro inimigo"/>
+                  <img src="./Sprites/Inimigo%20Guerreiro%202/Idle/Idle1.png" loading="lazy" alt="inimigo 2"/>
                 </div>
               </td>
-              <td><strong>Arqueiro Medieval</strong></td>
+              <td><strong>Guerreiro Medieval 2</strong></td>
+              <td><span class="era-1">Fase 1</span></td>
+              <td>Variante do guerreiro medieval. Mesmo comportamento de patrulha e ataque corpo-a-corpo, visual diferenciado para variedade.</td>
+              <td>1 ponto de dano</td>
+            </tr>
               <td><span class="era-1">Fase 1</span></td>
               <td>Posição fixa ou patrulha lenta. Atira flechas a distância quando o jogador está no alcance de visão.</td>
-              <td>1 coração</td>
+              <td>1 ponto de dano</td>
             </tr>
             <tr>
               <td>—</td>
               <td><strong>Soldado Colonial</strong></td>
               <td><span class="era-2">Fase 2</span></td>
               <td>Patrulha e avança com mosquete. Tiro único em cooldown (recarga lenta).</td>
-              <td>1 coração</td>
+              <td>1 ponto de dano</td>
             </tr>
             <tr>
               <td>—</td>
               <td><strong>Arqueiro Colonial</strong></td>
               <td><span class="era-2">Fase 2</span></td>
               <td>Atirador de elite posicionado em elevações. Tiro com pausa de mira.</td>
-              <td>2 corações</td>
+              <td>2 pontos de dano</td>
             </tr>
             <tr>
               <td>—</td>
               <td><strong>Soldado Moderno</strong></td>
               <td><span class="era-3">Fase 3</span></td>
               <td>Patrulha veloz. Usa cobertura. Tira múltiplos tiros rápidos.</td>
-              <td>1 coração</td>
+              <td>1 ponto de dano</td>
             </tr>
             <tr>
               <td>—</td>
               <td><strong>Drone</strong></td>
               <td><span class="era-3">Fase 3</span></td>
               <td>Voa livremente em eixo Y. Persegue jogador a distância. Dispara projéteis energéticos.</td>
-              <td>2 corações</td>
+              <td>2 pontos de dano</td>
             </tr>
           </tbody>
         </table>
@@ -1483,7 +1515,7 @@
             <tr>
               <td><strong>Buracos / Abismos</strong></td>
               <td>Todas</td>
-              <td>Cair causa morte instantânea (perde 1 vida, reinicia posição).</td>
+              <td>Cair causa morte instantânea (barra de vida zerada, reinicia posição).</td>
             </tr>
             <tr>
               <td><strong>Barris de Pólvora</strong></td>
@@ -1534,7 +1566,7 @@
             <tr>
               <td><strong>Continue</strong></td>
               <td>Menu principal</td>
-              <td>Inicia na fase salva mais recente, com 3 vidas cheias</td>
+              <td>Inicia na fase salva mais recente, com barra de vida cheia</td>
             </tr>
           </tbody>
         </table>
@@ -2007,22 +2039,118 @@
             <img class="full-sheet" src="./Sprites/Personagem/Animations/GandalfHardcore%20Archer%20brown%20sheet.png" alt="archer full sheet" loading="lazy"/>
             <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">Todas as animações do arqueiro: idle · andar · atacar · morte</p>
           </div>
-          <!-- Walk do Sprites folder -->
+
+          <!-- Guerreiro Medieval — Idle -->
           <div class="anim-card">
-            <h4>Walk (Sprites/)</h4>
+            <h4>Inimigo — Idle</h4>
+            <div class="frames">
+              <img src="./GameBase%28Animation%29/Animations/p_inimigo/idle/000.png" alt="inimigo idle 0" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_inimigo/idle/001.png" alt="inimigo idle 1" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_inimigo/idle/002.png" alt="inimigo idle 2" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_inimigo/idle/003.png" alt="inimigo idle 3" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_inimigo/idle/004.png" alt="inimigo idle 4" loading="lazy"/>
+            </div>
+            <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">5 frames · loop</p>
+          </div>
+
+          <!-- Guerreiro Medieval — Walk -->
+          <div class="anim-card">
+            <h4>Inimigo — Walk</h4>
+            <div class="frames">
+              <img src="./GameBase%28Animation%29/Animations/p_inimigo/walk/000.png" alt="inimigo walk 0" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_inimigo/walk/001.png" alt="inimigo walk 1" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_inimigo/walk/002.png" alt="inimigo walk 2" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_inimigo/walk/003.png" alt="inimigo walk 3" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_inimigo/walk/004.png" alt="inimigo walk 4" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_inimigo/walk/005.png" alt="inimigo walk 5" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_inimigo/walk/006.png" alt="inimigo walk 6" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_inimigo/walk/007.png" alt="inimigo walk 7" loading="lazy"/>
+            </div>
+            <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">8 frames · loop · patrulha</p>
+          </div>
+
+          <!-- Guerreiro Medieval — Attack -->
+          <div class="anim-card">
+            <h4>Inimigo — Attack</h4>
+            <div class="frames">
+              <img src="./GameBase%28Animation%29/Animations/p_inimigo/att/000.png" alt="inimigo att 0" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_inimigo/att/001.png" alt="inimigo att 1" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_inimigo/att/002.png" alt="inimigo att 2" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_inimigo/att/003.png" alt="inimigo att 3" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_inimigo/att/004.png" alt="inimigo att 4" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Animations/p_inimigo/att/005.png" alt="inimigo att 5" loading="lazy"/>
+            </div>
+            <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">6 frames · one-shot · ataque corpo-a-corpo</p>
+          </div>
+
+          <!-- Guerreiro Medieval — Spritesheet completo -->
+          <div class="anim-card" style="grid-column: span 2;">
+            <h4>Spritesheet completo — Guerreiro Medieval</h4>
+            <img class="full-sheet" src="./Sprites/Inimigo%20Guerreiro%201/GandalfHardcore%20Warrior.png" alt="warrior full sheet" loading="lazy"/>
+            <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">Todas as animações do guerreiro: idle · andar · atacar</p>
+          </div>
+          <!-- Walk 8 frames corrigido -->
+          <div class="anim-card">
+            <h4>Walk (andando) — 8 frames</h4>
             <div class="frames">
               <img src="./Sprites/Personagem/Animations/PersonagemPrincipal/Walk/walk1.png" alt="w1" loading="lazy"/>
               <img src="./Sprites/Personagem/Animations/PersonagemPrincipal/Walk/walk2.png" alt="w2" loading="lazy"/>
               <img src="./Sprites/Personagem/Animations/PersonagemPrincipal/Walk/walk3.png" alt="w3" loading="lazy"/>
               <img src="./Sprites/Personagem/Animations/PersonagemPrincipal/Walk/walk4.png" alt="w4" loading="lazy"/>
+              <img src="./Sprites/Personagem/Animations/PersonagemPrincipal/Walk/walk5.png" alt="w5" loading="lazy"/>
+              <img src="./Sprites/Personagem/Animations/PersonagemPrincipal/Walk/walk6.png" alt="w6" loading="lazy"/>
+              <img src="./Sprites/Personagem/Animations/PersonagemPrincipal/Walk/walk7.png" alt="w7" loading="lazy"/>
+              <img src="./Sprites/Personagem/Animations/PersonagemPrincipal/Walk/walk8.png" alt="w8" loading="lazy"/>
             </div>
-            <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">Asset source — Sprites/Personagem</p>
+            <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">8 frames · loop · ciclo de caminhada completo</p>
           </div>
-          <!-- Portal sheet -->
+
+          <!-- Death player -->
           <div class="anim-card">
-            <h4>Portal — Transição de Era</h4>
-            <img class="full-sheet" src="./Sprites/Personagem/Animations/Portal/GandalfHardcore%20Portal%20sheet.png" alt="portal" loading="lazy" style="max-height:100px;"/>
-            <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">Animação de entrada no portal de fase</p>
+            <h4>Death (morte do player)</h4>
+            <div class="frames">
+              <img src="./Sprites/Personagem/Animations/PersonagemPrincipal/Death/d0.png" alt="d0" loading="lazy"/>
+              <img src="./Sprites/Personagem/Animations/PersonagemPrincipal/Death/d1.png" alt="d1" loading="lazy"/>
+              <img src="./Sprites/Personagem/Animations/PersonagemPrincipal/Death/d2.png" alt="d2" loading="lazy"/>
+              <img src="./Sprites/Personagem/Animations/PersonagemPrincipal/Death/d3.png" alt="d3" loading="lazy"/>
+              <img src="./Sprites/Personagem/Animations/PersonagemPrincipal/Death/d4.png" alt="d4" loading="lazy"/>
+              <img src="./Sprites/Personagem/Animations/PersonagemPrincipal/Death/d5.png" alt="d5" loading="lazy"/>
+            </div>
+            <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">6 frames · one-shot · ativada ao zerar vida</p>
+          </div>
+
+          <!-- Portal 10 frames -->
+          <div class="anim-card">
+            <h4>Portal — 10 frames</h4>
+            <div class="frames">
+              <img src="./GameBase%28Animation%29/Portal/portal0.png" alt="p0" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Portal/portal1.png" alt="p1" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Portal/portal2.png" alt="p2" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Portal/portal3.png" alt="p3" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Portal/portal4.png" alt="p4" loading="lazy"/>
+              <img src="./GameBase%28Animation%29/Portal/portal5.png" alt="p5" loading="lazy"/>
+            </div>
+            <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">10 frames (portal0–portal9) · loop · efeito de brilho</p>
+          </div>
+
+          <!-- Inimigo Guerreiro 2 -->
+          <div class="anim-card">
+            <h4>Inimigo Guerreiro 2 — Idle</h4>
+            <div class="frames">
+              <img src="./Sprites/Inimigo%20Guerreiro%202/Idle/Idle1.png" alt="ig2 idle1" loading="lazy"/>
+              <img src="./Sprites/Inimigo%20Guerreiro%202/Idle/Idle2.png" alt="ig2 idle2" loading="lazy"/>
+              <img src="./Sprites/Inimigo%20Guerreiro%202/Idle/Idle3.png" alt="ig2 idle3" loading="lazy"/>
+              <img src="./Sprites/Inimigo%20Guerreiro%202/Idle/Idle4.png" alt="ig2 idle4" loading="lazy"/>
+              <img src="./Sprites/Inimigo%20Guerreiro%202/Idle/Idle5.png" alt="ig2 idle5" loading="lazy"/>
+            </div>
+            <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">5 frames · loop · segunda variante de guerreiro</p>
+          </div>
+
+          <!-- Inimigo Guerreiro 2 spritesheet -->
+          <div class="anim-card" style="grid-column: span 2;">
+            <h4>Spritesheet completo — Guerreiro Medieval 2</h4>
+            <img class="full-sheet" src="./Sprites/Inimigo%20Guerreiro%202/GandalfHardcore%20Warrior.png" alt="warrior 2 full sheet" loading="lazy"/>
+            <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">Segunda variante visual do guerreiro: idle (5) · andar (8) · atacar (6)</p>
           </div>
         </div>
       </div>
@@ -2058,20 +2186,23 @@
           </tbody>
         </table>
 
-        <h4 style="font-family:'Cinzel',serif; color:var(--gold); margin:20px 0 10px; font-size:13px; letter-spacing:2px;">EFEITOS SONOROS</h4>
         <table>
-          <thead><tr><th>Evento</th><th>Efeito</th></tr></thead>
+          <thead>
+            <tr><th>Evento</th><th>Arquivo</th><th>Status</th></tr>
+          </thead>
           <tbody>
-            <tr><td>Disparo — Arco</td><td>Swoosh de corda + impacto de flecha</td></tr>
-            <tr><td>Disparo — Mosquete</td><td>Estampido seco + eco</td></tr>
-            <tr><td>Disparo — Rifle</td><td>Rajada metálica rápida</td></tr>
-            <tr><td>Dano recebido</td><td>Grunt + flash visual</td></tr>
-            <tr><td>Morte do jogador</td><td>Stab musical + silêncio dramático</td></tr>
-            <tr><td>Coletável / Checkpoint</td><td>Chime medieval suave</td></tr>
-            <tr><td>Inimigo eliminado</td><td>Impacto + grunt + som de queda</td></tr>
+            <tr><td>Disparo — Arco</td><td><code>Arco.ogg</code> / <code>Arco e flecha.wav</code></td><td><span class="tag tag-impl">Implementado</span></td></tr>
+            <tr><td>Flecha no alvo</td><td><code>Flecha_contato.ogg</code></td><td><span class="tag tag-impl">Implementado</span></td></tr>
+            <tr><td>Passo na grama</td><td><code>Passo_grama_1.ogg</code></td><td><span class="tag tag-impl">Implementado</span></td></tr>
+            <tr><td>Pulo na grama</td><td><code>Pulo_grama1.ogg</code></td><td><span class="tag tag-impl">Implementado</span></td></tr>
+            <tr><td>Dano recebido (player)</td><td><code>dano_player.ogg</code></td><td><span class="tag tag-impl">Implementado</span></td></tr>
+            <tr><td>Dano no inimigo</td><td><code>dano_inimigo.ogg</code></td><td><span class="tag tag-impl">Implementado</span></td></tr>
+            <tr><td>Morte do personagem</td><td><code>morte_personagem.ogg</code></td><td><span class="tag tag-impl">Implementado</span></td></tr>
+            <tr><td>Ambiente florestal</td><td><code>ES_Wind, Vegetation, Leaves Rustling... (Epidemic Sound)</code></td><td><span class="tag tag-impl">Implementado</span></td></tr>
+            <tr><td>Disparo — Mosquete</td><td>—</td><td><span class="tag tag-planned">Previsto</span></td></tr>
+            <tr><td>Disparo — Rifle</td><td>—</td><td><span class="tag tag-planned">Previsto</span></td></tr>
           </tbody>
         </table>
-        <p style="margin-top:12px; font-size:13px; color:var(--text-dim);">* Arquivos de áudio não encontrados no repositório — assets de som a serem adicionados em sprint futura.</p>
       </div>
     </details>
   </section>
@@ -2124,32 +2255,13 @@
       <div class="era-head">
         <span class="era-num">II</span>
         <div>
-          <div class="era-title">Fase 2 — Vila e Campo de Batalha Colonial</div>
+          <div class="era-title">Fase 2 — Era da Pólvora</div>
           <div class="era-period">Personagem: Edmond · Arma: Mosquete</div>
         </div>
       </div>
       <div style="padding:0 20px 20px;">
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
-          <div>
-            <img src="./GameBase%28Animation%29/Textures/b_fundo3.png" loading="lazy" alt="fase 2 bg" style="image-rendering:pixelated; width:100%; border-radius:3px;"/>
-            <img src="./GameBase%28Animation%29/Textures/b_fundo4.png" loading="lazy" alt="fase 2 montanhas" style="image-rendering:pixelated; width:100%; border-radius:3px; margin-top:8px;"/>
-          </div>
-          <div>
-            <table style="font-size:13px;">
-              <thead><tr><th>Elemento</th><th>Descrição</th></tr></thead>
-              <tbody>
-                <tr><td>🟢 Spawn</td><td>Entrada da vila destroçada</td></tr>
-                <tr><td>👾 Inimigos</td><td>4 soldados coloniais + 2 arqueiros de elite em posições elevadas</td></tr>
-                <tr><td>💥 Barris</td><td>3 barris de pólvora explosivos — uso estratégico</td></tr>
-                <tr><td>🚪 Checkpoint</td><td>Centro da vila — após os barris</td></tr>
-                <tr><td>🌀 Portal</td><td>Dentro do forte colonial ao final</td></tr>
-                <tr><td>⚠️ Obstáculos</td><td>Fossos, plataformas instáveis, barricadas</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <p style="font-size:13px; color:var(--text-dim);">
-          <strong style="color:var(--text);">Objetivo:</strong> Edmond deve cruzar a vila em chamas, usando o ambiente (barris explosivos) a seu favor. O nível introduz plataformas instáveis e inimigos posicionados verticalmente.
+        <p style="font-size:14px; color:var(--text-dim); font-style:italic; padding:16px 0;">
+          ⚠️ Design desta fase ainda não definido.
         </p>
       </div>
     </div>
@@ -2159,31 +2271,13 @@
       <div class="era-head">
         <span class="era-num">III</span>
         <div>
-          <div class="era-title">Fase 3 — Cidade em Conflito e Laboratório</div>
+          <div class="era-title">Fase 3 — Era Moderna</div>
           <div class="era-period">Personagem: Rei · Arma: Rifle Moderno</div>
         </div>
       </div>
       <div style="padding:0 20px 20px;">
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
-          <div>
-            <img src="./GameBase%28Animation%29/Textures/b_fundo5.png" loading="lazy" alt="fase 3 bg" style="image-rendering:pixelated; width:100%; border-radius:3px;"/>
-          </div>
-          <div>
-            <table style="font-size:13px;">
-              <thead><tr><th>Elemento</th><th>Descrição</th></tr></thead>
-              <tbody>
-                <tr><td>🟢 Spawn</td><td>Rua de cidade destruída — exterior</td></tr>
-                <tr><td>👾 Inimigos</td><td>4 soldados modernos + 2 drones voadores</td></tr>
-                <tr><td>⚡ Arame Farpado</td><td>Obstáculos de terreno — causa dano ao tocar</td></tr>
-                <tr><td>🚪 Checkpoint</td><td>Entrada do laboratório</td></tr>
-                <tr><td>🌀 Portal Final</td><td>Centro do laboratório — câmara do artefato</td></tr>
-                <tr><td>⚠️ Obstáculos</td><td>Escombros, elevações, grade elétrica</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <p style="font-size:13px; color:var(--text-dim);">
-          <strong style="color:var(--text);">Objetivo:</strong> Rei deve atravessar a cidade e entrar no laboratório para encontrar o artefato. O nível é o mais complexo — múltiplos andares, drones aéreos e o confronto final com a manifestação da Entidade.
+        <p style="font-size:14px; color:var(--text-dim); font-style:italic; padding:16px 0;">
+          ⚠️ Design desta fase ainda não definido.
         </p>
       </div>
     </div>
@@ -2204,6 +2298,14 @@
           <li>Construct 2<br/><small style="color:var(--text-dim);">(.capx / .caproj)</small></li>
           <li>Event-based scripting</li>
           <li>Exportação para HTML5/Browser</li>
+        </ul>
+      </div>
+      <div class="tech-card" style="border-left:3px solid var(--orange);">
+        <h4>Builds / Versões</h4>
+        <ul>
+          <li><strong style="color:var(--gold);">Beta 1.0.capx</strong> — versão mais recente</li>
+          <li>Alfa 3.0.capx — versão anterior</li>
+          <li>Alfa 2.0.capx — versão inicial pública</li>
         </ul>
       </div>
       <div class="tech-card" style="border-left:3px solid var(--orange);">
@@ -2240,14 +2342,29 @@
       <summary>Estrutura do Projeto (Construct 2)</summary>
       <div class="sub-body">
         <table style="font-size:13px;">
-          <thead><tr><th>Pasta</th><th>Conteúdo</th></tr></thead>
+          <thead><tr><th>Pasta / Arquivo</th><th>Conteúdo</th></tr></thead>
           <tbody>
-            <tr><td><code>Animations/</code></td><td>Frames de animação por sprite (p_player, p_inimigo, p_tiro, etc.)</td></tr>
-            <tr><td><code>Event sheets/</code></td><td>Lógica do jogo — ePrincipal, eHUD, eInimigos, ePersonagem</td></tr>
-            <tr><td><code>Layouts/</code></td><td>Cenas do jogo — HUD.xml, Sala de Teste.xml</td></tr>
-            <tr><td><code>Textures/</code></td><td>Backgrounds (b_fundo1-5), tileset (bbase), HUD (hud_*)</td></tr>
-            <tr><td><code>Files/</code></td><td>Ícones de plataforma (16, 32, 114, 128, 256px) + loading logo</td></tr>
-            <tr><td><code>Sprites/Personagem/</code></td><td>Assets fonte organizados por animação (Idle/Walk/Jump/etc.)</td></tr>
+            <tr><td><code>Beta 1.0.capx</code></td><td>Build mais recente do jogo — versão beta</td></tr>
+            <tr><td><code>Alfa_3.0.capx</code></td><td>Build anterior — versão alfa 3.0</td></tr>
+            <tr><td><code>Animations/p_player/</code></td><td>Frames do player: idle (5), walk (8), jump (4)</td></tr>
+            <tr><td><code>Animations/p_inimigo/</code></td><td>Frames do inimigo: idle (5), walk (8), att (6)</td></tr>
+            <tr><td><code>Animations/menu_fundo/</code></td><td>Background do menu principal</td></tr>
+            <tr><td><code>Animations/menu_action/</code></td><td>Botões de ação do menu: m_iniciar, m_sair</td></tr>
+            <tr><td><code>Animations/m_pausefundo/</code></td><td>Fundo do menu de pausa</td></tr>
+            <tr><td><code>Portal/</code></td><td>Animação do portal de transição: 10 frames (portal0–portal9)</td></tr>
+            <tr><td><code>HudItens/Vida/</code></td><td>Estados da barra de vida: v0, v2–v7 (7 estados)</td></tr>
+            <tr><td><code>HudItens/Energia/</code></td><td>Estados da barra de energia: e1–e8 (8 estados)</td></tr>
+            <tr><td><code>Event sheets/</code></td><td>Lógica do jogo — ePrincipal, eHUD, eInimigos, ePersonagem, eMenuPause</td></tr>
+            <tr><td><code>Layouts/</code></td><td>Cenas do jogo — MenuPause.xml, Sala de Teste.xml</td></tr>
+            <tr><td><code>Textures/</code></td><td>Backgrounds (b_fundo1–5), tileset (bbase), HUD (hud_*)</td></tr>
+            <tr><td><code>Sprites/Inimigo Guerreiro 1/</code></td><td>Spritesheet + frames separados do guerreiro 1: Idle, Walk, Attack</td></tr>
+            <tr><td><code>Sprites/Inimigo Guerreiro 2/</code></td><td>Segunda variante de guerreiro: Idle, Walk, Attack</td></tr>
+            <tr><td><code>Sprites/Personagem/Death/</code></td><td>Animação de morte do player: d0–d5 (6 frames)</td></tr>
+            <tr><td><code>Sprites/Fundo/</code></td><td>menu_pausa.png, menu_morte.jpeg</td></tr>
+            <tr><td><code>Sounds/Movimento/</code></td><td>Passo_grama_1, Pulo_grama1, dano_player, dano_inimigo, morte_personagem</td></tr>
+            <tr><td><code>Sounds/Tiro/</code></td><td>Arco.ogg, Arco e flecha.wav, Flecha_contato.ogg</td></tr>
+            <tr><td><code>Sounds/Natureza/</code></td><td>Vento e folhas — ambiente florestal (Epidemic Sound)</td></tr>
+            <tr><td><code>ArquivosSuporte/</code></td><td>High Concept (PDF), Base Narrativa (DOCX), Entregas (PDF/DOCX)</td></tr>
           </tbody>
         </table>
       </div>
@@ -2309,8 +2426,8 @@
 </main>
 
 <footer>
-  <p>O LEGADO — Game Design Document v1.0</p>
-  <p style="margin-top:4px; font-size:10px; opacity:0.5;">Isabelle Feltrin · Lucas Daufenbach · Rodrigo Margotti · Gustavo L. Dias · Abril 2026</p>
+  <p>O LEGADO — Game Design Document v2.0</p>
+  <p style="margin-top:4px; font-size:10px; opacity:0.5;">Isabelle Feltrin · Lucas Daufenbach · Rodrigo Margotti · Gustavo L. Silva · Junho 2026</p>
 </footer>
 
 <!--
