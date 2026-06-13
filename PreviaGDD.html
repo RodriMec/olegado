@@ -1089,7 +1089,8 @@
         <span><strong>Plataforma:</strong> PC / Browser</span>
         <span><strong>Gênero:</strong> Action Platformer 2D · Pixel Art</span>
         <span><strong>Engine:</strong> Construct 2</span>
-        <span><strong>Versão GDD:</strong> 2.0 · Junho 2026</span>
+        <span><strong>Ambientação:</strong> Era Medieval — Cruzadas</span>
+        <span><strong>Versão GDD:</strong> 2.1 · Junho 2026</span>
         <span><strong>Build atual:</strong> Beta 1.0</span>
       </div>
       <div class="capa-divider" style="margin-top:28px;"></div>
@@ -1126,38 +1127,30 @@
     <details class="sub-section era-medieval" open>
       <summary>1.1 — Sistema de Regras</summary>
       <div class="sub-body">
-        <p>O jogo é <strong>single player</strong>, com progressão linear por 3 fases históricas. O jogador possui uma <strong>barra de vida gradual</strong> — ao zerar, o jogador morre e reinicia a fase atual do início. Ao completar a fase, avança para a próxima era via HQ de transição.</p>
+        <p>O jogo é <strong>single player</strong>, com progressão linear em <strong>fase única ambientada na Era Medieval</strong>. O jogador possui uma <strong>barra de vida gradual</strong> — ao zerar, o jogador morre e reinicia a fase do início. Ao completar a fase, o jogador chega ao clímax narrativo.</p>
 
         <div class="flowchart" style="margin-top: 20px;">
           <div class="flow-node">🏹 Início</div>
           <div class="flow-arrow" style="margin:2px 0;"></div>
           <div class="flow-node hq">📖 HQ Introdutória — O Pacto Ancestral</div>
           <div class="flow-arrow" style="margin:2px 0;"></div>
-          <div class="flow-node era-1" style="border-color:var(--green); color:var(--green);">Fase 1 — Era Medieval (Aldric)</div>
+          <div class="flow-node era-1" style="border-color:var(--green); color:var(--green);">Fase — Era Medieval (Aldric)</div>
           <div class="flow-arrow" style="margin:2px 0;"></div>
           <div class="flow-node diamond">Completou a fase?</div>
           <div style="display:flex; gap:60px; margin-top:2px;">
             <div style="display:flex; flex-direction:column; align-items:center;">
               <div class="flow-choice-label">NÃO — morreu</div>
               <div class="flow-arrow"></div>
-              <div class="flow-node end" style="font-size:12px;">Reinicia Fase 1</div>
+              <div class="flow-node end" style="font-size:12px;">Reinicia a Fase</div>
             </div>
             <div style="display:flex; flex-direction:column; align-items:center;">
               <div class="flow-choice-label">SIM</div>
               <div class="flow-arrow"></div>
-              <div class="flow-node hq" style="font-size:12px;">HQ Transição 1→2</div>
+              <div class="flow-node final" style="font-size:12px;">Clímax — Enfrentamento Final</div>
             </div>
           </div>
           <div class="flow-arrow" style="margin:2px 0;"></div>
-          <div class="flow-node era-2" style="border-color:var(--orange); color:var(--orange);">Fase 2 — Era da Pólvora (Edmond)</div>
-          <div class="flow-arrow" style="margin:2px 0;"></div>
-          <div class="flow-node hq">📖 HQ Transição 2→3</div>
-          <div class="flow-arrow" style="margin:2px 0;"></div>
-          <div class="flow-node era-3" style="border-color:var(--neon); color:var(--neon);">Fase 3 — Era Moderna (Rei)</div>
-          <div class="flow-arrow" style="margin:2px 0;"></div>
-          <div class="flow-node final">🏆 Clímax — Quebra da Maldição</div>
-          <div class="flow-arrow" style="margin:2px 0;"></div>
-          <div class="flow-node hq">📖 HQ Final — A Liberdade da Linhagem</div>
+          <div class="flow-node hq">📖 HQ Final — O Legado de Aldric</div>
         </div>
 
         <div style="margin-top:16px; display:grid; grid-template-columns: repeat(3,1fr); gap:12px; text-align:center; font-size:13px;">
@@ -1172,8 +1165,8 @@
             <div style="color:var(--gold); font-family:'Cinzel',serif; font-size:11px; margin-top:4px; letter-spacing:1px;">Reinicia ao morrer</div>
           </div>
           <div style="background:var(--bg3); border:1px solid rgba(201,168,76,0.2); border-radius:4px; padding:12px;">
-            <div style="font-size:22px;">➡️</div>
-            <div style="color:var(--gold); font-family:'Cinzel',serif; font-size:11px; margin-top:4px; letter-spacing:1px;">Progressão linear</div>
+            <div style="font-size:22px;">🏹</div>
+            <div style="color:var(--gold); font-family:'Cinzel',serif; font-size:11px; margin-top:4px; letter-spacing:1px;">Fase única medieval</div>
           </div>
         </div>
       </div>
@@ -1372,45 +1365,31 @@
           <tbody>
             <tr>
               <td><strong>Arco e Flecha</strong></td>
-              <td><span class="era-1">Fase 1</span></td>
+              <td><span class="era-1">Fase única</span></td>
               <td><img src="./Sprites/Personagem/Animations/arrow.png" style="image-rendering:pixelated; height:16px;" loading="lazy" alt="flecha"/></td>
-              <td>Arma padrão da Era 1. Tiro em linha reta, 1 dano.</td>
+              <td>Arma padrão do jogo. Tiro em linha reta, 1 dano. Consome 2 de energia por disparo. Cooldown de 0.5s.</td>
               <td><span class="tag tag-impl">Implementado</span></td>
             </tr>
             <tr>
-              <td><strong>Mosquete</strong></td>
-              <td><span class="era-2">Fase 2</span></td>
-              <td>—</td>
-              <td>Arma padrão da Era 2. Tiro mais potente (2 danos), maior recuo, cooldown maior.</td>
-              <td><span class="tag tag-planned">Previsto</span></td>
-            </tr>
-            <tr>
-              <td><strong>Rifle Moderno</strong></td>
-              <td><span class="era-3">Fase 3</span></td>
-              <td>—</td>
-              <td>Arma padrão da Era 3. Tiro rápido (3 rajadas), longo alcance.</td>
-              <td><span class="tag tag-planned">Previsto</span></td>
-            </tr>
-            <tr>
               <td><strong>Cura (p_advida)</strong></td>
-              <td>Todas</td>
+              <td><span class="era-1">Fase única</span></td>
               <td><img src="./GameBase%28Animation%29/HudItens/Vida/v4.png" style="image-rendering:pixelated; height:28px;" loading="lazy" alt="coletável vida"/></td>
               <td>Restaura +5 de vida ao coletar. Destrói o objeto ao toque.</td>
               <td><span class="tag tag-impl">Implementado</span></td>
             </tr>
             <tr>
               <td><strong>Energia (p_aenergia)</strong></td>
-              <td>Todas</td>
+              <td><span class="era-1">Fase única</span></td>
               <td><img src="./GameBase%28Animation%29/HudItens/Energia/e3.png" style="image-rendering:pixelated; height:28px;" loading="lazy" alt="coletável energia"/></td>
               <td>Restaura +25 de energia ao coletar. Necessário para continuar atirando.</td>
               <td><span class="tag tag-impl">Implementado</span></td>
             </tr>
             <tr>
               <td><strong>Escudo Temporário</strong></td>
-              <td>Todas</td>
+              <td><span class="era-1">Fase única</span></td>
               <td>—</td>
               <td>Absorve 1 golpe. Dura 5 segundos.</td>
-              <td><span class="tag tag-planned">Previsto para v. futura</span></td>
+              <td><span class="tag tag-planned">Previsto</span></td>
             </tr>
           </tbody>
         </table>
@@ -1453,39 +1432,11 @@
               <td>Posição fixa ou patrulha lenta. Atira flechas a distância quando o jogador está no alcance de visão.</td>
               <td>1 ponto de dano</td>
             </tr>
-            <tr>
-              <td>—</td>
-              <td><strong>Soldado Colonial</strong></td>
-              <td><span class="era-2">Fase 2</span></td>
-              <td>Patrulha e avança com mosquete. Tiro único em cooldown (recarga lenta).</td>
-              <td>1 ponto de dano</td>
-            </tr>
-            <tr>
-              <td>—</td>
-              <td><strong>Arqueiro Colonial</strong></td>
-              <td><span class="era-2">Fase 2</span></td>
-              <td>Atirador de elite posicionado em elevações. Tiro com pausa de mira.</td>
-              <td>2 pontos de dano</td>
-            </tr>
-            <tr>
-              <td>—</td>
-              <td><strong>Soldado Moderno</strong></td>
-              <td><span class="era-3">Fase 3</span></td>
-              <td>Patrulha veloz. Usa cobertura. Tira múltiplos tiros rápidos.</td>
-              <td>1 ponto de dano</td>
-            </tr>
-            <tr>
-              <td>—</td>
-              <td><strong>Drone</strong></td>
-              <td><span class="era-3">Fase 3</span></td>
-              <td>Voa livremente em eixo Y. Persegue jogador a distância. Dispara projéteis energéticos.</td>
-              <td>2 pontos de dano</td>
-            </tr>
           </tbody>
         </table>
         </div>
         <p style="margin-top:14px; font-size:13px; color:var(--text-dim);">
-          * Sprites dos inimigos das Fases 2 e 3 a serem finalizados. Sprite do arqueiro medieval baseado no asset <em>GandalfHardcore Archer brown sheet.png</em>.
+          * Sprite do arqueiro medieval baseado no asset <em>GandalfHardcore Archer brown sheet.png</em>. O jogo conta apenas com inimigos medievais — as eras da Pólvora e Moderna foram removidas do escopo.
         </p>
         <div class="inline-img-block" style="margin-top:16px;">
           <img src="./Sprites/Personagem/Animations/GandalfHardcore%20Archer%20brown%20sheet.png" class="sprite-big" loading="lazy" alt="Spritesheet completo arqueiro — mostra todas as animações em grade"/>
@@ -1514,27 +1465,18 @@
             </tr>
             <tr>
               <td><strong>Buracos / Abismos</strong></td>
-              <td>Todas</td>
+              <td>Fase única</td>
               <td>Cair causa morte instantânea (barra de vida zerada, reinicia posição).</td>
             </tr>
-            <tr>
-              <td><strong>Barris de Pólvora</strong></td>
-              <td>Fase 2</td>
-              <td>Explodem ao ser atingidos por projétil. Causam dano de área a inimigos e ao jogador.</td>
-            </tr>
-            <tr>
-              <td><strong>Arame Farpado</strong></td>
-              <td>Fase 3</td>
-              <td>Obstáculo de terreno. Causa 1 dano ao tocar.</td>
-            </tr>
+
             <tr>
               <td><strong>Portal / Checkpoint</strong></td>
-              <td>Todas</td>
+              <td>Fase única</td>
               <td>Marca ponto de carregamento ao fim da fase. Animação de entrada.</td>
             </tr>
             <tr>
               <td><strong>Porta / Passagem</strong></td>
-              <td>Todas</td>
+              <td>Fase única</td>
               <td>Abertura de áreas — ativada ao eliminar todos inimigos da sala ou ao encontrar a chave.</td>
             </tr>
           </tbody>
@@ -1587,11 +1529,11 @@
       <summary>2.1 — Plot</summary>
       <div class="sub-body">
         <blockquote>
-          "Um descendente comum de uma família amaldiçoada deseja encontrar um artefato místico capaz de libertar sua linhagem das guerras eternas — mas para isso precisa sobreviver a três eras de carnificina presas pela maldição de seus antepassados."
+          "Um jovem soldado de uma família amaldiçoada luta para sobreviver às batalhas das Cruzadas — mas por trás da guerra há algo maior: o pacto ancestral que condenou sua linhagem, e a chance de quebrá-lo de uma vez por todas."
           <cite>— Sinopse de O Legado</cite>
         </blockquote>
-        <p>A trama acompanha três gerações da mesma família, cada uma nascida em uma era diferente, todas condenadas a lutar e morrer em conflitos que não escolheram. A maldição foi selada por um ancestral nas Cruzadas que firmou um pacto com uma entidade em troca de sobrevivência — o preço: toda a linhagem futura seria arrastada para guerras eternas.</p>
-        <p>Apenas o descendente da Era Moderna, <strong>Rei</strong>, tem conhecimento suficiente para rastrear o artefato que pode quebrar o ciclo — mas para chegar até ele, ele e seus antepassados (através das memórias recuperadas) precisam sobreviver.</p>
+        <p>A trama acompanha <strong>Aldric</strong>, jovem soldado das Cruzadas, condenado a lutar e morrer em batalhas que nunca escolheu. A maldição foi selada por um ancestral da família que firmou um pacto com uma entidade sombria em troca de sobrevivência — o preço: toda a linhagem futura seria arrastada para guerras eternas.</p>
+        <p>Aldric, sem saber da origem da maldição, deve sobreviver à batalha medieval, eliminar os guerreiros inimigos e alcançar o artefato místico escondido nas profundezas do campo de batalha — o único capaz de quebrar o ciclo de sua família.</p>
       </div>
     </details>
 
@@ -1607,18 +1549,18 @@
           <div class="tech-card">
             <h4>Arco emocional</h4>
             <p style="font-size:13px; color:var(--text-dim);">
-              <strong style="color:var(--text);">Início:</strong> Os protagonistas são resignados e presos ao ciclo de violência.<br/>
-              <strong style="color:var(--text);">Final:</strong> Rei é o primeiro da família capaz de morrer em paz, livre da maldição.
+              <strong style="color:var(--text);">Início:</strong> Aldric é resignado e preso ao ciclo de violência que herdou sem escolher.<br/>
+              <strong style="color:var(--text);">Final:</strong> Aldric, ao completar sua jornada, tem pela primeira vez a possibilidade de quebrar o ciclo e libertar sua linhagem.
             </p>
           </div>
         </div>
         <table>
-          <thead><tr><th>Fase</th><th>Personagem</th><th>Estado emocional</th></tr></thead>
+          <thead><tr><th>Momento</th><th>Personagem</th><th>Estado emocional</th></tr></thead>
           <tbody>
-            <tr><td>Início</td><td>Aldric</td><td>Resignado, aceita o conflito como destino</td></tr>
-            <tr><td>Meio</td><td>Edmond</td><td>Questionador, começa a duvidar da maldição</td></tr>
-            <tr><td>Clímax</td><td>Rei</td><td>Determinado, busca ativamente a ruptura do ciclo</td></tr>
-            <tr><td>Final</td><td>Rei</td><td>Paz — primeiro da linhagem a ter escolha</td></tr>
+            <tr><td>Início</td><td>Aldric</td><td>Resignado — aceita o conflito como destino inevitável</td></tr>
+            <tr><td>Durante a batalha</td><td>Aldric</td><td>Determinado — luta para sobreviver e proteger sua linhagem</td></tr>
+            <tr><td>Clímax</td><td>Aldric</td><td>Revelação — descobre a verdade por trás do pacto ancestral</td></tr>
+            <tr><td>Final</td><td>Aldric</td><td>Escolha — pela primeira vez, tem a possibilidade de quebrar o ciclo</td></tr>
           </tbody>
         </table>
       </div>
@@ -1656,13 +1598,6 @@
           </div>
         </div>
 
-        <div class="era-block polvora">
-          <div class="era-head">
-            <span class="era-num">II</span>
-            <div>
-              <div class="era-title">Era da Pólvora</div>
-              <div class="era-period">Séc. XVIII — Guerras Coloniais</div>
-            </div>
           </div>
           <div class="era-content">
             <div class="era-img-col">
@@ -1684,13 +1619,6 @@
           </div>
         </div>
 
-        <div class="era-block moderna">
-          <div class="era-head">
-            <span class="era-num">III</span>
-            <div>
-              <div class="era-title">Era Moderna</div>
-              <div class="era-period">Contemporâneo — Conflito Urbano e Pesquisa</div>
-            </div>
           </div>
           <div class="era-content">
             <div class="era-img-col">
@@ -1831,38 +1759,6 @@
               </div>
             </div>
           </div>
-          <!-- Edmond -->
-          <div class="char-card">
-            <div class="char-portrait" style="background: rgba(224,122,47,0.1);">
-              <div class="no-sprite">🪖</div>
-            </div>
-            <div class="char-info">
-              <h3>Edmond</h3>
-              <div class="char-era era-2">Era II — Guerras Coloniais, Séc. XVIII</div>
-              <p>Soldado veterano e pesado, herdeiro não-voluntário da maldição. Começou a questionar por que sua família sempre está no front. Usa mosquete, mais lento mas mais poderoso.</p>
-              <div class="char-stat">
-                <span>Mosquete</span>
-                <span>Agilidade: Média</span>
-                <span>Dano: 2</span>
-              </div>
-            </div>
-          </div>
-          <!-- Rei -->
-          <div class="char-card">
-            <div class="char-portrait" style="background: rgba(0,229,255,0.07);">
-              <div class="no-sprite">🔬</div>
-            </div>
-            <div class="char-info">
-              <h3>Rei</h3>
-              <div class="char-era era-3">Era III — Contemporâneo</div>
-              <p>Pesquisador e soldado. O único da linhagem que descobriu a origem da maldição. Percorre ruínas, zonas de guerra e laboratórios para encontrar o artefato que liberta a família.</p>
-              <div class="char-stat">
-                <span>Rifle Moderno</span>
-                <span>Agilidade: Alta</span>
-                <span>Dano: 1×3</span>
-              </div>
-            </div>
-          </div>
           <!-- Entidade -->
           <div class="char-card">
             <div class="char-portrait" style="background: rgba(192,57,43,0.1);">
@@ -1883,15 +1779,11 @@
         <h4 style="font-family:'Cinzel',serif; color:var(--gold); margin:24px 0 12px; font-size:14px; letter-spacing:2px; text-transform:uppercase;">Diagrama de Relações</h4>
         <div style="background:var(--bg3); border:1px solid rgba(201,168,76,0.15); border-radius:4px; padding:20px; text-align:center; overflow-x:auto;">
           <div style="display:inline-flex; align-items:center; gap:0; flex-wrap:wrap; justify-content:center; gap:8px;">
-            <div class="rel-node protagonist">Aldric<br/><small style="font-size:10px;">Fase 1</small></div>
-            <div class="rel-arrow">→</div>
-            <div style="font-size:11px; color:var(--text-dim); text-align:center;">herança<br/>maldita</div>
-            <div class="rel-arrow">→</div>
-            <div class="rel-node protagonist">Edmond<br/><small style="font-size:10px;">Fase 2</small></div>
-            <div class="rel-arrow">→</div>
-            <div style="font-size:11px; color:var(--text-dim); text-align:center;">herança<br/>maldita</div>
-            <div class="rel-arrow">→</div>
-            <div class="rel-node protagonist">Rei<br/><small style="font-size:10px;">Fase 3</small></div>
+            <div class="rel-node protagonist">Aldric<br/><small style="font-size:10px;">Protagonista</small></div>
+            <div class="rel-arrow">↔</div>
+            <div style="font-size:11px; color:var(--text-dim); text-align:center;">pacto<br/>ancestral</div>
+            <div class="rel-arrow">↔</div>
+            <div class="rel-node antagonist">A Entidade<br/><small style="font-size:10px;">Antagonista</small></div>
           </div>
           <div style="margin-top:16px; display:flex; justify-content:center;">
             <div style="border:1px dashed rgba(192,57,43,0.4); border-radius:100px; padding:6px 40px; font-size:11px; color:var(--red); font-family:'Cinzel',serif; letter-spacing:2px;">
@@ -1957,26 +1849,7 @@
               <div class="swatch" style="background:#1e2d14;" title="Verde Sombra"><span>#1e2d</span></div>
             </div>
           </div>
-          <div class="tech-card" style="border-left:3px solid var(--orange);">
-            <h4 style="color:var(--orange);">Era II — Pólvora</h4>
-            <div class="palette">
-              <div class="swatch" style="background:#c4a97a;" title="Bege Gasto"><span>#c4a9</span></div>
-              <div class="swatch" style="background:#8b2020;" title="Vermelho Sangue"><span>#8b20</span></div>
-              <div class="swatch" style="background:#7a7a78;" title="Cinza Fumaça"><span>#7a7a</span></div>
-              <div class="swatch" style="background:#d4b06a;" title="Amarelo Pólvora"><span>#d4b0</span></div>
-              <div class="swatch" style="background:#2a2a28;" title="Preto Fuligem"><span>#2a2a</span></div>
-            </div>
-          </div>
-          <div class="tech-card" style="border-left:3px solid var(--neon);">
-            <h4 style="color:var(--neon);">Era III — Moderna</h4>
-            <div class="palette">
-              <div class="swatch" style="background:#4a4a4a;" title="Concreto"><span>#4a4a</span></div>
-              <div class="swatch" style="background:#00e5ff;" title="Neon Ciano"><span>#00e5</span></div>
-              <div class="swatch" style="background:#e07a2f;" title="Laranja Fogo"><span>#e07a</span></div>
-              <div class="swatch" style="background:#1a2a1a;" title="Verde Escuro"><span>#1a2a</span></div>
-              <div class="swatch" style="background:#333344;" title="Azul Noite"><span>#3333</span></div>
-            </div>
-          </div>
+
         </div>
       </div>
     </details>
@@ -2171,18 +2044,7 @@
               <td>Alaúde, percussão de guerra (tambores pesados), flautas de madeira, coro épico</td>
               <td>Solene, épico, com peso do destino</td>
             </tr>
-            <tr>
-              <td><span class="era-2">Era II — Pólvora</span></td>
-              <td>Marcha colonial</td>
-              <td>Tambores de regimento, trompetes de batalha, harpa, flauta de marfim</td>
-              <td>Marcial, urgente, cadência militar</td>
-            </tr>
-            <tr>
-              <td><span class="era-3">Era III — Moderna</span></td>
-              <td>Eletrônico / Industrial</td>
-              <td>Sintetizadores, bateria eletrônica, linha de baixo pesada, ambient distorcido</td>
-              <td>Tenso, claustrofóbico, urgente</td>
-            </tr>
+
           </tbody>
         </table>
 
@@ -2199,8 +2061,7 @@
             <tr><td>Dano no inimigo</td><td><code>dano_inimigo.ogg</code></td><td><span class="tag tag-impl">Implementado</span></td></tr>
             <tr><td>Morte do personagem</td><td><code>morte_personagem.ogg</code></td><td><span class="tag tag-impl">Implementado</span></td></tr>
             <tr><td>Ambiente florestal</td><td><code>ES_Wind, Vegetation, Leaves Rustling... (Epidemic Sound)</code></td><td><span class="tag tag-impl">Implementado</span></td></tr>
-            <tr><td>Disparo — Mosquete</td><td>—</td><td><span class="tag tag-planned">Previsto</span></td></tr>
-            <tr><td>Disparo — Rifle</td><td>—</td><td><span class="tag tag-planned">Previsto</span></td></tr>
+
           </tbody>
         </table>
       </div>
@@ -2220,8 +2081,8 @@
       <div class="era-head">
         <span class="era-num">I</span>
         <div>
-          <div class="era-title">Fase 1 — Floresta das Cruzadas</div>
-          <div class="era-period">Personagem: Aldric · Arma: Arco e Flecha</div>
+          <div class="era-title">Fase — Floresta das Cruzadas</div>
+          <div class="era-period">Personagem: Aldric · Arma: Arco e Flecha · Ambientação: Era Medieval</div>
         </div>
       </div>
       <div style="padding:0 20px 20px;">
@@ -2250,29 +2111,7 @@
       </div>
     </div>
 
-    <!-- Fase 2 -->
-    <div class="era-block polvora" style="margin-bottom:24px;">
-      <div class="era-head">
-        <span class="era-num">II</span>
-        <div>
-          <div class="era-title">Fase 2 — Era da Pólvora</div>
-          <div class="era-period">Personagem: Edmond · Arma: Mosquete</div>
-        </div>
-      </div>
-      <div style="padding:0 20px 20px;">
-        <p style="font-size:14px; color:var(--text-dim); font-style:italic; padding:16px 0;">
-          ⚠️ Design desta fase ainda não definido.
-        </p>
-      </div>
-    </div>
-
-    <!-- Fase 3 -->
-    <div class="era-block moderna" style="margin-bottom:24px;">
-      <div class="era-head">
-        <span class="era-num">III</span>
-        <div>
-          <div class="era-title">Fase 3 — Era Moderna</div>
-          <div class="era-period">Personagem: Rei · Arma: Rifle Moderno</div>
+          <div class="era-period">Personagem: Aldric · Arma: Arco e Flecha · Ambientação: Era Medieval</div>
         </div>
       </div>
       <div style="padding:0 20px 20px;">
@@ -2402,8 +2241,7 @@
         <h4>🏛️ Referências Históricas</h4>
         <ul>
           <li><strong>Cruzadas (Séc. XII)</strong> — Cerco de Lisboa 1147, cavaleiros e sarracenos</li>
-          <li><strong>Guerras Coloniais (Séc. XVIII)</strong> — formações, mosquetes, guerrilha</li>
-          <li><strong>Conflitos Contemporâneos</strong> — guerra urbana, tecnologia militar avançada</li>
+          <li><strong>Cruzadas (Séc. XII)</strong> — cercos medievais, cavalaria, formações de batalha</li>
         </ul>
       </div>
       <div class="ref-card">
@@ -2426,7 +2264,7 @@
 </main>
 
 <footer>
-  <p>O LEGADO — Game Design Document v2.0</p>
+  <p>O LEGADO — Game Design Document v2.1</p>
   <p style="margin-top:4px; font-size:10px; opacity:0.5;">Isabelle Feltrin · Lucas Daufenbach · Rodrigo Margotti · Gustavo L. Silva · Junho 2026</p>
 </footer>
 
