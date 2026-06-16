@@ -1067,6 +1067,7 @@
   <a href="#estetica">Estética</a>
   <a href="#leveldesign">Level Design</a>
   <a href="#tecnologias">Tecnologias</a>
+  <a href="#boss">Boss</a>
   <a href="#referencias">Referências</a>
 </nav>
 
@@ -1090,7 +1091,7 @@
         <span><strong>Gênero:</strong> Action Platformer 2D · Pixel Art</span>
         <span><strong>Engine:</strong> Construct 2</span>
         <span><strong>Ambientação:</strong> Era Medieval — Cruzadas</span>
-        <span><strong>Versão GDD:</strong> 2.1 · Junho 2026</span>
+        <span><strong>Versão GDD:</strong> 2.2 · Junho 2026</span>
         <span><strong>Build atual:</strong> Beta 1.0</span>
       </div>
       <div class="capa-divider" style="margin-top:28px;"></div>
@@ -1432,11 +1433,22 @@
               <td>Posição fixa ou patrulha lenta. Atira flechas a distância quando o jogador está no alcance de visão.</td>
               <td>1 ponto de dano</td>
             </tr>
+            <tr>
+              <td>
+                <div class="sprite-thumb">
+                  <img src="./Sprites/Demon/Idle/idle1.png" loading="lazy" alt="demon boss"/>
+                </div>
+              </td>
+              <td><strong>🔥 Demon — Boss Final</strong></td>
+              <td><span class="era-1">Fase única — Clímax</span></td>
+              <td>Chefe final do jogo. Entidade demoníaca manifestada. Possui 3 animações distintas: Idle (6 frames), DemonAttack (18 frames) e DemonAttackBreath (18 frames — sopro de fogo). Comportamento agressivo com padrões de ataque variados.</td>
+              <td>Alto (a definir)</td>
+            </tr>
           </tbody>
         </table>
         </div>
         <p style="margin-top:14px; font-size:13px; color:var(--text-dim);">
-          * Sprite do arqueiro medieval baseado no asset <em>GandalfHardcore Archer brown sheet.png</em>. O jogo conta apenas com inimigos medievais — as eras da Pólvora e Moderna foram removidas do escopo.
+          * Sprite do arqueiro medieval baseado no asset <em>GandalfHardcore Archer brown sheet.png</em>. O jogo conta apenas com inimigos medievais. O <strong>Demon</strong> é o boss final — manifestação da entidade do pacto ancestral.
         </p>
         <div class="inline-img-block" style="margin-top:16px;">
           <img src="./Sprites/Personagem/Animations/GandalfHardcore%20Archer%20brown%20sheet.png" class="sprite-big" loading="lazy" alt="Spritesheet completo arqueiro — mostra todas as animações em grade"/>
@@ -1759,6 +1771,23 @@
               </div>
             </div>
           </div>
+          <!-- Demon Boss -->
+          <div class="char-card">
+            <div class="char-portrait" style="background: rgba(192,57,43,0.15);">
+              <img src="./Sprites/Demon/Idle/idle1.png" loading="lazy" alt="Demon Boss sprite" style="width:80px;height:80px;object-fit:contain;image-rendering:pixelated;"/>
+            </div>
+            <div class="char-info">
+              <h3>Demon</h3>
+              <div class="char-era" style="color:var(--red);">Boss Final — Manifestação da Entidade</div>
+              <p>A entidade do pacto ancestral finalmente toma forma física. Criatura demoníaca de grande porte que aguarda Aldric no final da fase. Possui ataque corpo-a-corpo e sopro de fogo (DemonAttackBreath).</p>
+              <div class="char-stat">
+                <span>Boss</span>
+                <span>3 animações</span>
+                <span>Dano: Alto</span>
+              </div>
+            </div>
+          </div>
+
           <!-- Entidade -->
           <div class="char-card">
             <div class="char-portrait" style="background: rgba(192,57,43,0.1);">
@@ -1956,6 +1985,54 @@
             <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">6 frames · one-shot · ataque corpo-a-corpo</p>
           </div>
 
+          <!-- Demon Idle -->
+          <div class="anim-card">
+            <h4>🔥 Demon — Idle</h4>
+            <div class="frames">
+              <img src="./Sprites/Demon/Idle/idle1.png" alt="demon idle1" loading="lazy"/>
+              <img src="./Sprites/Demon/Idle/idle2.png" alt="demon idle2" loading="lazy"/>
+              <img src="./Sprites/Demon/Idle/idle3.png" alt="demon idle3" loading="lazy"/>
+              <img src="./Sprites/Demon/Idle/idle4.png" alt="demon idle4" loading="lazy"/>
+              <img src="./Sprites/Demon/Idle/idle5.png" alt="demon idle5" loading="lazy"/>
+              <img src="./Sprites/Demon/Idle/idle6.png" alt="demon idle6" loading="lazy"/>
+            </div>
+            <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">6 frames · loop · postura ameaçadora do boss</p>
+          </div>
+
+          <!-- Demon Attack -->
+          <div class="anim-card">
+            <h4>🔥 Demon — Attack</h4>
+            <div class="frames">
+              <img src="./Sprites/Demon/DemonAttack/frame1.png" alt="att1" loading="lazy"/>
+              <img src="./Sprites/Demon/DemonAttack/frame2.png" alt="att2" loading="lazy"/>
+              <img src="./Sprites/Demon/DemonAttack/frame3.png" alt="att3" loading="lazy"/>
+              <img src="./Sprites/Demon/DemonAttack/frame4.png" alt="att4" loading="lazy"/>
+              <img src="./Sprites/Demon/DemonAttack/frame5.png" alt="att5" loading="lazy"/>
+              <img src="./Sprites/Demon/DemonAttack/frame6.png" alt="att6" loading="lazy"/>
+              <img src="./Sprites/Demon/DemonAttack/frame7.png" alt="att7" loading="lazy"/>
+              <img src="./Sprites/Demon/DemonAttack/frame8.png" alt="att8" loading="lazy"/>
+            </div>
+            <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">18 frames · one-shot · ataque corpo-a-corpo</p>
+          </div>
+
+          <!-- Demon Attack Breath (fogo) -->
+          <div class="anim-card" style="grid-column: span 2;">
+            <h4>🔥 Demon — Attack Breath (Sopro de Fogo)</h4>
+            <div class="frames">
+              <img src="./Sprites/Demon/DemonAttackBreath/frame1.png" alt="breath1" loading="lazy"/>
+              <img src="./Sprites/Demon/DemonAttackBreath/frame2.png" alt="breath2" loading="lazy"/>
+              <img src="./Sprites/Demon/DemonAttackBreath/frame3.png" alt="breath3" loading="lazy"/>
+              <img src="./Sprites/Demon/DemonAttackBreath/frame4.png" alt="breath4" loading="lazy"/>
+              <img src="./Sprites/Demon/DemonAttackBreath/frame5.png" alt="breath5" loading="lazy"/>
+              <img src="./Sprites/Demon/DemonAttackBreath/frame6.png" alt="breath6" loading="lazy"/>
+              <img src="./Sprites/Demon/DemonAttackBreath/frame7.png" alt="breath7" loading="lazy"/>
+              <img src="./Sprites/Demon/DemonAttackBreath/frame8.png" alt="breath8" loading="lazy"/>
+              <img src="./Sprites/Demon/DemonAttackBreath/frame9.png" alt="breath9" loading="lazy"/>
+              <img src="./Sprites/Demon/DemonAttackBreath/frame10.png" alt="breath10" loading="lazy"/>
+            </div>
+            <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">18 frames · one-shot · sopro de fogo a distância — segundo padrão de ataque do boss</p>
+          </div>
+
           <!-- Guerreiro Medieval — Spritesheet completo -->
           <div class="anim-card" style="grid-column: span 2;">
             <h4>Spritesheet completo — Guerreiro Medieval</h4>
@@ -2057,7 +2134,7 @@
             <tr><td>Flecha no alvo</td><td><code>Flecha_contato.ogg</code></td><td><span class="tag tag-impl">Implementado</span></td></tr>
             <tr><td>Passo na grama</td><td><code>Passo_grama_1.ogg</code></td><td><span class="tag tag-impl">Implementado</span></td></tr>
             <tr><td>Pulo na grama</td><td><code>Pulo_grama1.ogg</code></td><td><span class="tag tag-impl">Implementado</span></td></tr>
-            <tr><td>Dano recebido (player)</td><td><code>dano_player.ogg</code></td><td><span class="tag tag-impl">Implementado</span></td></tr>
+            <tr><td>Dano recebido (player)</td><td><code>dano_player.ogg</code> / <code>dano_player.m4a</code></td><td><span class="tag tag-impl">Implementado</span></td></tr>
             <tr><td>Dano no inimigo</td><td><code>dano_inimigo.ogg</code></td><td><span class="tag tag-impl">Implementado</span></td></tr>
             <tr><td>Morte do personagem</td><td><code>morte_personagem.ogg</code></td><td><span class="tag tag-impl">Implementado</span></td></tr>
             <tr><td>Ambiente florestal</td><td><code>ES_Wind, Vegetation, Leaves Rustling... (Epidemic Sound)</code></td><td><span class="tag tag-impl">Implementado</span></td></tr>
@@ -2099,27 +2176,102 @@
                 <tr><td>👾 Inimigos</td><td>3 guerreiros medievais + 2 arqueiros (posição fixa)</td></tr>
                 <tr><td>🚪 Checkpoint</td><td>Meio do nível — pedra mágica luminosa</td></tr>
                 <tr><td>🏹 Coletável</td><td>2 pacotes de flechas extras</td></tr>
-                <tr><td>🌀 Portal</td><td>Final do mapa à direita — desbloqueado ao eliminar chefe</td></tr>
+                <tr><td>🌀 Portal</td><td>Final do mapa à direita — leva à arena do Demon (boss final)</td></tr>
                 <tr><td>⚠️ Obstáculos</td><td>Fossas, plataformas de madeira, troncos</td></tr>
               </tbody>
             </table>
           </div>
         </div>
         <p style="font-size:13px; color:var(--text-dim);">
-          <strong style="color:var(--text);">Objetivo:</strong> Aldric deve atravessar a floresta, eliminar os guerreiros inimigos e encontrar o caminho para o portal que o levará à próxima era. O nível ensina mecânicas básicas de pulo, movimento e ataque.
+          <strong style="color:var(--text);">Objetivo:</strong> Aldric deve atravessar a floresta, eliminar os guerreiros inimigos e alcançar o portal final, onde aguarda o confronto com o Demon — guardião do artefato e manifestação do pacto ancestral.
         </p>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== BOSS ===== -->
+  <section id="boss">
+    <div class="section-header">
+      <div class="section-number">Boss Final</div>
+      <h2 class="section-title">🔥 Demon</h2>
+      <div class="section-divider" style="background:var(--red);"></div>
     </div>
 
-          <div class="era-period">Personagem: Aldric · Arma: Arco e Flecha · Ambientação: Era Medieval</div>
+    <details class="sub-section" style="border-left:4px solid var(--red);" open>
+      <summary style="color:var(--red);">Sobre o Boss</summary>
+      <div class="sub-body">
+        <div style="display:grid; grid-template-columns: 200px 1fr; gap:24px; align-items:center; margin-bottom:20px;">
+          <img src="./Sprites/Demon/Idle/idle1.png" loading="lazy" alt="Demon boss" style="image-rendering:pixelated; width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(192,57,43,0.4); border-radius:4px;"/>
+          <div>
+            <p>O <strong>Demon</strong> é o chefe final de O Legado — a manifestação física da entidade com quem Aldric (ou seu ancestral) firmou o pacto. Ele guarda o artefato que pode quebrar a maldição da linhagem e aguarda o jogador no fim da fase.</p>
+            <div class="char-stat" style="margin-top:12px;">
+              <span>Boss único</span>
+              <span>2 padrões de ataque</span>
+              <span>Dano: Alto</span>
+            </div>
+          </div>
         </div>
-      </div>
-      <div style="padding:0 20px 20px;">
-        <p style="font-size:14px; color:var(--text-dim); font-style:italic; padding:16px 0;">
-          ⚠️ Design desta fase ainda não definido.
+
+        <table>
+          <thead><tr><th>Animação</th><th>Frames</th><th>Descrição</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Idle</strong></td>
+              <td>6 (idle1–idle6)</td>
+              <td>Postura de espera/ameaça enquanto aguarda o jogador se aproximar.</td>
+            </tr>
+            <tr>
+              <td><strong>Demon Attack</strong></td>
+              <td>18 (frame1–frame18)</td>
+              <td>Ataque corpo-a-corpo direto — usado quando o jogador está próximo.</td>
+            </tr>
+            <tr>
+              <td><strong>Demon Attack Breath</strong></td>
+              <td>18 (frame1–frame18)</td>
+              <td>Sopro de fogo a distância — segundo padrão de ataque, usado quando o jogador mantém distância.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="anim-grid" style="margin-top:20px;">
+          <div class="anim-card">
+            <h4>Idle</h4>
+            <div class="frames">
+              <img src="./Sprites/Demon/Idle/idle1.png" alt="idle1" loading="lazy"/>
+              <img src="./Sprites/Demon/Idle/idle2.png" alt="idle2" loading="lazy"/>
+              <img src="./Sprites/Demon/Idle/idle3.png" alt="idle3" loading="lazy"/>
+              <img src="./Sprites/Demon/Idle/idle4.png" alt="idle4" loading="lazy"/>
+              <img src="./Sprites/Demon/Idle/idle5.png" alt="idle5" loading="lazy"/>
+              <img src="./Sprites/Demon/Idle/idle6.png" alt="idle6" loading="lazy"/>
+            </div>
+          </div>
+          <div class="anim-card">
+            <h4>Attack (corpo-a-corpo)</h4>
+            <div class="frames">
+              <img src="./Sprites/Demon/DemonAttack/frame1.png" alt="att1" loading="lazy"/>
+              <img src="./Sprites/Demon/DemonAttack/frame5.png" alt="att5" loading="lazy"/>
+              <img src="./Sprites/Demon/DemonAttack/frame10.png" alt="att10" loading="lazy"/>
+              <img src="./Sprites/Demon/DemonAttack/frame15.png" alt="att15" loading="lazy"/>
+              <img src="./Sprites/Demon/DemonAttack/frame18.png" alt="att18" loading="lazy"/>
+            </div>
+          </div>
+          <div class="anim-card">
+            <h4>Attack Breath (sopro de fogo)</h4>
+            <div class="frames">
+              <img src="./Sprites/Demon/DemonAttackBreath/frame1.png" alt="breath1" loading="lazy"/>
+              <img src="./Sprites/Demon/DemonAttackBreath/frame5.png" alt="breath5" loading="lazy"/>
+              <img src="./Sprites/Demon/DemonAttackBreath/frame10.png" alt="breath10" loading="lazy"/>
+              <img src="./Sprites/Demon/DemonAttackBreath/frame15.png" alt="breath15" loading="lazy"/>
+              <img src="./Sprites/Demon/DemonAttackBreath/frame18.png" alt="breath18" loading="lazy"/>
+            </div>
+          </div>
+        </div>
+
+        <p style="margin-top:16px; font-size:13px; color:var(--text-dim);">
+          * Padrões de IA do boss (gatilhos de troca entre ataques, vida, hitbox) ainda a serem definidos nos event sheets.
         </p>
       </div>
-    </div>
+    </details>
   </section>
 
   <!-- ===== 5. TECNOLOGIAS ===== -->
@@ -2264,8 +2416,8 @@
 </main>
 
 <footer>
-  <p>O LEGADO — Game Design Document v2.1</p>
-  <p style="margin-top:4px; font-size:10px; opacity:0.5;">Isabelle Feltrin · Lucas Daufenbach · Rodrigo Margotti · Gustavo L. Silva · Junho 2026</p>
+  <p>O LEGADO — Game Design Document v2.2</p>
+  <p style="margin-top:4px; font-size:10px; opacity:0.5;">Isabelle Feltrin · Lucas Daufenbach · Rodrigo Margotti · Gustavo L. Silva · Junho 2026 — Boss: Demon adicionado</p>
 </footer>
 
 <!--
