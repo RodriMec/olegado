@@ -1091,8 +1091,8 @@
         <span><strong>Gênero:</strong> Action Platformer 2D · Pixel Art</span>
         <span><strong>Engine:</strong> Construct 2</span>
         <span><strong>Ambientação:</strong> Era Medieval — Cruzadas</span>
-        <span><strong>Versão GDD:</strong> 2.2 · Junho 2026</span>
-        <span><strong>Build atual:</strong> Beta 1.0</span>
+        <span><strong>Versão GDD:</strong> 2.3 · Junho 2026</span>
+        <span><strong>Build atual:</strong> Gold 1.0</span>
       </div>
       <div class="capa-divider" style="margin-top:28px;"></div>
       <div class="team-grid">
@@ -1441,7 +1441,7 @@
               </td>
               <td><strong>🔥 Demon — Boss Final</strong></td>
               <td><span class="era-1">Fase única — Clímax</span></td>
-              <td>Chefe final do jogo. Entidade demoníaca manifestada. Possui 3 animações distintas: Idle (6 frames), DemonAttack (18 frames) e DemonAttackBreath (18 frames — sopro de fogo). Comportamento agressivo com padrões de ataque variados.</td>
+              <td>Chefe final do jogo. Entidade demoníaca manifestada. Possui 4 animações distintas: Idle (6 frames), DemonAttack corpo-a-corpo (18 frames), DemonAttackBreath/sopro de fogo (18 frames) e FireBall — projétil de fogo à distância (8 frames). Comportamento agressivo com múltiplos padrões de ataque.</td>
               <td>Alto (a definir)</td>
             </tr>
           </tbody>
@@ -1779,10 +1779,10 @@
             <div class="char-info">
               <h3>Demon</h3>
               <div class="char-era" style="color:var(--red);">Boss Final — Manifestação da Entidade</div>
-              <p>A entidade do pacto ancestral finalmente toma forma física. Criatura demoníaca de grande porte que aguarda Aldric no final da fase. Possui ataque corpo-a-corpo e sopro de fogo (DemonAttackBreath).</p>
+              <p>A entidade do pacto ancestral finalmente toma forma física. Criatura demoníaca de grande porte que aguarda Aldric no final da fase. Possui ataque corpo-a-corpo, sopro de fogo e bola de fogo à distância.</p>
               <div class="char-stat">
                 <span>Boss</span>
-                <span>3 animações</span>
+                <span>4 animações</span>
                 <span>Dano: Alto</span>
               </div>
             </div>
@@ -2033,6 +2033,22 @@
             <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">18 frames · one-shot · sopro de fogo a distância — segundo padrão de ataque do boss</p>
           </div>
 
+          <!-- Demon FireBall -->
+          <div class="anim-card">
+            <h4>🔥 Demon — FireBall</h4>
+            <div class="frames">
+              <img src="./Sprites/Demon/FireBall/0.png" alt="fireball0" loading="lazy"/>
+              <img src="./Sprites/Demon/FireBall/1.png" alt="fireball1" loading="lazy"/>
+              <img src="./Sprites/Demon/FireBall/2.png" alt="fireball2" loading="lazy"/>
+              <img src="./Sprites/Demon/FireBall/3.png" alt="fireball3" loading="lazy"/>
+              <img src="./Sprites/Demon/FireBall/4.png" alt="fireball4" loading="lazy"/>
+              <img src="./Sprites/Demon/FireBall/5.png" alt="fireball5" loading="lazy"/>
+              <img src="./Sprites/Demon/FireBall/6.png" alt="fireball6" loading="lazy"/>
+              <img src="./Sprites/Demon/FireBall/7.png" alt="fireball7" loading="lazy"/>
+            </div>
+            <p style="font-size:11px; color:var(--text-dim); margin-top:8px;">8 frames · loop · projétil de fogo — terceiro padrão de ataque, à distância</p>
+          </div>
+
           <!-- Guerreiro Medieval — Spritesheet completo -->
           <div class="anim-card" style="grid-column: span 2;">
             <h4>Spritesheet completo — Guerreiro Medieval</h4>
@@ -2138,6 +2154,8 @@
             <tr><td>Dano no inimigo</td><td><code>dano_inimigo.ogg</code></td><td><span class="tag tag-impl">Implementado</span></td></tr>
             <tr><td>Morte do personagem</td><td><code>morte_personagem.ogg</code></td><td><span class="tag tag-impl">Implementado</span></td></tr>
             <tr><td>Ambiente florestal</td><td><code>ES_Wind, Vegetation, Leaves Rustling... (Epidemic Sound)</code></td><td><span class="tag tag-impl">Implementado</span></td></tr>
+            <tr><td>Trilha de gameplay (fase)</td><td><code>GameplayMusic.wav</code> / <code>GameplayMusic2.wav</code></td><td><span class="tag tag-impl">Implementado</span></td></tr>
+            <tr><td>Movimento genérico</td><td><code>movimento_1.ogg</code></td><td><span class="tag tag-impl">Implementado</span></td></tr>
 
           </tbody>
         </table>
@@ -2206,7 +2224,7 @@
             <p>O <strong>Demon</strong> é o chefe final de O Legado — a manifestação física da entidade com quem Aldric (ou seu ancestral) firmou o pacto. Ele guarda o artefato que pode quebrar a maldição da linhagem e aguarda o jogador no fim da fase.</p>
             <div class="char-stat" style="margin-top:12px;">
               <span>Boss único</span>
-              <span>2 padrões de ataque</span>
+              <span>3 padrões de ataque</span>
               <span>Dano: Alto</span>
             </div>
           </div>
@@ -2228,8 +2246,26 @@
             <tr>
               <td><strong>Demon Attack Breath</strong></td>
               <td>18 (frame1–frame18)</td>
-              <td>Sopro de fogo a distância — segundo padrão de ataque, usado quando o jogador mantém distância.</td>
+              <td>Sopro de fogo a curta/média distância — segundo padrão de ataque.</td>
             </tr>
+            <tr>
+              <td><strong>FireBall</strong></td>
+              <td>8 (0–7)</td>
+              <td>Projétil de fogo lançado a longa distância — terceiro padrão de ataque, usado quando o jogador se mantém afastado.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4 style="font-family:'Cinzel',serif; color:var(--gold); margin:20px 0 10px; font-size:13px; letter-spacing:2px;">SONS DEDICADOS DO BOSS</h4>
+        <table>
+          <thead><tr><th>Evento</th><th>Arquivo</th></tr></thead>
+          <tbody>
+            <tr><td>Música de batalha do boss</td><td><code>BossMusic.wav</code></td></tr>
+            <tr><td>Movimento/grito do Demon</td><td><code>Demon120.wav</code> / <code>Mvimento_boss.ogg</code></td></tr>
+            <tr><td>Dano recebido pelo Demon</td><td><code>DemonDamage.wav</code></td></tr>
+            <tr><td>Morte do Demon</td><td><code>DemonDeath.wav</code></td></tr>
+            <tr><td>Voo/deslocamento</td><td><code>Fly Demon.wav</code></td></tr>
+            <tr><td>Ataque de fogo (Breath/FireBall)</td><td><code>fire attack.wav</code></td></tr>
           </tbody>
         </table>
 
@@ -2265,10 +2301,20 @@
               <img src="./Sprites/Demon/DemonAttackBreath/frame18.png" alt="breath18" loading="lazy"/>
             </div>
           </div>
+          <div class="anim-card">
+            <h4>FireBall (projétil de fogo)</h4>
+            <div class="frames">
+              <img src="./Sprites/Demon/FireBall/0.png" alt="fb0" loading="lazy"/>
+              <img src="./Sprites/Demon/FireBall/2.png" alt="fb2" loading="lazy"/>
+              <img src="./Sprites/Demon/FireBall/4.png" alt="fb4" loading="lazy"/>
+              <img src="./Sprites/Demon/FireBall/6.png" alt="fb6" loading="lazy"/>
+              <img src="./Sprites/Demon/FireBall/7.png" alt="fb7" loading="lazy"/>
+            </div>
+          </div>
         </div>
 
         <p style="margin-top:16px; font-size:13px; color:var(--text-dim);">
-          * Padrões de IA do boss (gatilhos de troca entre ataques, vida, hitbox) ainda a serem definidos nos event sheets.
+          * Gatilhos de troca entre os 3 padrões de ataque (proximidade do jogador, vida restante do boss) e hitbox ainda a serem refinados nos event sheets.
         </p>
       </div>
     </details>
@@ -2294,9 +2340,9 @@
       <div class="tech-card" style="border-left:3px solid var(--orange);">
         <h4>Builds / Versões</h4>
         <ul>
-          <li><strong style="color:var(--gold);">Beta 1.0.capx</strong> — versão mais recente</li>
-          <li>Alfa 3.0.capx — versão anterior</li>
-          <li>Alfa 2.0.capx — versão inicial pública</li>
+          <li><strong style="color:var(--gold);">Gold 1.0.capx</strong> — versão de lançamento (atual)</li>
+          <li>Beta 1.0.capx — versão anterior</li>
+          <li>Alfa 3.0.capx — versão de testes</li>
         </ul>
       </div>
       <div class="tech-card" style="border-left:3px solid var(--orange);">
@@ -2335,7 +2381,8 @@
         <table style="font-size:13px;">
           <thead><tr><th>Pasta / Arquivo</th><th>Conteúdo</th></tr></thead>
           <tbody>
-            <tr><td><code>Beta 1.0.capx</code></td><td>Build mais recente do jogo — versão beta</td></tr>
+            <tr><td><code>Gold 1.0.capx</code></td><td>Build de lançamento — versão final do jogo</td></tr>
+            <tr><td><code>Beta 1.0.capx</code></td><td>Build anterior — versão beta</td></tr>
             <tr><td><code>Alfa_3.0.capx</code></td><td>Build anterior — versão alfa 3.0</td></tr>
             <tr><td><code>Animations/p_player/</code></td><td>Frames do player: idle (5), walk (8), jump (4)</td></tr>
             <tr><td><code>Animations/p_inimigo/</code></td><td>Frames do inimigo: idle (5), walk (8), att (6)</td></tr>
@@ -2416,8 +2463,8 @@
 </main>
 
 <footer>
-  <p>O LEGADO — Game Design Document v2.2</p>
-  <p style="margin-top:4px; font-size:10px; opacity:0.5;">Isabelle Feltrin · Lucas Daufenbach · Rodrigo Margotti · Gustavo L. Silva · Junho 2026 — Boss: Demon adicionado</p>
+  <p>O LEGADO — Game Design Document v2.3</p>
+  <p style="margin-top:4px; font-size:10px; opacity:0.5;">Isabelle Feltrin · Lucas Daufenbach · Rodrigo Margotti · Gustavo L. Silva · Junho 2026 — Build Gold 1.0</p>
 </footer>
 
 <!--
